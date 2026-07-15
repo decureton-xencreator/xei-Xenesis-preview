@@ -12,9 +12,13 @@ This repository contains the public preview implementation of the Xenesis execut
   - Context-aware environmental music, local-scene discovery, emerging-artist spotlights, and event soundtrack concepts
   - Governed by `integrations/XMI-XENESIS-INTEGRATION-v1.0.md`
   - Canonical architecture remains in the private `decureton-xencreator/xen-operating-system` repository
+- XBM Suite Version 2.0 — Checkmate BDC Operating System
+  - Bilingual Living Manual family covering BDC management, agent execution, objection response, scripts, coaching, analytics, academy, and franchise replication
+  - Governed by `integrations/XBM-SUITE-V2-XENESIS-INTEGRATION.md`
+  - Canonical publications and release evidence remain in the private `decureton-xencreator/xen-operating-system` repository
 
 ## Preview truth boundary
 
-Preview experiences must distinguish operational functions from prototypes and future capabilities. Live geolocation, flight status, automated publishing, personal-data access, real-time market/news ingestion, provider playback, and licensing-dependent features may not be represented as operational until implemented and validated.
+Preview experiences must distinguish operational functions from prototypes and future capabilities. Live geolocation, flight status, automated publishing, personal-data access, real-time market/news ingestion, provider playback, licensing-dependent features, private BDC publications, employee records, CRM data, and academy records may not be represented as operational until implemented and validated.
 
-All XDBS preview surfaces must inherit mobile-first XPS/XDL design, accessible interaction patterns, clear source links, privacy-aware presentation, and explicit preview labeling.
+All preview surfaces must inherit mobile-first XPS/XDL design, accessible interaction patterns, clear source links, privacy-aware presentation, explicit preview labeling, and canonical-source truth boundaries.
