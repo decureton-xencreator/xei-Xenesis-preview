@@ -24,7 +24,7 @@ jobs:
           node-version: '24'
       - name: Validate JavaScript syntax
         run: |
-          node --check src/app-v4.js
-          node --check src/cursor-v4.js
+          node --check src/app-v6.js
+          node --check src/cursor-v5.js
       - name: Validate canonical narrative and experience contract
         run: node tests/validate.mjs
