@@ -1,0 +1,1 @@
+const root=document.documentElement;let frame=0;addEventListener('pointermove',e=>{if(frame)return;frame=requestAnimationFrame(()=>{root.style.setProperty('--mx',`${e.clientX}px`);root.style.setProperty('--my',`${e.clientY}px`);frame=0})},{passive:true});
