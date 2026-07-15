@@ -1,0 +1,49 @@
+name: Executive Symphony V4 Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'src/app-v4.js'
+      - 'src/styles-v4.css'
+      - 'src/cursor-v4.js'
+      - '.github/workflows/executive-symphony-v4.yml'
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate JavaScript syntax
+        run: |
+          node --check src/app-v4.js
+          node --check src/cursor-v4.js
+      - name: Validate Executive Symphony contract
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('index.html','utf8');
+          const js=fs.readFileSync('src/app-v4.js','utf8');
+          const css=fs.readFileSync('src/styles-v4.css','utf8');
+          const required=[
+            ['XVS British female resolver',js.includes('pickXVSVoice')&&js.includes('en-gb')&&js.includes('femaleNames')],
+            ['automatic opening narration',js.includes("window.addEventListener('load'")&&js.includes('Welcome to Executive Symphony')],
+            ['company memory question',js.includes('Can your company remember?')],
+            ['Living Company experience',js.includes("scene==='living'")&&js.includes("ED'S<br>PURPOSE")],
+            ['Ed owns Checkmate narrative',js.includes('Ed built the first real Checkmate BDC department in Panama.')],
+            ['bilingual manuals',js.includes('ENGLISH')&&js.includes('ESPAÑOL')&&js.includes('Comprende antes de persuadir')],
+            ['interactive living manuals',js.includes('Ask the manual')&&js.includes('data-question')],
+            ['living manual evolution',js.includes('LIVING MANUAL ADD-ON')&&js.includes('Propagate my judgment')],
+            ['enterprise purpose close',js.includes('all 24 companies')&&js.includes('Executive Symphony')],
+            ['diamond cursor',html.includes('cursor-v4.js')&&css.includes('body:after')&&css.includes('diamondBlink')],
+            ['mobile and reduced motion',css.includes('@media(max-width:620px)')&&css.includes('prefers-reduced-motion')]
+          ];
+          let failed=0;for(const [name,ok] of required){console.log(`${ok?'PASS':'FAIL'} ${name}`);if(!ok)failed++}
+          if(failed)process.exit(1);
+          NODE
