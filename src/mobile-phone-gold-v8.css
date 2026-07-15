@@ -1,0 +1,17 @@
+@media (max-width:760px){
+  html.phone-gold-open,html.phone-gold-open body{overflow:hidden!important;height:100%!important}
+  #phoneGold{position:fixed;inset:0;z-index:2147483644;background:radial-gradient(circle at 50% 30%,rgba(143,241,187,.13),transparent 38%),#020304;color:#f7f4ed;display:grid;grid-template-rows:auto 1fr auto;min-height:100dvh;padding:calc(18px + env(safe-area-inset-top)) 22px calc(116px + env(safe-area-inset-bottom));font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+  #phoneGold[hidden]{display:none!important}
+  .pg-brand{font-size:11px;letter-spacing:.22em;font-weight:800;white-space:nowrap}.pg-brand span{color:#8ff1bb}
+  .pg-stage{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:0;text-align:center;gap:22px}
+  .pg-diamond-wrap{position:relative;width:min(66vw,280px);aspect-ratio:1;display:grid;place-items:center}
+  .pg-ring{position:absolute;inset:5%;border:1px solid rgba(143,241,187,.18);border-radius:50%;animation:pgOrbit 18s linear infinite}.pg-ring.r2{inset:-12%;animation-direction:reverse;animation-duration:26s}
+  .pg-diamond{width:42%;aspect-ratio:1;transform:rotate(45deg);border:1px solid rgba(255,255,255,.5);background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(143,241,187,.04));box-shadow:0 0 70px rgba(143,241,187,.18);position:relative}.pg-diamond:after{content:'';position:absolute;inset:34%;background:#8ff1bb;box-shadow:0 0 30px rgba(143,241,187,.9);animation:pgPulse 1.6s ease-in-out infinite}
+  .pg-copy small{display:block;color:#8ff1bb;font-size:10px;letter-spacing:.22em;margin-bottom:14px}.pg-copy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(52px,15vw,76px);line-height:.92;letter-spacing:-.055em;margin:0}.pg-copy p{margin:18px auto 0;max-width:310px;font-size:16px;line-height:1.45;color:#b8bfbb}
+  #phoneGoldBegin{width:100%;min-height:64px;border:0;border-radius:22px;background:linear-gradient(135deg,#8ff1bb,#dffff0);color:#07100a;font-size:18px;font-weight:850;box-shadow:0 18px 54px rgba(143,241,187,.3);touch-action:manipulation}
+  .pg-hint{text-align:center;font-size:10px;letter-spacing:.13em;color:#737b77;margin-top:12px}
+  body.phone-premiere-started .chrome{display:grid}
+  body:not(.phone-premiere-started) .chrome,body:not(.phone-premiere-started) .film,body:not(.phone-premiere-started) .captions,body:not(.phone-premiere-started) .nav{visibility:hidden!important;pointer-events:none!important}
+  @keyframes pgOrbit{to{transform:rotate(360deg)}}@keyframes pgPulse{50%{opacity:.45;transform:scale(.82)}}
+}
+@media (min-width:761px){#phoneGold{display:none!important}}
