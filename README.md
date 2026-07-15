@@ -4,9 +4,17 @@ This repository contains the public preview implementation of the Xenesis execut
 
 ## Active preview integrations
 
+- XDBS — Xen Daily Bread Studio
+  - Executive landing-page publication, Academy Command, World in 5 Minutes, Water Cooler, personalized Sports and Entertainment, Xen Globe, travel, markets, risks, opportunities, and focused execution concepts
+  - Governed by `integrations/XDBS-XENESIS-INTEGRATION-v1.0.md`
+  - Canonical architecture remains in the private `decureton-xencreator/xen-operating-system` repository
 - XMI — Xen Music Intelligence
   - Context-aware environmental music, local-scene discovery, emerging-artist spotlights, and event soundtrack concepts
   - Governed by `integrations/XMI-XENESIS-INTEGRATION-v1.0.md`
   - Canonical architecture remains in the private `decureton-xencreator/xen-operating-system` repository
 
-Preview experiences must distinguish operational functions from prototypes and future capabilities. Provider playback, real-time data, and licensing-dependent features may not be represented as live until implemented and validated.
+## Preview truth boundary
+
+Preview experiences must distinguish operational functions from prototypes and future capabilities. Live geolocation, flight status, automated publishing, personal-data access, real-time market/news ingestion, provider playback, and licensing-dependent features may not be represented as operational until implemented and validated.
+
+All XDBS preview surfaces must inherit mobile-first XPS/XDL design, accessible interaction patterns, clear source links, privacy-aware presentation, and explicit preview labeling.
