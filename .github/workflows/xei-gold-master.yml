@@ -1,0 +1,31 @@
+name: XEI Gold Master Validation
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - name: Broken local reference validation
+        run: |
+          test -f index.html
+          test -f src/app.js
+          test -f src/styles.css
+      - name: Publish validation evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: xei-001-validation
+          path: |
+            index.html
+            src/
+            tests/
+            RELEASE.md
