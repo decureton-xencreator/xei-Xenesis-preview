@@ -1,0 +1,22 @@
+{
+  "publication": "Darren's Daily Bread",
+  "runtime": "XDBS Diamond",
+  "version": "1.0.0",
+  "currentEdition": "2026-07-16",
+  "currentPath": "daily-bread/index.html",
+  "archivePath": "daily-bread/archive/2026-07-16.html",
+  "immutableSourceCommit": "0547a4ff4f55707a3b4c582f912eb62dfbe00912",
+  "publicHost": "https://decureton-xencreator.github.io/xei-genesis-preview/daily-bread/",
+  "releaseStatus": "PUBLISHED",
+  "validation": {
+    "mobileFirst": true,
+    "navigation": true,
+    "directLessons": true,
+    "liveWorldClock": true,
+    "liveWeatherPanel": true,
+    "sourceLinks": true,
+    "calendarContext": true,
+    "immutableArchive": true,
+    "reducedMotion": true
+  }
+}
