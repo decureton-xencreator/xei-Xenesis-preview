@@ -1,0 +1,35 @@
+name: XLI Living Interface Release
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  certify-xli-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate application controller
+        run: node --check src/ed-premiere-clean-v1.js
+      - name: Validate XFS activation layer
+        run: node --check src/xfs-xen-centric-finish-v1.js
+      - name: Validate XLI observer layer
+        run: node --check src/xli-living-interface-v1.js
+      - name: Certify XLI Living Interface
+        run: node tests/xli-living-interface-v1.mjs
+      - name: Preserve Xen-centric XFS release
+        run: node tests/xfs-xen-centric-release.mjs
+      - name: Preserve Director's Cut
+        run: node tests/xde-directors-cut-v1.mjs
+      - name: Preserve compartment integrity
+        run: node tests/xde-compartment-integrity.mjs
+      - name: Preserve rollout contract
+        run: node tests/xde-rollout-v1.mjs
+      - name: Preserve XDE canon
+        run: node tests/xde-canon.mjs
