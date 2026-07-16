@@ -21,22 +21,37 @@ if(phoneControlsEnabled){
     document.body.classList.toggle('xen-hard-paused',hardPaused);
     document.body.classList.toggle('xen-captions-off',!captionsOn);
   }
+  function releasePause(){
+    if(hardPaused&&'speechSynthesis'in window)speechSynthesis.resume();
+    hardPaused=false;
+    render();
+  }
   pause.addEventListener('click',event=>{
     event.preventDefault();event.stopPropagation();
     hardPaused=!hardPaused;
-    if('speechSynthesis'in window)speechSynthesis.cancel();
-    render();
-    if(!hardPaused){
-      const voice=document.querySelector('#voice');
-      setTimeout(()=>voice?.click(),80);
+    if('speechSynthesis'in window){
+      if(hardPaused)speechSynthesis.pause();
+      else speechSynthesis.resume();
     }
+    render();
   },true);
   captions.addEventListener('click',event=>{
     event.preventDefault();event.stopPropagation();
-    captionsOn=!captionsOn;render();
+    captionsOn=!captionsOn;
+    render();
   },true);
-  const reset=()=>{hardPaused=false;captionsOn=true;render()};
-  document.querySelector('#restart')?.addEventListener('click',reset,true);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden&&!hardPaused){hardPaused=true;if('speechSynthesis'in window)speechSynthesis.cancel();render()}});
+  document.addEventListener('click',event=>{
+    const target=event.target.closest('#restart,#back,#next,[data-memory],[data-next],#route,[data-approve],[data-mandate]');
+    if(!target)return;
+    releasePause();
+    if(target.matches('#restart')){captionsOn=true;render()}
+  },true);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden&&!hardPaused){
+      hardPaused=true;
+      if('speechSynthesis'in window)speechSynthesis.pause();
+      render();
+    }
+  });
   render();
 }
