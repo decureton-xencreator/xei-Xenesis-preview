@@ -11,6 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: node --check src/mobile-phone-gold-v8.js
+          node-version: 24
+      - run: |
+          node --check src/mobile-phone-gold-v8.js
+          node --check src/xvs-canonical-phone-v9.js
+          node --check src/mobile-interaction-stage-v9.js
       - run: node tests/phone-gold-v8.mjs
