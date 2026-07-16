@@ -1,0 +1,31 @@
+name: Xen-Centric XFS Release
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  certify-xfs-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate controller syntax
+        run: node --check src/ed-premiere-clean-v1.js
+      - name: Validate XFS finish syntax
+        run: node --check src/xfs-xen-centric-finish-v1.js
+      - name: Certify Xen-centric finish and institutional memory
+        run: node tests/xfs-xen-centric-release.mjs
+      - name: Preserve Director's Cut
+        run: node tests/xde-directors-cut-v1.mjs
+      - name: Preserve compartment integrity
+        run: node tests/xde-compartment-integrity.mjs
+      - name: Preserve rollout
+        run: node tests/xde-rollout-v1.mjs
+      - name: Preserve XDE canon
+        run: node tests/xde-canon.mjs
