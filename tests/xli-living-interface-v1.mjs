@@ -8,7 +8,7 @@ const html=fs.readFileSync('index.html','utf8');
 const manifest=JSON.parse(fs.readFileSync('governance/XLI-LIVING-INTERFACE-RELEASE.json','utf8'));
 
 if(!xfs.includes("import('./xli-living-interface-v1.js')"))throw new Error('XLI is not activated by XFS');
-for(const term of ["family:'XLI'","observerOnly:true",'prefers-reduced-motion','visibilitychange','data-xli-purpose','XLI_MOTION_PURPOSE','xli:ready'])if(!js.includes(term))throw new Error(`XLI runtime missing: ${term}`);
+for(const term of ["family:'XLI'","observerOnly:true",'prefers-reduced-motion','visibilitychange','dataset.xliPurpose','XLI_MOTION_PURPOSE','xli:ready'])if(!js.includes(term))throw new Error(`XLI runtime missing: ${term}`);
 for(const term of ['xliKnowledgeBreath','xliInvitation','xliMemoryHeartbeat','xliEnterpriseSignal','xliPrimaryInvite','prefers-reduced-motion:reduce'])if(!css.includes(term))throw new Error(`XLI visual language missing: ${term}`);
 for(const selector of ['.knowledge-field span','.choice:not(.selected)','.institutional-scene.active','.proof-link','.propagation-map .core','.constellation span'])if(!css.includes(selector))throw new Error(`XLI target missing: ${selector}`);
 for(const forbidden of ['speechSynthesis','requestAnimationFrame','phone-gold-runtime','floating-caption'])if(js.includes(forbidden)||css.includes(forbidden))throw new Error(`Deprecated or conflicting runtime restored: ${forbidden}`);
