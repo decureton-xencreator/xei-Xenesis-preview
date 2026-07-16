@@ -1,0 +1,29 @@
+{
+  "artifact": "XEI-001 Phone Gold Master Runtime",
+  "version": "14.0.0",
+  "status": "canonical-candidate",
+  "source_evidence": [
+    "User iPhone screen recording 2026-07-16",
+    "phone-transport-v10 hard stop behavior",
+    "mobile-phone-gold-v8 silent start shell",
+    "phone-scene-captions-v13 in-flow caption architecture",
+    "xvs-canonical-phone-v9 retained Sonia/Libby voice lock"
+  ],
+  "working_patterns": {
+    "single_owner": "phone-gold-runtime-v14.js owns all phone session lifecycle behavior",
+    "pause": "cancel active utterance, suppress cancellation completion, retain utterance, replay only after explicit Resume",
+    "captions": "mount before narration inside active scene; arrival anchor is h1",
+    "restart": "restart lock then cancel, clear, reset, show silent landing, release lock",
+    "voice": {"preferred":"Sonia","fallback":"Libby","rate":0.86,"pitch":1.05,"volume":1.0},
+    "start_gate": "one Begin with Xen action; no speech or captions before it",
+    "navigation": "cancel abandoned narration and clear paused state before scene entry"
+  },
+  "forbidden_patterns": [
+    "multiple phone JavaScript controllers owning pause, captions, start, or restart",
+    "native speechSynthesis.pause/resume as the authoritative iPhone pause implementation",
+    "caption slot below the complete arrival title stack",
+    "restart that resumes or completes an old utterance",
+    "automatic narration before Begin with Xen"
+  ],
+  "template": "docs/PHONE-GOLD-MASTER-RUNTIME-TEMPLATE.md"
+}
