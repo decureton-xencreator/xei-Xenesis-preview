@@ -20,7 +20,7 @@ jobs:
       - name: Certify Director's Cut and production freeze
         run: node tests/xde-directors-cut-v1.mjs
       - name: Preserve branching and completion
-        run: node tests/xde-branching-v1.mjs
+        run: node tests/xde-branching-completion.mjs
       - name: Preserve compartment integrity
         run: node tests/xde-compartment-integrity-v1.mjs
       - name: Preserve rollout contract
