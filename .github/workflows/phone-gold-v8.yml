@@ -1,9 +1,11 @@
-name: Phone Gold Master V15
+name: Phone Gold Master — Clean Rebuild
+
 on:
   pull_request:
     branches: [main]
   push:
     branches: [main]
+
 jobs:
   validate-phone:
     runs-on: ubuntu-latest
@@ -12,9 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: |
-          node --check src/xvs-canonical-phone-v9.js
-          node --check src/xvs-human-delivery-v10.js
-          node --check src/phone-gold-runtime-v15.js
-          node --check src/mobile-interaction-stage-v9.js
-      - run: node tests/phone-gold-v8.mjs
+      - name: Validate active clean phone premiere
+        run: |
+          node --check src/ed-premiere-clean-v1.js
+          node tests/ed-premiere-clean-v1.mjs
