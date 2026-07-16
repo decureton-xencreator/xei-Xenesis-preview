@@ -31,3 +31,4 @@ const badge=document.createElement('div');badge.className='xfs-proof-badge';badg
 for(const link of document.querySelectorAll('.proof-links a'))link.addEventListener('click',event=>event.stopPropagation());
 
 window.dispatchEvent(new CustomEvent('xfs:ready',{detail:XFS_RELEASE}));
+import('./xli-living-interface-v1.js');

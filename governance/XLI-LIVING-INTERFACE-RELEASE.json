@@ -1,0 +1,41 @@
+{
+  "artifact": "Xen Executive Documentary",
+  "release": "XLI Living Interface v1.0",
+  "status": "canonical-candidate",
+  "controller": "src/ed-premiere-clean-v1.js",
+  "activation_owner": "src/xfs-xen-centric-finish-v1.js",
+  "observer_layer": "src/xli-living-interface-v1.js",
+  "style_layer": "src/xli-living-interface-v1.css",
+  "single_controller": true,
+  "scene_count": 9,
+  "living_behaviors": [
+    "ambient-intelligence",
+    "intelligent-focus",
+    "choice-invitation",
+    "institutional-memory-progression",
+    "memory-heartbeat",
+    "product-artifact-cards",
+    "enterprise-signal-flow",
+    "xen-presence",
+    "visibility-pause",
+    "reduced-motion"
+  ],
+  "purposeful_motion_only": true,
+  "monetization_review": [
+    "licensing",
+    "subscription",
+    "enterprise-deployment",
+    "academy",
+    "certification",
+    "franchise",
+    "api",
+    "marketplace",
+    "managed-service",
+    "white-label"
+  ],
+  "external_acceptance": [
+    "Darren physical iPhone visual review",
+    "production-domain deployment evidence",
+    "approved production narration asset"
+  ]
+}
