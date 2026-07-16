@@ -3,15 +3,6 @@ name: Cinematic Executive Premiere V6
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'src/app-v6.js'
-      - 'src/styles-v5.css'
-      - 'src/director-v6.css'
-      - 'src/cursor-v5.js'
-      - 'tests/validate.mjs'
-      - 'docs/XEI-001-CINEMATIC-STORYBOARD-V5.md'
-      - '.github/workflows/cinematic-premiere-v5.yml'
   push:
     branches: [main]
 
@@ -23,9 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Validate master director syntax
+      - name: Validate active clean premiere
         run: |
-          node --check src/app-v6.js
-          node --check src/cursor-v5.js
-      - name: Validate cinematic continuity
-        run: node tests/validate.mjs
+          node --check src/ed-premiere-clean-v1.js
+          node tests/ed-premiere-clean-v1.mjs

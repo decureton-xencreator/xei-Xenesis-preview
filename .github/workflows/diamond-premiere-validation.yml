@@ -2,17 +2,9 @@ name: Diamond Premiere Validation
 
 on:
   pull_request:
-    paths:
-      - 'index.html'
-      - 'src/**'
-      - 'tests/validate.mjs'
-      - '.github/workflows/diamond-premiere-validation.yml'
+    branches: [main]
   push:
     branches: [main]
-    paths:
-      - 'index.html'
-      - 'src/**'
-      - 'tests/validate.mjs'
 
 jobs:
   validate:
@@ -21,10 +13,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
-      - name: Validate JavaScript syntax
+          node-version: 24
+      - name: Validate active clean premiere
         run: |
-          node --check src/app-v6.js
-          node --check src/cursor-v5.js
-      - name: Validate canonical narrative and experience contract
-        run: node tests/validate.mjs
+          node --check src/ed-premiere-clean-v1.js
+          node tests/ed-premiere-clean-v1.mjs
