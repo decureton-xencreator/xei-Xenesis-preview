@@ -1,0 +1,22 @@
+@media(max-width:760px){
+  :root{--xen-phone-header:118px;--xen-phone-gutter:18px}
+  body.phone-premiere-started .chrome{min-height:var(--xen-phone-header)!important;height:var(--xen-phone-header)!important;padding:calc(14px + env(safe-area-inset-top)) var(--xen-phone-gutter) 14px!important;grid-template-columns:1fr!important;align-content:start!important;gap:0!important}
+  body.phone-premiere-started .chrome #voice{display:none!important}
+  body.phone-premiere-started .film{padding-top:calc(var(--xen-phone-header) + env(safe-area-inset-top))!important}
+  body.phone-premiere-started .chapter{min-height:calc(100dvh - var(--xen-phone-header) - env(safe-area-inset-top))!important;padding-top:30px!important;padding-left:var(--xen-phone-gutter)!important;padding-right:var(--xen-phone-gutter)!important;padding-bottom:calc(170px + env(safe-area-inset-bottom))!important}
+  body.phone-premiere-started #arrival #begin{display:none!important}
+  body.phone-premiere-started #arrival .title-stack{padding-bottom:18px!important}
+  body.phone-premiere-started #arrival .negative-list{margin-top:22px!important}
+  #xenTransport{top:calc(58px + env(safe-area-inset-top))!important;right:var(--xen-phone-gutter)!important;min-height:38px!important;padding:0 13px!important;font-size:9px!important;letter-spacing:.11em!important;gap:7px!important;box-shadow:0 8px 28px rgba(0,0,0,.42),0 0 22px rgba(143,241,187,.12)!important}
+  #xenTransport .transport-icon{font-size:12px!important}
+  .captions{left:var(--xen-phone-gutter)!important;right:var(--xen-phone-gutter)!important;bottom:calc(82px + env(safe-area-inset-bottom))!important;width:auto!important;max-width:calc(100vw - (var(--xen-phone-gutter) * 2))!important;overflow:hidden!important}
+  .captions p{width:100%!important;max-width:100%!important;box-sizing:border-box!important;margin:0!important;font-size:14px!important;line-height:1.35!important;padding:13px 15px!important}
+  body.phone-interaction-open .captions{display:none!important}
+  .nav{bottom:calc(12px + env(safe-area-inset-bottom))!important}
+  #phoneInteractionStage{bottom:calc(82px + env(safe-area-inset-bottom))!important}
+}
+@media(max-width:390px){
+  :root{--xen-phone-header:112px;--xen-phone-gutter:16px}
+  body.phone-premiere-started .chrome{grid-template-columns:1fr!important}
+  #xenTransport{top:calc(54px + env(safe-area-inset-top))!important}
+}
