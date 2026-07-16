@@ -1,0 +1,16 @@
+name: Phone Gold Master V8
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  validate-phone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node --check src/mobile-phone-gold-v8.js
+      - run: node tests/phone-gold-v8.mjs
