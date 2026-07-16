@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-const required=['index.html','src/mobile-phone-gold-v8.css','src/mobile-phone-gold-v8.js','src/xvs-canonical-phone-v9.js','src/mobile-interaction-stage-v9.css','src/mobile-interaction-stage-v9.js','src/xvs-human-delivery-v10.js','src/phone-transport-v10.css','src/phone-transport-v10.js','src/phone-stage-layout-v11.css','src/phone-controls-spacing-v12.css','src/phone-controls-spacing-v12.js'];
+const required=['index.html','src/mobile-phone-gold-v8.css','src/mobile-phone-gold-v8.js','src/xvs-canonical-phone-v9.js','src/mobile-interaction-stage-v9.css','src/mobile-interaction-stage-v9.js','src/xvs-human-delivery-v10.js','src/phone-transport-v10.css','src/phone-transport-v10.js','src/phone-stage-layout-v11.css','src/phone-controls-spacing-v12.css','src/phone-controls-spacing-v12.js','src/phone-scene-captions-v13.css','src/phone-scene-captions-v13.js'];
 for(const file of required){if(!fs.existsSync(file))throw new Error(`Missing phone Gold Master asset: ${file}`)}
 const html=fs.readFileSync('index.html','utf8');
 const css=fs.readFileSync('src/mobile-phone-gold-v8.css','utf8');
@@ -11,6 +11,8 @@ const human=fs.readFileSync('src/xvs-human-delivery-v10.js','utf8');
 const layout=fs.readFileSync('src/phone-stage-layout-v11.css','utf8');
 const controlsCss=fs.readFileSync('src/phone-controls-spacing-v12.css','utf8');
 const controlsJs=fs.readFileSync('src/phone-controls-spacing-v12.js','utf8');
+const sceneCaptionCss=fs.readFileSync('src/phone-scene-captions-v13.css','utf8');
+const sceneCaptionJs=fs.readFileSync('src/phone-scene-captions-v13.js','utf8');
 for(const term of required.slice(1))if(!html.includes(term.replace('src/','')))throw new Error(`Phone asset not loaded: ${term}`);
 for(const term of ['100dvh','safe-area-inset-bottom','phoneGoldBegin','body:not(.phone-premiere-started)','visibility:hidden'])if(!css.includes(term))throw new Error(`Phone shell contract missing: ${term}`);
 for(const term of ['Good morning','Good afternoon','Good evening','phone-premiere-started','nativeBegin.click','window.scrollTo(0,0)'])if(!js.includes(term))throw new Error(`Phone start runtime missing: ${term}`);
@@ -21,4 +23,6 @@ for(const term of ['I want to ask you something','Can a company remember?','scri
 for(const term of ['--xen-phone-header','body.phone-premiere-started #arrival #begin','body.phone-premiere-started .chrome #voice'])if(!layout.includes(term))throw new Error(`Protected phone stage contract missing: ${term}`);
 for(const term of ['#xenPhoneControls','--xen-phone-caption','.captions{position:fixed','body.xen-captions-off .captions','#xenTransport{display:none'])if(!controlsCss.includes(term))throw new Error(`Phone spacing or caption lane missing: ${term}`);
 for(const term of ['xenPause','xenCaptions','speechSynthesis.cancel()','voice?.click()','xen-hard-paused','xen-captions-off'])if(!controlsJs.includes(term))throw new Error(`Deterministic phone controls missing: ${term}`);
-console.log('PASS phone landing, canonical voice, humanized script, deterministic pause/resume, captions toggle, visible interactions, and protected non-overlapping stage zones');
+for(const term of ['phone-scene-caption-slot','position:static!important','body.captions-off .phone-scene-caption-slot'])if(!sceneCaptionCss.includes(term))throw new Error(`In-flow scene caption styling missing: ${term}`);
+for(const term of ['anchorMap','ensureSlot','insertAdjacentElement','slot.appendChild(captions)','MutationObserver'])if(!sceneCaptionJs.includes(term))throw new Error(`Scene-aware caption placement missing: ${term}`);
+console.log('PASS phone landing, canonical voice, deterministic controls, scene-aware in-flow captions, visible interactions, and protected non-overlapping stage zones');
