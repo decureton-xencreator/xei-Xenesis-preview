@@ -1,0 +1,40 @@
+{
+  "artifact": "XDE Executive Documentary Engine",
+  "version": "1.0.0",
+  "status": "canonical",
+  "approved_by": "Darren Cureton",
+  "effective_date": "2026-07-16",
+  "standards": [
+    "XDE-001 Executive Documentary Engine",
+    "XDE-002 Documentary Production Pipeline",
+    "XDE-003 Living Executive Language",
+    "XDE-004 Visual Hierarchy",
+    "XDE-005 Documentary Music and Sound",
+    "XDE-006 Executive Participation",
+    "XDE-007 WOW Ledger",
+    "XDE-008 Five-Second Rule",
+    "XDE-009 Documentary Budget",
+    "XDE-010 Living Company Signature Moments",
+    "ESP-001 Experience Stability Principle"
+  ],
+  "review_board": {
+    "name": "Executive Experience Review Board",
+    "gates": [
+      "Narrative Continuity",
+      "Emotional Progression",
+      "Executive Clarity",
+      "Visual Memory",
+      "Technical Reliability",
+      "Mandate Creation"
+    ]
+  },
+  "production_skeleton": {
+    "route": "/",
+    "runtime": "src/ed-premiere-clean-v1.js",
+    "styles": "src/ed-premiere-clean-v1.css",
+    "scene_count": 9,
+    "single_owner": true,
+    "silent_coherence_required": true
+  },
+  "canonical_document": "docs/XDE-001-010-EXECUTIVE-DOCUMENTARY-ENGINE-CANON.md"
+}
