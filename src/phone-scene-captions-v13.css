@@ -1,0 +1,11 @@
+@media(max-width:760px){
+  .phone-scene-caption-slot{display:block;width:100%;margin:22px 0 26px;position:relative;z-index:3}
+  .phone-scene-caption-slot:empty{display:none}
+  .phone-scene-caption-slot .captions{position:static!important;inset:auto!important;width:100%!important;max-width:100%!important;margin:0!important;transform:none!important;pointer-events:none!important}
+  .phone-scene-caption-slot .captions p{display:block;width:100%!important;max-width:100%!important;margin:0!important;padding:15px 17px!important;box-sizing:border-box!important;border-radius:18px!important;background:rgba(4,7,6,.94)!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:0 12px 34px rgba(0,0,0,.28)!important;font-size:15px!important;line-height:1.42!important;text-align:left!important}
+  body.captions-off .phone-scene-caption-slot{display:none!important}
+  body.phone-interaction-open .phone-scene-caption-slot{display:none!important}
+  #arrival .phone-scene-caption-slot{margin-top:18px;margin-bottom:22px}
+  #memory .phone-scene-caption-slot{margin-top:24px;margin-bottom:30px}
+  #living .phone-scene-caption-slot,#panama .phone-scene-caption-slot,#bilingual .phone-scene-caption-slot,#manual .phone-scene-caption-slot,#teach .phone-scene-caption-slot,#router .phone-scene-caption-slot,#propagate .phone-scene-caption-slot,#reveal .phone-scene-caption-slot,#constellation .phone-scene-caption-slot,#summary .phone-scene-caption-slot,#mandate .phone-scene-caption-slot{margin-top:22px;margin-bottom:28px}
+}
