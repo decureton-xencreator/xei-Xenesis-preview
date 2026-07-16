@@ -1,0 +1,23 @@
+name: XDE Branching and Completion
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  certify-branching:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate runtime syntax
+        run: node --check src/ed-premiere-clean-v1.js
+      - name: Certify branching and completion
+        run: node tests/xde-branching-completion.mjs
+      - name: Preserve production documentary contract
+        run: node tests/ed-premiere-clean-v1.mjs
