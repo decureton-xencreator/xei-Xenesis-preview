@@ -1,8 +1,8 @@
 import fs from 'node:fs';
-const required=['index.html','src/mobile-phone-gold-v8.css','src/xvs-canonical-phone-v9.js','src/mobile-interaction-stage-v9.css','src/mobile-interaction-stage-v9.js','src/xvs-human-delivery-v10.js','src/phone-stage-layout-v11.css','src/phone-controls-spacing-v12.css','src/phone-scene-captions-v13.css','src/phone-gold-runtime-v14.js','docs/PHONE-GOLD-MASTER-RUNTIME-TEMPLATE.md','docs/PHONE-RUNTIME-WORKING-MEMORY.json'];
+const required=['index.html','src/mobile-phone-gold-v8.css','src/xvs-canonical-phone-v9.js','src/mobile-interaction-stage-v9.css','src/mobile-interaction-stage-v9.js','src/xvs-human-delivery-v10.js','src/phone-stage-layout-v11.css','src/phone-controls-spacing-v12.css','src/phone-scene-captions-v13.css','src/phone-gold-runtime-v15.js','docs/PHONE-GOLD-MASTER-RUNTIME-TEMPLATE.md','docs/PHONE-RUNTIME-WORKING-MEMORY.json'];
 for(const file of required){if(!fs.existsSync(file))throw new Error(`Missing phone Gold Master asset: ${file}`)}
 const html=fs.readFileSync('index.html','utf8');
-const runtime=fs.readFileSync('src/phone-gold-runtime-v14.js','utf8');
+const runtime=fs.readFileSync('src/phone-gold-runtime-v15.js','utf8');
 const xvs=fs.readFileSync('src/xvs-canonical-phone-v9.js','utf8');
 const stageCss=fs.readFileSync('src/mobile-interaction-stage-v9.css','utf8');
 const stageJs=fs.readFileSync('src/mobile-interaction-stage-v9.js','utf8');
@@ -10,9 +10,10 @@ const human=fs.readFileSync('src/xvs-human-delivery-v10.js','utf8');
 const layout=fs.readFileSync('src/phone-stage-layout-v11.css','utf8');
 const controlsCss=fs.readFileSync('src/phone-controls-spacing-v12.css','utf8');
 const sceneCaptionCss=fs.readFileSync('src/phone-scene-captions-v13.css','utf8');
-for(const term of required.filter(x=>x.startsWith('src/')))if(!html.includes(term))throw new Error(`Phone asset not loaded: ${term}`);
-for(const deprecated of ['mobile-phone-gold-v8.js','phone-controls-spacing-v12.js','phone-scene-captions-v13.js','phone-transport-v10.js'])if(html.includes(deprecated))throw new Error(`Deprecated controller still loaded: ${deprecated}`);
-for(const term of ['XenPhoneGoldRuntime','nativeCancel','runtime.paused||runtime.restarting','pauseNarration','resumeNarration','showLanding','runtime.restarting=true','anchorMap={arrival:\'h1\'','phone-scene-caption-slot','requestAnimationFrame(()=>requestAnimationFrame'])if(!runtime.includes(term))throw new Error(`Compiled runtime contract missing: ${term}`);
+if(!html.includes('src/phone-gold-runtime-v15.js'))throw new Error('Phone runtime v15 is not loaded');
+for(const deprecated of ['phone-gold-runtime-v14.js','mobile-phone-gold-v8.js','phone-controls-spacing-v12.js','phone-scene-captions-v13.js','phone-transport-v10.js'])if(html.includes(deprecated))throw new Error(`Deprecated controller still loaded: ${deprecated}`);
+for(const term of ['XenPhoneGoldRuntime','nativeCancel','runtime.paused||runtime.restarting','pauseNarration','resumeNarration','showLanding','runtime.restarting=true','anchorMap={arrival:\'h1\'','phone-scene-caption-slot','const nativeBegin=document.querySelector(\'#begin\')','if(nativeBegin)nativeBegin.click();else voiceButton.click()','Tap to Retry'])if(!runtime.includes(term))throw new Error(`Compiled runtime contract missing: ${term}`);
+if(runtime.includes('requestAnimationFrame(()=>requestAnimationFrame'))throw new Error('Begin must not leave the iPhone user-gesture call stack');
 if(runtime.includes('speechSynthesis.pause()')||runtime.includes('speechSynthesis.resume()'))throw new Error('iPhone runtime must not depend on unreliable native pause/resume');
 for(const term of ["'Sonia'","'Libby'",'utterance.rate=.86','utterance.pitch=1.05','frame-first'])if(!xvs.includes(term))throw new Error(`Canonical XVS missing: ${term}`);
 for(const term of ['#phoneInteractionStage','body.phone-interaction-open .captions','min-height:58px','phoneStageIn'])if(!stageCss.includes(term))throw new Error(`Interaction stage style missing: ${term}`);
@@ -21,4 +22,4 @@ for(const term of ['I want to ask you something','Can a company remember?','scri
 for(const term of ['--xen-phone-header','body.phone-premiere-started #arrival #begin','body.phone-premiere-started .chrome #voice'])if(!layout.includes(term))throw new Error(`Protected layout missing: ${term}`);
 for(const term of ['#xenPhoneControls','body.xen-captions-off .captions','#xenTransport{display:none'])if(!controlsCss.includes(term))throw new Error(`Control styling missing: ${term}`);
 for(const term of ['phone-scene-caption-slot','position:static!important','body.xen-captions-off .phone-scene-caption-slot'])if(!sceneCaptionCss.includes(term))throw new Error(`Caption styling missing: ${term}`);
-console.log('PASS phone runtime v14: silent reusable landing, hard pause without auto-resume, first-scene captions, one controller, canonical voice, and clean restart');
+console.log('PASS phone runtime v15: synchronous iPhone Begin gate, retry fail-safe, silent restart, hard pause, first-scene captions, and one controller');
