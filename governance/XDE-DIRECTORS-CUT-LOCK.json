@@ -1,0 +1,12 @@
+{
+  "artifact": "XEI Executive Documentary",
+  "release": "Director's Cut v1.0",
+  "status": "picture-locked",
+  "feature_freeze": true,
+  "scene_count": 9,
+  "runtime_owner": "src/ed-premiere-clean-v1.js",
+  "narration_mode": "locked visible scene-bound script",
+  "standards": ["XDE-011","XDE-012","XFP-001","XFP-002","XDC-001","XDC-002"],
+  "allowed_post_freeze_changes": ["verified defect correction","explicit Darren authorization"],
+  "physical_acceptance": ["Darren iPhone review","Ed monitor review"]
+}
