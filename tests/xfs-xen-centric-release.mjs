@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+
+const html=fs.readFileSync('index.html','utf8');
+const controller=fs.readFileSync('src/ed-premiere-clean-v1.js','utf8');
+const finish=fs.readFileSync('src/xfs-xen-centric-finish-v1.js','utf8');
+const css=fs.readFileSync('src/xfs-xen-centric-finish-v1.css','utf8');
+const manifest=JSON.parse(fs.readFileSync('governance/XFS-XEN-CENTRIC-RELEASE-MANIFEST.json','utf8'));
+const release=fs.readFileSync('docs/XEN-CENTRIC-XFS-INSTITUTIONAL-MEMORY-RELEASE.md','utf8');
+
+if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Director’s Cut must remain nine scenes');
+for(const term of ['AN EXECUTIVE ENCOUNTERS XEN','What if a company could learn?','XEN MEMORY','XEN CORE','Where should Xen prove itself next?'])if(!html.includes(term))throw new Error(`Xen-centric identity missing: ${term}`);
+for(const term of ['MARISOL','VIANKA','PRESERVED BY','Open Complete XBM Suite','Marisol left the position. The department did not.'])if(!html.includes(term))throw new Error(`Institutional-memory proof missing: ${term}`);
+for(const path of ['publications/XBM-101','publications/XBM-102','publications/XBM-104','publications/XBM-105','publications/XBM-SUITE'])if(!html.includes(path))throw new Error(`Canonical XBM proof link missing: ${path}`);
+for(const term of ['contain:layout paint','.institutional-scene','.inheritance-flow','.manual-proof','.proof-links'])if(!css.includes(term))throw new Error(`XFS compartment finish missing: ${term}`);
+for(const term of ["controllerOwner:'src/ed-premiere-clean-v1.js'",'MutationObserver','institutional-memory','XFS_RELEASE'])if(!finish.includes(term))throw new Error(`XFS implementation missing: ${term}`);
+for(const forbidden of ['speechSynthesis','phone-gold-runtime','mobile-entry','floating-caption'])if(html.includes(forbidden)||finish.includes(forbidden))throw new Error(`Deprecated runtime restored: ${forbidden}`);
+if(!controller.includes("singleOwner:true"))throw new Error('Canonical controller ownership was not preserved');
+if(manifest.xen_is_protagonist!==true||manifest.scene_count!==9)throw new Error('Manifest does not preserve Xen-centric nine-scene release');
+if(manifest.monetization_families.length<8)throw new Error('Commercial family review is incomplete');
+if(!release.includes('Proof truth boundary')||!release.includes('external custom-domain activation'))throw new Error('Truthful completion boundary missing');
+console.log('PASS Xen-centric XFS institutional-memory release');
