@@ -1,0 +1,17 @@
+@media (max-width:760px){
+  :root{--xen-safe-bottom:max(env(safe-area-inset-bottom),0px)}
+  body.phone-interaction-open{overflow:hidden!important}
+  #phoneInteractionStage{position:fixed;left:12px;right:12px;bottom:calc(104px + var(--xen-safe-bottom));z-index:2147483643;display:none;padding:17px;border:1px solid rgba(143,241,187,.58);border-radius:25px;background:linear-gradient(145deg,rgba(8,17,13,.985),rgba(2,4,3,.985));box-shadow:0 0 0 8px rgba(143,241,187,.035),0 24px 80px rgba(0,0,0,.72),0 0 70px rgba(143,241,187,.22);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+  #phoneInteractionStage.open{display:block;animation:phoneStageIn .48s cubic-bezier(.2,.85,.2,1) both}
+  #phoneInteractionStage .pis-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;color:#8ff1bb;font:800 10px/1.2 Inter,system-ui,sans-serif;letter-spacing:.21em;text-transform:uppercase}
+  #phoneInteractionStage .pis-label:after{content:'◇';font-size:18px;text-shadow:0 0 18px rgba(143,241,187,.9)}
+  #phoneInteractionStage .pis-content{display:grid;gap:10px}
+  #phoneInteractionStage .choice-row,#phoneInteractionStage .doors,#phoneInteractionStage .ask{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;width:100%!important;margin:0!important;padding:0!important;border:0!important;background:none!important;box-shadow:none!important;animation:none!important;transform:none!important}
+  #phoneInteractionStage button,#phoneInteractionStage input,#phoneInteractionStage textarea{width:100%!important;min-height:58px!important;margin:0!important;border:1px solid rgba(143,241,187,.48)!important;border-radius:17px!important;background:rgba(143,241,187,.075)!important;color:#f7f4ed!important;font-size:17px!important;line-height:1.25!important;padding:15px 16px!important;box-shadow:0 0 24px rgba(143,241,187,.08)!important;touch-action:manipulation}
+  #phoneInteractionStage button:active{background:rgba(143,241,187,.22)!important;transform:scale(.985)}
+  #phoneInteractionStage textarea{min-height:118px!important;resize:none}
+  body.phone-interaction-open .captions{display:none!important}
+  body.phone-interaction-open .nav{opacity:.22;pointer-events:none}
+  @keyframes phoneStageIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
+}
+@media (min-width:761px){#phoneInteractionStage{display:none!important}}
