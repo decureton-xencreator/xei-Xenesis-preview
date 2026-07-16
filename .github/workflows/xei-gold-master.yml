@@ -2,50 +2,29 @@ name: XEI Gold Master Validation
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
   pull_request:
+    branches: [main]
+  push:
     branches: [main]
 
 permissions:
   contents: read
 
-concurrency:
-  group: xei-gold-master-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   validate:
-    name: XEI-001 Certification Gates
+    name: Clean Ed Premiere Certification
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout canonical release
-        uses: actions/checkout@v4
-      - name: Configure Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - name: Install release dependencies
-        run: npm install --ignore-scripts --no-audit --no-fund
-      - name: Run XEI certification suite
-        run: npm test
-      - name: Validate canonical release paths
+          node-version: 24
+      - name: Validate clean production runtime
         run: |
           test -f index.html
-          test -f premiere.html
-          test -f src/app.js
-          test -f src/styles.css
-          test -f tests/validate.mjs
-          test -f RELEASE.md
-      - name: Publish validation evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: xei-001-validation-${{ github.sha }}
-          retention-days: 30
-          path: |
-            index.html
-            premiere.html
-            src/
-            tests/
-            RELEASE.md
+          test -f src/ed-premiere-clean-v1.css
+          test -f src/ed-premiere-clean-v1.js
+          test -f tests/ed-premiere-clean-v1.mjs
+          node --check src/ed-premiere-clean-v1.js
+          node tests/ed-premiere-clean-v1.mjs
