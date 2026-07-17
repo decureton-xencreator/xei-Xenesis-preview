@@ -15,3 +15,13 @@
 .handoff-close{margin-top:18px;padding:14px;border-left:2px solid var(--accent);background:rgba(216,246,255,.05);font-size:10px;line-height:1.45;letter-spacing:.13em;color:var(--text)}
 .knowledge-field,.manual-stack,.inheritance-flow,.manual-proof,.propagation-map,.constellation,.choice-grid,.branch-shell,.company-handoff{isolation:isolate}
 @media(max-width:430px){.handoff-grid{grid-template-columns:1fr}.scene.active>.director-narration{margin-top:20px}.company-handoff{padding:18px}}
+
+/* Interactive-film pacing */
+body[data-scene='1'] footer .footer-center small:after,
+body[data-scene='2'] footer .footer-center small:after,
+body[data-scene='3'] footer .footer-center small:after,
+body[data-scene='5'] footer .footer-center small:after,
+body[data-scene='6'] footer .footer-center small:after{content:' · AUTO';color:var(--accent)}
+body[data-scene='4'] footer .footer-center small:after,
+body[data-scene='7'] footer .footer-center small:after{content:' · YOUR CHOICE';color:var(--accent)}
+.proof-links a{position:relative;z-index:2}
