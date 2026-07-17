@@ -302,3 +302,8 @@ body[data-scene="8"] .handoff-close{animation:xli-appointment-pulse 3.2s ease-in
 .completion-signal i{width:10px;height:10px;border-radius:50%;background:var(--xli-green);box-shadow:0 0 18px var(--xli-green);animation:xli-complete-signal 1.8s ease-in-out infinite}
 @keyframes xli-complete-signal{50%{transform:scale(.65);opacity:.5;box-shadow:0 0 7px var(--xli-green)}}
 @media(max-width:430px){.premiere-complete{padding:18px;margin-bottom:72px}}
+
+
+/* XLI-019 Automatic closeout call to action */
+.completion-cta{margin-top:12px;padding:15px 16px;border-radius:14px;border:1px solid rgba(217,182,111,.55);background:linear-gradient(135deg,rgba(217,182,111,.16),rgba(114,242,178,.07));color:#fff;font-size:10px;font-weight:850;line-height:1.35;letter-spacing:.12em;text-align:center;box-shadow:0 0 26px rgba(217,182,111,.13),inset 0 0 18px rgba(255,255,255,.025);animation:xli-closeout-cta 2.8s ease-in-out infinite}
+@keyframes xli-closeout-cta{50%{border-color:#f5d992;box-shadow:0 0 34px rgba(217,182,111,.28),inset 0 0 20px rgba(217,182,111,.07);transform:translateY(-1px)}}
