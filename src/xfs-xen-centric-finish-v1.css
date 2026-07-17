@@ -128,3 +128,21 @@ body[data-warden="passed"] .overwatch-gate>strong{color:var(--xli-green);text-sh
 .propagation-map .core{left:50%!important;top:50%!important;transform:translate(calc(-50% - 72px),calc(-50% - 94px))!important}
 .propagation-map:after{left:50%!important;top:50%!important;transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(0deg) scale(.94)!important;animation:xli-memory-orbit-marked 6.8s linear infinite!important}
 @keyframes xli-memory-orbit-marked{0%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(0deg) scale(.94);opacity:.4}50%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(180deg) scale(1.08);opacity:1;border-color:#baf7ff}100%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(360deg) scale(.94);opacity:.4}}
+
+
+/* XLI-008 Sun-centered universe — final geometry authority */
+.knowledge-field,.propagation-map{position:relative!important;overflow:hidden!important}
+.knowledge-field .void,.propagation-map .core{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;margin:0!important}
+.knowledge-field>span,.propagation-map>span{position:absolute!important;left:50%!important;top:50%!important;margin:0!important;z-index:7!important;transform:translate(-50%,-50%) rotate(var(--orbit-angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--orbit-angle)))!important;animation:xli-orbit-node-shimmer 2.5s ease-in-out infinite!important;animation-delay:calc(var(--node-index) * -.31s)!important}
+.knowledge-field>span{--orbit-radius:96px}
+.knowledge-field>span:nth-child(1){--orbit-angle:315deg;--node-index:0}.knowledge-field>span:nth-child(2){--orbit-angle:45deg;--node-index:1}.knowledge-field>span:nth-child(3){--orbit-angle:225deg;--node-index:2}.knowledge-field>span:nth-child(4){--orbit-angle:135deg;--node-index:3}
+.propagation-map>span{--orbit-radius:126px}
+.propagation-map>span:nth-child(2){--orbit-angle:300deg;--node-index:0}.propagation-map>span:nth-child(3){--orbit-angle:60deg;--node-index:1}.propagation-map>span:nth-child(4){--orbit-angle:240deg;--node-index:2}.propagation-map>span:nth-child(5){--orbit-angle:120deg;--node-index:3}.propagation-map>span:nth-child(6){--orbit-angle:190deg;--node-index:4}.propagation-map>span:nth-child(7){--orbit-angle:170deg;--node-index:5}
+.knowledge-field>span:before,.propagation-map>span:before{content:"";position:absolute;inset:-4px;border-radius:inherit;border:1px solid rgba(110,231,255,.22);border-top-color:#e9fdff;border-right-color:#6ee7ff;filter:drop-shadow(0 0 6px #6ee7ff);animation:xli-node-perimeter 2.4s linear infinite}
+.knowledge-field>span:after,.propagation-map>span:after{content:"";position:absolute;inset:-8px;border-radius:inherit;border:1px dashed rgba(36,141,255,.28);animation:xli-node-perimeter 4.1s linear infinite reverse}
+.propagation-map:after{left:50%!important;top:50%!important;transform:translate(-50%,-50%) rotate(0deg) scale(.94)!important;animation:xli-memory-orbit-centered 6.8s linear infinite!important}
+@keyframes xli-orbit-node-shimmer{0%,100%{filter:brightness(.76);box-shadow:0 0 8px rgba(36,141,255,.1),inset 0 0 9px rgba(110,231,255,.04)}50%{filter:brightness(1.75);box-shadow:0 0 24px rgba(110,231,255,.55),inset 0 0 18px rgba(110,231,255,.16)}}
+@keyframes xli-node-perimeter{to{transform:rotate(360deg)}}
+@keyframes xli-memory-orbit-centered{0%{transform:translate(-50%,-50%) rotate(0deg) scale(.94);opacity:.4}50%{transform:translate(-50%,-50%) rotate(180deg) scale(1.08);opacity:1;border-color:#baf7ff}100%{transform:translate(-50%,-50%) rotate(360deg) scale(.94);opacity:.4}}
+@media(max-width:430px){.knowledge-field{height:300px!important;flex-basis:300px!important}.knowledge-field>span{--orbit-radius:104px}.propagation-map{height:330px!important;flex-basis:330px!important}.propagation-map>span{--orbit-radius:118px}}
+@media(prefers-reduced-motion:reduce){.knowledge-field>span,.propagation-map>span{animation-duration:2.5s!important}.knowledge-field>span:before,.propagation-map>span:before{animation-duration:2.4s!important}.knowledge-field>span:after,.propagation-map>span:after{animation-duration:4.1s!important}}
