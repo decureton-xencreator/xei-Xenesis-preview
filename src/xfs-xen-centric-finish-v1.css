@@ -228,3 +228,44 @@ body[data-paused="true"] .scene:before{animation-play-state:running!important}
   .propagation-map>span:nth-child(2){left:calc(19% - var(--frame-shift-x))!important}.propagation-map>span:nth-child(3){left:calc(81% - var(--frame-shift-x))!important}.propagation-map>span:nth-child(4){left:calc(16% - var(--frame-shift-x))!important}.propagation-map>span:nth-child(5){left:calc(84% - var(--frame-shift-x))!important}.propagation-map>span:nth-child(6){left:calc(22% - var(--frame-shift-x))!important}.propagation-map>span:nth-child(7){left:calc(78% - var(--frame-shift-x))!important}
   .constellation>span{transform:translate(-50%,-50%) rotate(calc(var(--i) * 30deg)) translateY(-112px) rotate(calc(var(--i) * -30deg))!important}
 }
+
+
+/* XLI-015 Safari-safe twelve-globe orbit — explicit angles, no CSS multiplication */
+.constellation>span{
+ left:50%!important;top:50%!important;width:38px!important;height:38px!important;border-radius:50%!important;
+ display:grid!important;place-items:center!important;visibility:visible!important;opacity:1!important;
+ color:rgba(225,251,255,.82)!important;
+ background:radial-gradient(circle at 35% 28%,rgba(233,253,255,.34),rgba(36,141,255,.22) 34%,rgba(3,10,16,.96) 72%)!important;
+ border:1px solid rgba(110,231,255,.78)!important;
+ animation:xli-core-globe-glow 2.6s ease-in-out infinite!important;
+}
+.constellation>span:nth-of-type(1){transform:translate(-50%,-50%) rotate(0deg) translateY(-142px) rotate(0deg)!important;animation-delay:0.00s!important}
+.constellation>span:nth-of-type(2){transform:translate(-50%,-50%) rotate(30deg) translateY(-142px) rotate(-30deg)!important;animation-delay:-0.18s!important}
+.constellation>span:nth-of-type(3){transform:translate(-50%,-50%) rotate(60deg) translateY(-142px) rotate(-60deg)!important;animation-delay:-0.36s!important}
+.constellation>span:nth-of-type(4){transform:translate(-50%,-50%) rotate(90deg) translateY(-142px) rotate(-90deg)!important;animation-delay:-0.54s!important}
+.constellation>span:nth-of-type(5){transform:translate(-50%,-50%) rotate(120deg) translateY(-142px) rotate(-120deg)!important;animation-delay:-0.72s!important}
+.constellation>span:nth-of-type(6){transform:translate(-50%,-50%) rotate(150deg) translateY(-142px) rotate(-150deg)!important;animation-delay:-0.90s!important}
+.constellation>span:nth-of-type(7){transform:translate(-50%,-50%) rotate(180deg) translateY(-142px) rotate(-180deg)!important;animation-delay:-1.08s!important}
+.constellation>span:nth-of-type(8){transform:translate(-50%,-50%) rotate(210deg) translateY(-142px) rotate(-210deg)!important;animation-delay:-1.26s!important}
+.constellation>span:nth-of-type(9){transform:translate(-50%,-50%) rotate(240deg) translateY(-142px) rotate(-240deg)!important;animation-delay:-1.44s!important}
+.constellation>span:nth-of-type(10){transform:translate(-50%,-50%) rotate(270deg) translateY(-142px) rotate(-270deg)!important;animation-delay:-1.62s!important}
+.constellation>span:nth-of-type(11){transform:translate(-50%,-50%) rotate(300deg) translateY(-142px) rotate(-300deg)!important;animation-delay:-1.80s!important}
+.constellation>span:nth-of-type(12){transform:translate(-50%,-50%) rotate(330deg) translateY(-142px) rotate(-330deg)!important;animation-delay:-1.98s!important}
+@keyframes xli-core-globe-glow{
+ 0%,100%{opacity:.64;filter:brightness(.75) saturate(1);box-shadow:0 0 8px rgba(36,141,255,.18),inset 0 0 12px rgba(110,231,255,.08)}
+ 45%,58%{opacity:1;filter:brightness(2) saturate(1.55);border-color:#e9fdff;box-shadow:0 0 18px rgba(110,231,255,.9),0 0 42px rgba(36,141,255,.55),inset 0 0 20px rgba(110,231,255,.28)}
+}
+@media(max-height:760px){
+.constellation>span:nth-of-type(1){transform:translate(-50%,-50%) rotate(0deg) translateY(-120px) rotate(0deg)!important}
+.constellation>span:nth-of-type(2){transform:translate(-50%,-50%) rotate(30deg) translateY(-120px) rotate(-30deg)!important}
+.constellation>span:nth-of-type(3){transform:translate(-50%,-50%) rotate(60deg) translateY(-120px) rotate(-60deg)!important}
+.constellation>span:nth-of-type(4){transform:translate(-50%,-50%) rotate(90deg) translateY(-120px) rotate(-90deg)!important}
+.constellation>span:nth-of-type(5){transform:translate(-50%,-50%) rotate(120deg) translateY(-120px) rotate(-120deg)!important}
+.constellation>span:nth-of-type(6){transform:translate(-50%,-50%) rotate(150deg) translateY(-120px) rotate(-150deg)!important}
+.constellation>span:nth-of-type(7){transform:translate(-50%,-50%) rotate(180deg) translateY(-120px) rotate(-180deg)!important}
+.constellation>span:nth-of-type(8){transform:translate(-50%,-50%) rotate(210deg) translateY(-120px) rotate(-210deg)!important}
+.constellation>span:nth-of-type(9){transform:translate(-50%,-50%) rotate(240deg) translateY(-120px) rotate(-240deg)!important}
+.constellation>span:nth-of-type(10){transform:translate(-50%,-50%) rotate(270deg) translateY(-120px) rotate(-270deg)!important}
+.constellation>span:nth-of-type(11){transform:translate(-50%,-50%) rotate(300deg) translateY(-120px) rotate(-300deg)!important}
+.constellation>span:nth-of-type(12){transform:translate(-50%,-50%) rotate(330deg) translateY(-120px) rotate(-330deg)!important}
+}
