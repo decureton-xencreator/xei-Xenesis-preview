@@ -44,3 +44,29 @@ body[data-emotion="vision"] main:after{border-color:rgba(114,242,178,.55);box-sh
 @keyframes xli-mark-pulse{0%,100%{filter:drop-shadow(0 0 7px rgba(110,231,255,.18))}50%{filter:drop-shadow(0 0 22px rgba(110,231,255,.58))}}
 @media(max-width:430px){main:after{inset:6px;border-radius:18px}}
 @media(prefers-reduced-motion:reduce){body:before,main:after,.final-mark,.orbital-mark span{animation:none!important}.choice,.branch-option,.proof-links a{transition:none!important}}
+
+/* XLI-003 Always Alive — centered fields, perpetual LED motion, transport */
+footer{grid-template-columns:52px minmax(0,1fr) 52px 52px}
+.pause-btn{font-size:18px;color:var(--xli-cyan);border-color:rgba(110,231,255,.28);box-shadow:inset 0 0 16px rgba(36,141,255,.06),0 0 15px rgba(36,141,255,.07)}
+body[data-paused="true"] .pause-btn{color:var(--xli-gold);border-color:rgba(217,182,111,.58);box-shadow:0 0 24px rgba(217,182,111,.18)}
+body[data-paused="true"] main:after{animation-play-state:paused;opacity:.38}
+.scene:before{content:"";position:absolute;inset:-12%;z-index:0;pointer-events:none;background:radial-gradient(circle at 24% 30%,rgba(36,141,255,.09),transparent 20%),radial-gradient(circle at 76% 64%,rgba(110,231,255,.055),transparent 22%);animation:xli-scene-drift 8s ease-in-out infinite alternate}
+.scene>*{position:relative;z-index:1}
+.knowledge-field,.propagation-map,.constellation{width:min(100%,620px);margin-left:auto!important;margin-right:auto!important}
+.knowledge-field{display:grid;place-items:center}
+.void{width:104px!important;height:104px!important;border:1px solid rgba(110,231,255,.62);color:#dff9ff!important;background:radial-gradient(circle,rgba(36,141,255,.18),rgba(4,8,12,.92) 64%)!important;box-shadow:0 0 0 8px rgba(110,231,255,.025),0 0 36px rgba(36,141,255,.32),inset 0 0 26px rgba(110,231,255,.12)!important;animation:xli-lost-breathe 2.8s ease-in-out infinite}
+.void:before,.void:after{content:"";position:absolute;inset:-14px;border:1px solid rgba(110,231,255,.18);border-radius:50%;animation:xli-ring 3.4s linear infinite}.void:after{inset:-26px;border-style:dashed;animation-duration:7s;animation-direction:reverse}
+.propagation-map .core,.constellation .ed-core{left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:3;background:radial-gradient(circle,rgba(36,141,255,.2),rgba(5,7,8,.94) 68%);border-color:rgba(110,231,255,.72);box-shadow:0 0 0 8px rgba(110,231,255,.025),0 0 42px rgba(36,141,255,.34),inset 0 0 28px rgba(110,231,255,.12);animation:xli-core-breathe 2.6s ease-in-out infinite}
+.propagation-map span,.constellation span{border-color:rgba(110,231,255,.34)!important;background:linear-gradient(145deg,rgba(15,29,38,.96),rgba(5,8,11,.96))!important;box-shadow:inset 0 0 13px rgba(110,231,255,.07),0 0 11px rgba(36,141,255,.09);animation:xli-bubble-led 2.6s ease-in-out infinite!important;animation-delay:calc(var(--i,0)*-.19s)!important}
+.propagation-map span:nth-child(2){--i:1}.propagation-map span:nth-child(3){--i:2}.propagation-map span:nth-child(4){--i:3}.propagation-map span:nth-child(5){--i:4}.propagation-map span:nth-child(6){--i:5}.propagation-map span:nth-child(7){--i:6}
+.constellation:before,.propagation-map:before{content:"";position:absolute;left:50%;top:50%;width:72%;aspect-ratio:1;transform:translate(-50%,-50%);border:1px solid rgba(110,231,255,.1);border-radius:50%;box-shadow:inset 0 0 40px rgba(36,141,255,.025),0 0 28px rgba(36,141,255,.05);animation:xli-orbit-ring 12s linear infinite}
+.constellation span:after,.propagation-map span:after{content:"";position:absolute;inset:-4px;border-radius:inherit;border-top:1px solid var(--xli-cyan);border-right:1px solid transparent;border-bottom:1px solid rgba(36,141,255,.18);border-left:1px solid transparent;filter:drop-shadow(0 0 5px var(--xli-cyan));animation:xli-led-travel 2.2s linear infinite}
+@keyframes xli-scene-drift{to{transform:translate3d(3%,2%,0) scale(1.04);filter:saturate(1.22)}}
+@keyframes xli-lost-breathe{50%{border-color:#fff;box-shadow:0 0 0 12px rgba(110,231,255,.035),0 0 58px rgba(36,141,255,.5),inset 0 0 34px rgba(110,231,255,.2)}}
+@keyframes xli-ring{to{transform:rotate(360deg)}}
+@keyframes xli-core-breathe{50%{border-color:#fff;box-shadow:0 0 0 11px rgba(110,231,255,.035),0 0 60px rgba(36,141,255,.5),inset 0 0 35px rgba(110,231,255,.18)}}
+@keyframes xli-bubble-led{0%,100%{border-color:rgba(110,231,255,.22);box-shadow:inset 0 0 11px rgba(110,231,255,.04),0 0 9px rgba(36,141,255,.07)}50%{border-color:rgba(110,231,255,.86);box-shadow:inset 0 0 20px rgba(110,231,255,.12),0 0 24px rgba(36,141,255,.35)}}
+@keyframes xli-orbit-ring{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes xli-led-travel{to{transform:rotate(360deg)}}
+@media(max-width:430px){footer{grid-template-columns:48px minmax(0,1fr) 48px 48px;gap:7px}.knowledge-field,.propagation-map,.constellation{width:100%}.void{width:92px!important;height:92px!important}}
+@media(prefers-reduced-motion:reduce){.scene:before,.void,.void:before,.void:after,.propagation-map .core,.constellation .ed-core,.propagation-map span,.constellation span,.constellation:before,.propagation-map:before,.constellation span:after,.propagation-map span:after{animation:none!important}}
