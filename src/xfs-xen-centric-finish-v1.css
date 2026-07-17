@@ -149,10 +149,10 @@ body[data-warden="passed"] .overwatch-gate>strong{color:var(--xli-green);text-sh
 
 
 /* XLI-009 User-specified LOST origin */
-.knowledge-field{--lost-origin-x:48%;--lost-origin-y:57%}
+.knowledge-field{--lost-origin-x:48%;--lost-origin-y:48%}
 .knowledge-field .void{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important;transform:translate(-50%,-50%)!important}
 .knowledge-field>span{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important}
-@media(max-width:430px){.knowledge-field{--lost-origin-x:48%;--lost-origin-y:57%}.knowledge-field .void,.knowledge-field>span{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important}}
+@media(max-width:430px){.knowledge-field{--lost-origin-x:48%;--lost-origin-y:48%}.knowledge-field .void,.knowledge-field>span{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important}}
 
 
 /* XLI-010 User-marked XEN MEMORY origin */
