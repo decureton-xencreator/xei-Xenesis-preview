@@ -121,3 +121,10 @@ body[data-warden="passed"] .overwatch-gate>strong{color:var(--xli-green);text-sh
 @keyframes xli-memory-heartbeat{0%,100%{filter:brightness(.82);box-shadow:0 0 22px rgba(36,141,255,.2),inset 0 0 18px rgba(110,231,255,.08)}45%{filter:brightness(1.75);box-shadow:0 0 62px rgba(110,231,255,.64),0 0 0 10px rgba(110,231,255,.045),inset 0 0 32px rgba(110,231,255,.22)}58%{filter:brightness(1.15);box-shadow:0 0 38px rgba(36,141,255,.4),0 0 0 5px rgba(110,231,255,.03),inset 0 0 24px rgba(110,231,255,.13)}}
 @keyframes xli-memory-orbit{0%{transform:translate(-50%,-50%) rotate(0deg) scale(.94);opacity:.4}50%{transform:translate(-50%,-50%) rotate(180deg) scale(1.08);opacity:1;border-color:#baf7ff}100%{transform:translate(-50%,-50%) rotate(360deg) scale(.94);opacity:.4}}
 @media(prefers-reduced-motion:reduce){.propagation-map .core{animation-duration:2.6s!important}.propagation-map .core .xen-ring.r1{animation-duration:2.8s!important}.propagation-map .core .xen-ring.r2{animation-duration:4.6s!important}.propagation-map:after{animation-duration:6.8s!important}}
+
+
+/* XLI-007 User-marked circle coordinates — direct displacement owner */
+.knowledge-field .void{left:50%!important;top:50%!important;transform:translate(calc(-50% - 82px),calc(-50% - 100px))!important}
+.propagation-map .core{left:50%!important;top:50%!important;transform:translate(calc(-50% - 72px),calc(-50% - 94px))!important}
+.propagation-map:after{left:50%!important;top:50%!important;transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(0deg) scale(.94)!important;animation:xli-memory-orbit-marked 6.8s linear infinite!important}
+@keyframes xli-memory-orbit-marked{0%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(0deg) scale(.94);opacity:.4}50%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(180deg) scale(1.08);opacity:1;border-color:#baf7ff}100%{transform:translate(calc(-50% - 72px),calc(-50% - 94px)) rotate(360deg) scale(.94);opacity:.4}}
