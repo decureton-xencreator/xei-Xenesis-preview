@@ -1,4 +1,4 @@
-const XFS_RELEASE=Object.freeze({studio:'XFS',version:'1.0.0',xenCentric:true,institutionalMemory:true,proofLinks:true,commercialReview:true,controllerOwner:'src/ed-premiere-clean-v1.js'});window.XFS_RELEASE=XFS_RELEASE;document.documentElement.dataset.xfs='1.0.0';
+const XFS_RELEASE=Object.freeze({studio:'XFS',version:'1.0.1',xenCentric:true,institutionalMemory:true,proofLinks:true,commercialReview:true,controllerOwner:'src/ed-premiere-clean-v1.js',finaleNarrationOwner:'branch-controller'});window.XFS_RELEASE=XFS_RELEASE;document.documentElement.dataset.xfs='1.0.1';
 
 const scene=[...document.querySelectorAll('.scene')][3];
 if(!scene)throw new Error('Institutional-memory scene is missing');
@@ -18,11 +18,11 @@ const narrationByScene=Object.freeze({
   4:'A Living Company learns when leadership teaches Xen what must endure.',
   5:'One approved principle becomes operating memory across every authorized layer.',
   6:'Once Xen proves what works in one company, the ecosystem can compound it.',
-  7:'The next question is simple. Where should Xen prove itself next?',
-  8:'The BDC was not Xen’s destination. It was proof Xen works.'
+  7:'The next question is simple. Where should Xen prove itself next?'
+
 });
 const narration=document.querySelector('#directorNarration');
-function applyNarration(){if(!narration)return;const i=Number(document.body.dataset.scene||0);if(narrationByScene[i])narration.textContent=narrationByScene[i]}
+function applyNarration(){if(!narration)return;const i=Number(document.body.dataset.scene||0);if(i>=8)return;if(narrationByScene[i])narration.textContent=narrationByScene[i]}
 new MutationObserver(applyNarration).observe(document.body,{attributes:true,attributeFilter:['data-scene']});
 applyNarration();
 
