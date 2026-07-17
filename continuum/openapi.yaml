@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: Xen Continuum Stage 2 Durable Runtime
+  version: 0.1.0-reconstruction
+  description: >-
+    Local reconstruction contract. This API is not deployed, does not replace the
+    nine-scene Xenesis shell, and denies non-local authentication until Cloudflare
+    Access JWT verification is explicitly configured and validated.
+servers:
+  - url: http://127.0.0.1:8787
+    description: Wrangler local development only
+security:
+  - localIdentity: []
+paths:
+  /api/v1/continuum/health:
+    get:
+      security: []
+      operationId: health
+      responses:
+        "200":
+          description: Bounded runtime status
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, service, mode, externalEffects, correlationId]
+                properties:
+                  status: { const: ok }
+                  service: { const: xen-continuum-stage2 }
+                  mode: { type: string }
+                  externalEffects: { const: disabled }
+                  correlationId: { type: string }
+  /api/v1/continuum/missions:
+    post:
+      operationId: createMission
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [title, objective, risk]
+              properties:
+                id: { type: string, format: uuid }
+                title: { type: string, minLength: 1, maxLength: 160 }
+                objective: { type: string, minLength: 1, maxLength: 4000 }
+                risk: { $ref: "#/components/schemas/Risk" }
+      responses:
+        "201": { $ref: "#/components/responses/Mission" }
+        "401": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+  /api/v1/continuum/missions/{missionId}:
+    parameters:
+      - $ref: "#/components/parameters/MissionId"
+    get:
+      operationId: getMission
+      responses:
+        "200": { $ref: "#/components/responses/Mission" }
+        "404": { $ref: "#/components/responses/Error" }
+  /api/v1/continuum/missions/{missionId}/transitions:
+    parameters:
+      - $ref: "#/components/parameters/MissionId"
+      - $ref: "#/components/parameters/IdempotencyKey"
+    post:
+      operationId: transitionMission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [target, expectedVersion]
+              properties:
+                target: { $ref: "#/components/schemas/MissionState" }
+                expectedVersion: { type: integer, minimum: 1 }
+                approvalEvidence: { type: string, maxLength: 2000 }
+                reason: { type: string, maxLength: 2000 }
+      responses:
+        "200": { $ref: "#/components/responses/Mission" }
+        "409": { $ref: "#/components/responses/Error" }
+        "422": { $ref: "#/components/responses/Error" }
+  /api/v1/continuum/missions/{missionId}/dispatch:
+    parameters:
+      - $ref: "#/components/parameters/MissionId"
+      - $ref: "#/components/parameters/IdempotencyKey"
+    post:
+      operationId: dispatchMission
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [expectedVersion]
+              properties:
+                expectedVersion: { type: integer, minimum: 1 }
+      responses:
+        "202": { description: Mission accepted by the local queue }
+        "403": { $ref: "#/components/responses/Error" }
+        "409": { $ref: "#/components/responses/Error" }
+  /api/v1/continuum/missions/{missionId}/events:
+    parameters:
+      - $ref: "#/components/parameters/MissionId"
+    get:
+      operationId: missionEvents
+      description: WebSocket upgrade endpoint backed by a hibernating Durable Object.
+      responses:
+        "101": { description: WebSocket protocol switch }
+        "426": { description: WebSocket upgrade required }
+  /api/v1/continuum/missions/{missionId}/artifacts:
+    parameters:
+      - $ref: "#/components/parameters/MissionId"
+    post:
+      operationId: storeArtifact
+      description: Stores at most 1 MiB in the local R2 binding, keyed by SHA-256.
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema: { type: string, format: binary, maxLength: 1048576 }
+      responses:
+        "201": { description: Artifact stored with hash metadata }
+        "413": { $ref: "#/components/responses/Error" }
+components:
+  securitySchemes:
+    localIdentity:
+      type: apiKey
+      in: header
+      name: X-Xen-Local-Actor
+      description: Local-only identity; tenant and authority headers are also required.
+  parameters:
+    MissionId:
+      name: missionId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: { type: string, minLength: 1, maxLength: 128 }
+  schemas:
+    Risk:
+      type: string
+      enum: [low, moderate, high, critical]
+    MissionState:
+      type: string
+      enum: [draft, awaiting_approval, approved, queued, running, paused, succeeded, failed, cancelled]
+    Mission:
+      $ref: "./schemas/mission.schema.json"
+    Error:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: object
+          required: [code, message, correlationId]
+          properties:
+            code: { type: string }
+            message: { type: string }
+            correlationId: { type: string }
+  responses:
+    Mission:
+      description: Current governed mission state
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [mission, correlationId]
+            properties:
+              mission: { $ref: "#/components/schemas/Mission" }
+              correlationId: { type: string }
+    Error:
+      description: Structured fail-closed error
+      content:
+        application/json:
+          schema: { $ref: "#/components/schemas/Error" }

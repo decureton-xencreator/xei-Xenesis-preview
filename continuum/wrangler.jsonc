@@ -1,0 +1,68 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "xen-continuum-stage2-local-reconstruction",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "XEN_RUNTIME_MODE": "local-reconstruction",
+    "XEN_AUTH_MODE": "local-headers"
+  },
+  "d1_databases": [
+    {
+      "binding": "CONTINUUM_DB",
+      "database_name": "xen-continuum-local",
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CONTINUUM_ARTIFACTS",
+      "bucket_name": "xen-continuum-local-artifacts"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "CONTINUUM_QUEUE",
+        "queue": "xen-continuum-local-missions"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "xen-continuum-local-missions",
+        "max_batch_size": 5,
+        "max_batch_timeout": 1,
+        "max_retries": 3,
+        "dead_letter_queue": "xen-continuum-local-dead-letter"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "binding": "CONTINUUM_WORKFLOW",
+      "name": "xen-continuum-local-workflow",
+      "class_name": "MissionWorkflow"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CONTINUUM_MISSION",
+        "class_name": "MissionCoordinator"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["MissionCoordinator"]
+    }
+  ],
+  "observability": {
+    "enabled": false
+  }
+}

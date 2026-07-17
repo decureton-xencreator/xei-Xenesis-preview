@@ -1,16 +1,83 @@
-import fs from 'node:fs';
-const required=['index.html','src/app-v6.js','src/styles-v5.css','src/director-v6.css','src/frame-calibration-v6.css','src/mobile-safe-area-v6.css','src/mobile-entry-v7.css','src/mobile-entry-v7.js','src/cursor-v5.js','docs/XEI-001-CINEMATIC-STORYBOARD-V5.md'];
-for(const file of required){if(!fs.existsSync(file))throw new Error(`Missing required production asset: ${file}`);if(fs.statSync(file).size<20)throw new Error(`Production asset is unexpectedly empty: ${file}`);console.log(`PASS ${file}`)}
-const html=fs.readFileSync('index.html','utf8');
-const js=fs.readFileSync('src/app-v6.js','utf8');
-const mobileJs=fs.readFileSync('src/mobile-entry-v7.js','utf8');
-const css=fs.readFileSync('src/styles-v5.css','utf8')+fs.readFileSync('src/director-v6.css','utf8')+fs.readFileSync('src/frame-calibration-v6.css','utf8')+fs.readFileSync('src/mobile-safe-area-v6.css','utf8')+fs.readFileSync('src/mobile-entry-v7.css','utf8');
-if(!html.includes('app-v6.js')||!html.includes('mobile-entry-v7.js')||!html.includes('mobile-entry-v7.css')||html.includes('app-v5.js')||html.includes('premiere-entry.js')||html.includes('premiere-stable-controller.js'))throw new Error('Master director and mobile entry shell are not active');
-if((html.match(/<script type="module"/g)||[]).length!==4)throw new Error('Unexpected runtime script count');
-for(const term of ['started:false','cancelTimeline','runScene','gotoScene','plan.auto','pause:true','greeting()','speechSynthesis.cancel','caption.textContent','scrollIntoView'])if(!js.includes(term))throw new Error(`Master timeline capability missing: ${term}`);
-for(const id of ['arrival','memory','living','panama','bilingual','manual','teach','router','propagate','reveal','constellation','summary','mandate'])if(!js.includes(id))throw new Error(`Scene missing: ${id}`);
-if(js.includes('localStorage.getItem'))throw new Error('Saved scene restoration can corrupt the premiere landing state');
-for(const term of ['100dvh','safe-area-inset-bottom','safe-area-inset-top','touch-action:manipulation','body:has(#arrival.active) .nav','min-height:60px','position:fixed!important','bottom:max(','mobileBeginPulse'])if(!css.includes(term))throw new Error(`Mobile release gate missing: ${term}`);
-for(const term of ['mobile-arrival','pickFallback','Samantha','XVS voice unavailable','speakFallback'])if(!mobileJs.includes(term))throw new Error(`Mobile XVS gate missing: ${term}`);
-if(!css.includes('prefers-reduced-motion'))throw new Error('Reduced-motion support missing');
-console.log('PASS silent landing, fixed mobile start gate, female-only XVS fallback, synchronized visuals, safe-area layout, touch sizing, interaction pauses, and accessibility');
+import fs from "node:fs";
+
+const required = [
+  "index.html",
+  "src/ed-premiere-clean-v1.js",
+  "src/ed-premiere-clean-v1.css",
+  "src/xfs-xen-centric-finish-v1.js",
+  "src/xfs-xen-centric-finish-v1.css",
+  "governance/XFS-XEN-CENTRIC-RELEASE-MANIFEST.json",
+  "docs/XEN-CENTRIC-XFS-INSTITUTIONAL-MEMORY-RELEASE.md",
+];
+for (const file of required) {
+  if (!fs.existsSync(file)) throw new Error(`Missing required production asset: ${file}`);
+  if (fs.statSync(file).size < 20) throw new Error(`Production asset is unexpectedly empty: ${file}`);
+}
+
+const html = fs.readFileSync("index.html", "utf8");
+const controller = fs.readFileSync("src/ed-premiere-clean-v1.js", "utf8");
+const controllerCss = fs.readFileSync("src/ed-premiere-clean-v1.css", "utf8");
+const finish = fs.readFileSync("src/xfs-xen-centric-finish-v1.js", "utf8");
+const finishCss = fs.readFileSync("src/xfs-xen-centric-finish-v1.css", "utf8");
+const manifest = JSON.parse(fs.readFileSync("governance/XFS-XEN-CENTRIC-RELEASE-MANIFEST.json", "utf8"));
+
+for (const asset of [
+  "src/ed-premiere-clean-v1.css",
+  "src/ed-premiere-clean-v1.js",
+  "src/xfs-xen-centric-finish-v1.css",
+  "src/xfs-xen-centric-finish-v1.js",
+]) {
+  if (!html.includes(asset)) throw new Error(`Current nine-scene asset is not active: ${asset}`);
+}
+if ((html.match(/class="scene/g) || []).length !== 9) {
+  throw new Error("The production documentary must contain exactly nine scenes");
+}
+if ((html.match(/<script type="module"/g) || []).length !== 2) {
+  throw new Error("The production documentary must have exactly two bounded module owners");
+}
+for (const forbidden of [
+  "app-v6.js",
+  "phone-gold-runtime",
+  "mobile-entry",
+  "premiere-entry.js",
+  "premiere-stable-controller.js",
+]) {
+  if (html.includes(forbidden) || controller.includes(forbidden) || finish.includes(forbidden)) {
+    throw new Error(`Retired runtime behavior detected: ${forbidden}`);
+  }
+}
+for (const term of [
+  "AN EXECUTIVE ENCOUNTERS XEN",
+  "What if a company could learn?",
+  "Marisol left the position. The department did not.",
+  "XEN<br>MEMORY",
+  "XEN<br>CORE",
+  "Where should Xen prove itself next?",
+  "It was proof Xen works.",
+]) {
+  if (!html.includes(term)) throw new Error(`Nine-scene narrative contract missing: ${term}`);
+}
+for (const term of [
+  "addEventListener('click',begin",
+  "progress.style.width",
+  "dataset.label",
+  "selectedPrinciple.textContent",
+  "function reset()",
+  "singleOwner:true",
+]) {
+  if (!controller.includes(term)) throw new Error(`Single-owner controller behavior missing: ${term}`);
+}
+for (const term of ["height:100dvh", "env(safe-area-inset-bottom)", ".scene.active", "prefers-reduced-motion"]) {
+  if (!controllerCss.includes(term)) throw new Error(`Viewport or accessibility contract missing: ${term}`);
+}
+for (const term of ["MutationObserver", "institutional-memory", "XFS_RELEASE"]) {
+  if (!finish.includes(term)) throw new Error(`XFS bounded finish behavior missing: ${term}`);
+}
+for (const term of ["contain:layout paint", ".institutional-scene", ".inheritance-flow", ".manual-proof"]) {
+  if (!finishCss.includes(term)) throw new Error(`XFS compartment styling missing: ${term}`);
+}
+if (manifest.xen_is_protagonist !== true || manifest.scene_count !== 9) {
+  throw new Error("Governance manifest does not preserve the Xen-centric nine-scene release");
+}
+
+console.log("PASS current nine-scene production shell, two bounded owners, deterministic navigation, institutional-memory proof, viewport safety, and retired-runtime exclusion");
