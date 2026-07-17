@@ -146,3 +146,10 @@ body[data-warden="passed"] .overwatch-gate>strong{color:var(--xli-green);text-sh
 @keyframes xli-memory-orbit-centered{0%{transform:translate(-50%,-50%) rotate(0deg) scale(.94);opacity:.4}50%{transform:translate(-50%,-50%) rotate(180deg) scale(1.08);opacity:1;border-color:#baf7ff}100%{transform:translate(-50%,-50%) rotate(360deg) scale(.94);opacity:.4}}
 @media(max-width:430px){.knowledge-field{height:300px!important;flex-basis:300px!important}.knowledge-field>span{--orbit-radius:104px}.propagation-map{height:330px!important;flex-basis:330px!important}.propagation-map>span{--orbit-radius:118px}}
 @media(prefers-reduced-motion:reduce){.knowledge-field>span,.propagation-map>span{animation-duration:2.5s!important}.knowledge-field>span:before,.propagation-map>span:before{animation-duration:2.4s!important}.knowledge-field>span:after,.propagation-map>span:after{animation-duration:4.1s!important}}
+
+
+/* XLI-009 User-specified LOST origin */
+.knowledge-field{--lost-origin-x:48%;--lost-origin-y:57%}
+.knowledge-field .void{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important;transform:translate(-50%,-50%)!important}
+.knowledge-field>span{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important}
+@media(max-width:430px){.knowledge-field{--lost-origin-x:48%;--lost-origin-y:57%}.knowledge-field .void,.knowledge-field>span{left:var(--lost-origin-x)!important;top:var(--lost-origin-y)!important}}
