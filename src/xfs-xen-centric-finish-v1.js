@@ -14,7 +14,7 @@ scene.dataset.proof='XBM-SUITE';
 const narrationByScene=Object.freeze({
   1:'Growth creates knowledge. Xen makes sure growth does not lose what it teaches.',
   2:'Most companies answer that risk with documents. Xen preserves the judgment behind them.',
-  3:'Marisol carried years of operating judgment inside the role. When she left, the knowledge did not leave with her. Xen preserved the connected department, its standards, and the reasoning behind the work. Vianka inherited operating memory instead of an empty chair. Ed, Kim, and Ahmer: choose who will review, then select one publication below to inspect the proof.',
+  3:'Marisol carried years of operating judgment inside the role. When she left, the knowledge did not leave with her. Xen preserved the connected department, its standards, and the reasoning behind the work. Vianka inherited operating memory instead of an empty chair. Browse the complete manuals below and choose one governed publication to inspect the proof.',
   4:'A Living Company learns when leadership teaches Xen what must endure.',
   5:'One approved principle becomes operating memory across every authorized layer.',
   6:'Once Xen proves what works in one company, the ecosystem can compound it.',
@@ -29,11 +29,9 @@ applyNarration();
 const badge=document.createElement('div');badge.className='xfs-proof-badge';badge.innerHTML='<b>XEN</b> · PROOF + FINISH';document.body.append(badge);
 
 const proofLinks=[...scene.querySelectorAll('.proof-links a')];
-const reviewInvitation=document.createElement('section');reviewInvitation.className='review-invitation';reviewInvitation.innerHTML='<small>EXECUTIVE REVIEW · CHOOSE A REVIEWER</small><h3>Ed, Kim, or Ahmer—who wants to inspect the proof?</h3><p>Choose your name, then choose one publication below. Xen will hold this scene until you decide.</p><div class="reviewer-choices"><button type="button" data-reviewer="Ed">ED</button><button type="button" data-reviewer="Kim">KIM</button><button type="button" data-reviewer="Ahmer">AHMER</button></div><strong id="reviewPrompt">Choose a reviewer to begin.</strong>';
+const reviewInvitation=document.createElement('section');reviewInvitation.className='review-invitation canonical-library';reviewInvitation.innerHTML='<small>CANONICAL MANUAL LIBRARY</small><h3>Browse the complete manuals.</h3><p>Every link below opens the full governed publication—never a summary, sample, or knockoff.</p><strong id="reviewPrompt">Choose one full manual to inspect the proof.</strong>';
 const proofLinksContainer=scene.querySelector('.proof-links');if(proofLinksContainer)proofLinksContainer.insertAdjacentElement('beforebegin',reviewInvitation);
-let activeReviewer='';
-reviewInvitation.addEventListener('click',event=>{const button=event.target.closest('[data-reviewer]');if(!button)return;activeReviewer=button.dataset.reviewer;reviewInvitation.querySelectorAll('[data-reviewer]').forEach(node=>node.classList.toggle('selected',node===button));reviewInvitation.querySelector('#reviewPrompt').textContent=activeReviewer+', choose one publication to inspect.';window.dispatchEvent(new CustomEvent('xen:speak',{detail:{text:activeReviewer+', choose one publication below. Pick the proof you want to inspect first.',advance:false}}))});
-for(const link of proofLinks)link.addEventListener('click',event=>{event.stopPropagation();proofLinks.forEach(node=>node.classList.toggle('selected',node===link));const reviewer=activeReviewer||'Executive reviewer';reviewInvitation.querySelector('#reviewPrompt').textContent=reviewer+' selected '+link.textContent.trim()+'.';window.dispatchEvent(new CustomEvent('xen:speak',{detail:{text:'Good choice, '+reviewer+'. Open the publication and inspect the governed proof.',advance:false}}))});
+for(const link of proofLinks){link.dataset.canonical='full-publication';link.setAttribute('aria-label',link.textContent.trim()+' — open full governed publication');link.addEventListener('click',event=>{event.stopPropagation();proofLinks.forEach(node=>node.classList.toggle('selected',node===link));reviewInvitation.querySelector('#reviewPrompt').textContent='Opening full publication: '+link.textContent.trim()+'.';window.dispatchEvent(new CustomEvent('xen:speak',{detail:{text:'Opening the complete governed publication in a new tab.',advance:false}}))})}
 
 window.dispatchEvent(new CustomEvent('xfs:ready',{detail:XFS_RELEASE}));
 import('./xli-living-interface-v1.js');
