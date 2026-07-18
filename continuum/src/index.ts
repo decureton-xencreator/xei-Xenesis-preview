@@ -78,12 +78,13 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   const correlationId = request.headers.get("x-correlation-id")?.trim() || crypto.randomUUID();
 
   if (request.method === "GET" && url.pathname === `${API_PREFIX}/health`) {
+    const modelExecution = (env as Env & { XEN_MODEL_EXECUTION?: string }).XEN_MODEL_EXECUTION;
     return response({
       status: "ok",
       service: "xen-continuum-stage2",
       mode: env.XEN_RUNTIME_MODE,
-      externalEffects: env.XEN_MODEL_EXECUTION === "enabled" ? "approval-gated" : "disabled",
-      modelProvider: env.XEN_MODEL_EXECUTION === "enabled" ? "anthropic" : "disabled",
+      externalEffects: modelExecution === "enabled" ? "approval-gated" : "disabled",
+      modelProvider: modelExecution === "enabled" ? "anthropic" : "disabled",
       correlationId,
     });
   }

@@ -4,12 +4,21 @@ import { AnthropicProvider, DisabledModelProvider, ProviderError, type ModelProv
 
 const MAX_OUTPUT_TOKENS = 1024;
 
+type RuntimeEnv = Omit<Env, "XEN_RUNTIME_MODE" | "XEN_AUTH_MODE"> & {
+  XEN_RUNTIME_MODE: "local-reconstruction" | "staging";
+  XEN_AUTH_MODE: "local-headers" | "cloudflare-access";
+  XEN_MODEL_EXECUTION?: "disabled" | "enabled";
+  ANTHROPIC_API_KEY?: string;
+  ANTHROPIC_MODEL?: string;
+  ANTHROPIC_MISSION_BUDGET_USD?: string;
+};
+
 function numberSetting(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
 }
 
-export function modelProvider(env: Env): ModelProvider {
+export function modelProvider(env: RuntimeEnv): ModelProvider {
   if (env.XEN_MODEL_EXECUTION !== "enabled") return new DisabledModelProvider();
   return new AnthropicProvider({
     apiKey: env.ANTHROPIC_API_KEY ?? "",
@@ -22,7 +31,7 @@ async function sha256(value: string): Promise<string> {
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-export class MissionWorkflow extends WorkflowEntrypoint<Env, MissionWorkflowParams> {
+export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkflowParams> {
   override async run(event: WorkflowEvent<MissionWorkflowParams>, step: WorkflowStep): Promise<void> {
     const params = event.payload;
     const stub = this.env.CONTINUUM_MISSION.get(
