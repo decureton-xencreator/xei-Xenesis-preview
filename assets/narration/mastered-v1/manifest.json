@@ -1,0 +1,235 @@
+{
+  "schema": "xen-mastered-narration/v1",
+  "generatedAt": "2026-07-18T19:03:51.697Z",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "approvedAudition": "assets/narration/xen-voice-audition-v2.mp3",
+  "clips": [
+    {
+      "id": "intro-ed",
+      "audience": "ed",
+      "scene": 0,
+      "path": "assets/narration/mastered-v1/intro-ed.mp3",
+      "bytes": 417024
+    },
+    {
+      "id": "intro-kim",
+      "audience": "kim",
+      "scene": 0,
+      "path": "assets/narration/mastered-v1/intro-kim.mp3",
+      "bytes": 301056
+    },
+    {
+      "id": "intro-ahmer",
+      "audience": "ahmer",
+      "scene": 0,
+      "path": "assets/narration/mastered-v1/intro-ahmer.mp3",
+      "bytes": 304128
+    },
+    {
+      "id": "intro-faith",
+      "audience": "faith",
+      "scene": 0,
+      "path": "assets/narration/mastered-v1/intro-faith.mp3",
+      "bytes": 315264
+    },
+    {
+      "id": "scene-1-default",
+      "audience": "default",
+      "scene": 1,
+      "path": "assets/narration/mastered-v1/scene-1-default.mp3",
+      "bytes": 88320
+    },
+    {
+      "id": "scene-2-default",
+      "audience": "default",
+      "scene": 2,
+      "path": "assets/narration/mastered-v1/scene-2-default.mp3",
+      "bytes": 104064
+    },
+    {
+      "id": "scene-3-default",
+      "audience": "default",
+      "scene": 3,
+      "path": "assets/narration/mastered-v1/scene-3-default.mp3",
+      "bytes": 457728
+    },
+    {
+      "id": "scene-4-default",
+      "audience": "default",
+      "scene": 4,
+      "path": "assets/narration/mastered-v1/scene-4-default.mp3",
+      "bytes": 81024
+    },
+    {
+      "id": "scene-5-default",
+      "audience": "default",
+      "scene": 5,
+      "path": "assets/narration/mastered-v1/scene-5-default.mp3",
+      "bytes": 81792
+    },
+    {
+      "id": "scene-6-default",
+      "audience": "default",
+      "scene": 6,
+      "path": "assets/narration/mastered-v1/scene-6-default.mp3",
+      "bytes": 94464
+    },
+    {
+      "id": "scene-7-default",
+      "audience": "default",
+      "scene": 7,
+      "path": "assets/narration/mastered-v1/scene-7-default.mp3",
+      "bytes": 117888
+    },
+    {
+      "id": "scene-1-kim",
+      "audience": "kim",
+      "scene": 1,
+      "path": "assets/narration/mastered-v1/scene-1-kim.mp3",
+      "bytes": 145920
+    },
+    {
+      "id": "scene-2-kim",
+      "audience": "kim",
+      "scene": 2,
+      "path": "assets/narration/mastered-v1/scene-2-kim.mp3",
+      "bytes": 124032
+    },
+    {
+      "id": "scene-3-kim",
+      "audience": "kim",
+      "scene": 3,
+      "path": "assets/narration/mastered-v1/scene-3-kim.mp3",
+      "bytes": 436224
+    },
+    {
+      "id": "scene-4-kim",
+      "audience": "kim",
+      "scene": 4,
+      "path": "assets/narration/mastered-v1/scene-4-kim.mp3",
+      "bytes": 98688
+    },
+    {
+      "id": "scene-5-kim",
+      "audience": "kim",
+      "scene": 5,
+      "path": "assets/narration/mastered-v1/scene-5-kim.mp3",
+      "bytes": 140160
+    },
+    {
+      "id": "scene-6-kim",
+      "audience": "kim",
+      "scene": 6,
+      "path": "assets/narration/mastered-v1/scene-6-kim.mp3",
+      "bytes": 128256
+    },
+    {
+      "id": "scene-7-kim",
+      "audience": "kim",
+      "scene": 7,
+      "path": "assets/narration/mastered-v1/scene-7-kim.mp3",
+      "bytes": 112896
+    },
+    {
+      "id": "scene-1-ahmer",
+      "audience": "ahmer",
+      "scene": 1,
+      "path": "assets/narration/mastered-v1/scene-1-ahmer.mp3",
+      "bytes": 140928
+    },
+    {
+      "id": "scene-2-ahmer",
+      "audience": "ahmer",
+      "scene": 2,
+      "path": "assets/narration/mastered-v1/scene-2-ahmer.mp3",
+      "bytes": 124800
+    },
+    {
+      "id": "scene-3-ahmer",
+      "audience": "ahmer",
+      "scene": 3,
+      "path": "assets/narration/mastered-v1/scene-3-ahmer.mp3",
+      "bytes": 453120
+    },
+    {
+      "id": "scene-4-ahmer",
+      "audience": "ahmer",
+      "scene": 4,
+      "path": "assets/narration/mastered-v1/scene-4-ahmer.mp3",
+      "bytes": 112128
+    },
+    {
+      "id": "scene-5-ahmer",
+      "audience": "ahmer",
+      "scene": 5,
+      "path": "assets/narration/mastered-v1/scene-5-ahmer.mp3",
+      "bytes": 123264
+    },
+    {
+      "id": "scene-6-ahmer",
+      "audience": "ahmer",
+      "scene": 6,
+      "path": "assets/narration/mastered-v1/scene-6-ahmer.mp3",
+      "bytes": 129792
+    },
+    {
+      "id": "scene-7-ahmer",
+      "audience": "ahmer",
+      "scene": 7,
+      "path": "assets/narration/mastered-v1/scene-7-ahmer.mp3",
+      "bytes": 129024
+    },
+    {
+      "id": "ending-bdc",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/ending-bdc.mp3",
+      "phase": "ending",
+      "bytes": 741888
+    },
+    {
+      "id": "ending-company",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/ending-company.mp3",
+      "phase": "ending",
+      "bytes": 1077888
+    },
+    {
+      "id": "ending-compare",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/ending-compare.mp3",
+      "phase": "ending",
+      "bytes": 778368
+    },
+    {
+      "id": "appointment-bdc",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/appointment-bdc.mp3",
+      "phase": "appointment",
+      "requiresExplicitContinue": true,
+      "bytes": 216960
+    },
+    {
+      "id": "appointment-company",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/appointment-company.mp3",
+      "phase": "appointment",
+      "requiresExplicitContinue": true,
+      "bytes": 208896
+    },
+    {
+      "id": "appointment-compare",
+      "audience": "all",
+      "scene": 8,
+      "path": "assets/narration/mastered-v1/appointment-compare.mp3",
+      "phase": "appointment",
+      "requiresExplicitContinue": true,
+      "bytes": 235392
+    }
+  ]
+}
