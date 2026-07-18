@@ -1,6 +1,6 @@
 {
   "name": "xei-001-gold-master",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,6 +10,7 @@
     "test:continuum": "vitest run --config continuum/vitest.config.ts",
     "typecheck:continuum": "tsc -p continuum/tsconfig.json --noEmit",
     "validate": "npm run test:production && npm run test:continuum-structure && npm run typecheck:continuum && npm run test:continuum",
+    "certify": "npm run validate",
     "cf:typegen": "wrangler types --config continuum/wrangler.jsonc continuum/worker-configuration.d.ts",
     "cf:migrate:local": "wrangler d1 migrations apply xen-continuum-local --local --config continuum/wrangler.jsonc",
     "cf:dry-run": "wrangler deploy --dry-run --config continuum/wrangler.jsonc"

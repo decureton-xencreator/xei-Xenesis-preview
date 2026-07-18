@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "xen-choice-reporting",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-18",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://decureton-xencreator.github.io"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "xen-choice-reporting",
+      "database_id": "b85e4f08-52bc-4ca9-87f5-11830aec9c76",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

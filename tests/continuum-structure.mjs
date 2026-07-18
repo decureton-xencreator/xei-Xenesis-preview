@@ -13,6 +13,7 @@ const required = [
   "src/durable/mission-coordinator.ts",
   "src/workflows/mission-workflow.ts",
   "XEN-CPC-001-CAPABILITY-MANIFEST.json",
+  "FAMILY-DEPENDENCIES.md",
   "RECONSTRUCTION.md",
   "CONTINUITY.md",
   "RELEASE.md",
@@ -22,6 +23,10 @@ const required = [
 for (const relative of required) {
   assert.ok(fs.existsSync(path.join(runtimeRoot, relative)), `Missing Stage 2 artifact: ${relative}`);
 }
+
+const manifest = JSON.parse(fs.readFileSync(path.join(runtimeRoot, "XEN-CPC-001-CAPABILITY-MANIFEST.json"), "utf8"));
+assert.ok(!manifest.authority.canonicalControls.includes("XRI-006"), "Prospective XRI-006 must not be represented as an existing canonical control");
+assert.ok(manifest.authority.futureControls.includes("XRI-006"), "XRI-006 continuation dependency must remain explicit");
 
 const migration = fs.readFileSync(path.join(runtimeRoot, "migrations/0001_stage2_runtime.sql"), "utf8");
 const tableCount = [...migration.matchAll(/^CREATE TABLE /gm)].length;

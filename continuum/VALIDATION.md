@@ -1,35 +1,28 @@
 # XEN-CPC-001 Stage 2 Validation Evidence
 
-Date: 2026-07-17
-Scope: local repository validation only
-Status: dependency-free gates passed; pinned-toolchain gates pending installation authorization
+Date: 2026-07-18  
+Scope: synchronized local repository validation only  
+Status: local gates passed; remote infrastructure gates remain open
 
-Passed without dependency installation:
+Passed:
 
-- current nine-scene production experience validator
-- bounded-module and secret-exposure structural validator
-- JSON parse validation for package, manifest, and schemas
-- exact 20-table migration count
-- Git diff whitespace/error check
-- branch and construction-base verification
-- before/after production-shell hash comparison
-- zero changed paths under the production shell and experience directories
-- JavaScript syntax checks across the production source tree
-
-Legacy-suite discrepancy:
-
-- Six historical standalone tests still target superseded phone, Director, rollout, or proof-link assumptions: ed-premiere-clean-v1.mjs, phone-gold-v8.mjs, xde-directors-cut-v1.mjs, xde-rollout-v1.mjs, xfs-xen-centric-release.mjs, and the former validate.mjs assertion.
-- The repository primary validator was reconciled to current nine-scene ownership. Historical tests were not rewritten because they are not invoked by the package validation command and remain useful drift evidence.
-
-Pending because dependency installation has not been authorized in the current execution boundary:
-
+- current production experience validator, including the restored private-choice telemetry client
+- bounded-module, family-dependency, and secret-exposure structural validation
 - strict TypeScript compilation
-- mission authority, approval, optimistic-concurrency, risk, and tenant Vitest suite
-- authentication fail-closed tests
-- provider-boundary and error-redaction tests
-- Worker health-route test under the Cloudflare Workers test pool
-- Wrangler configuration/type generation
-- local D1 migration application
-- Wrangler deployment dry-run without upload
+- 10 Vitest cases covering mission state, authority, tenant isolation, provider errors, and Worker routing
+- exact 20-table D1 migration structure
+- Wrangler type generation with pinned Wrangler 4.112.0
+- local D1 migration application: 26 commands, migration `0001_stage2_runtime.sql`
+- Wrangler deployment dry-run: 20.67 KiB upload, 5.67 KiB gzip, with Durable Object, Workflow, Queue, D1, R2, and environment bindings resolved
+- Git diff whitespace/error check
 
-No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost, or deployment evidence is claimed.
+Synchronization corrections:
+
+- Added `src/choice-telemetry.js`, which current mainline referenced and validated but did not contain.
+- Reconciled stale validator expectations with the active `system-tts-disabled-1`, four-audience runtime.
+- Evaluated Wrangler's optional Node type-package recommendation; it conflicts with this pinned TypeScript 7 workflow and was not retained because the generated Worker types and strict compilation already pass without it.
+- Corrected the capability manifest so nonexistent XRI-006 is prospective, not falsely canonical.
+
+Wrangler emitted a sandbox-local logging warning when the default `/root/.config` path was unavailable. Re-running with a writable temporary configuration path removed that warning. In this environment Wrangler left an idle proxy handle after printing successful completion; it was terminated after the results above were emitted.
+
+No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost, cross-device, or deployment evidence is claimed.

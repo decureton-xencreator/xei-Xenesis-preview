@@ -1,17 +1,21 @@
 {
   "capabilityId": "XEN-CPC-001-STAGE-2-DURABLE-RUNTIME",
-  "version": "0.1.0-reconstruction",
+  "version": "0.2.0-reconstruction",
   "status": "local-repository-validation-candidate",
   "reconstruction": {
     "kind": "new-reconstruction-from-partial-canonical-evidence",
     "recoveredOriginalCommits": false,
     "sourceBase": "236e7f9efe96e4b56bd4700e77fa6a0ea07e4a5c",
+    "synchronizedMain": "d026bdddaf721e889935029b9a2f41df74b73035",
     "obsoleteBaseExcluded": "39b0b1ba698ab3b19350a96b53bb1a6ee4ca7e99"
   },
   "authority": {
     "canonicalRepository": "decureton-xencreator/xen-operating-system",
     "implementationRepository": "decureton-xencreator/xei-genesis-preview",
-    "canonicalControls": ["XRI-005", "XRI-006", "XWF-001", "XEF-001", "XAU-001", "XSS-001", "XPF-003"]
+    "canonicalControls": ["XRI-005", "XWF-001", "XEF-001", "XAU-001", "XSS-001", "XPF-003"],
+    "futureControls": ["XRI-006"],
+    "relatedImplementations": ["PATLAS-007", "apps/atlas/runtime/continuum-runtime.js"],
+    "familyDependencyRecord": "FAMILY-DEPENDENCIES.md"
   },
   "interfaces": {
     "http": "/api/v1/continuum/",

@@ -1,0 +1,27 @@
+name: Generate Xen voice audition
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audition:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate mastered Xen audition
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate-xen-voice-audition.mjs
+      - name: Commit audition
+        run: |
+          git config user.name "xen-voice-master"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/narration/xen-voice-audition-v1.mp3
+          git commit -m "Generate Xen voice audition" || exit 0
+          git push
