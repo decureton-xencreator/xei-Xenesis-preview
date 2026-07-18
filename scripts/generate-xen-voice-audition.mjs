@@ -20,11 +20,13 @@ const response = await fetch('https://api.openai.com/v1/audio/speech', {
     voice: 'marin',
     input,
     instructions: [
-      'Speak as Xen: a sophisticated British woman in her early forties.',
-      'Warm, poised, reassuring, intelligent, and quietly magnetic.',
-      'Use a polished modern English accent, measured cinematic pacing, natural warmth, and subtle confidence.',
-      'Never sound seductive, ominous, breathy, theatrical, robotic, predatory, or like a horror trailer.',
-      'Avoid exaggerated pauses and vocal fry. Make the listener feel safe, welcomed, and intrigued.'
+      'Speak as Xen: an exceptionally polished British executive assistant serving a discreet billionaire family office.',
+      'Use an elegant, cultivated contemporary British accent with crisp diction, refined vowels, and effortless social confidence.',
+      'Sound warm, gracious, highly intelligent, impeccably composed, and quietly authoritative—as though every detail is already under control.',
+      'Keep the pleasant natural tone from the approved first audition, while making the delivery distinctly more posh and professionally elevated.',
+      'Use measured cinematic pacing with fluid phrasing, gentle warmth, subtle wit, and a restrained premium presence.',
+      'Never sound seductive, ominous, breathy, theatrical, robotic, predatory, condescending, or like a horror trailer.',
+      'Avoid exaggerated pauses, vocal fry, caricatured royalty, and an overdone period-drama accent. Make the listener feel safe, welcomed, impressed, and personally looked after.'
     ].join(' '),
     response_format: 'mp3'
   })
@@ -33,5 +35,5 @@ const response = await fetch('https://api.openai.com/v1/audio/speech', {
 if (!response.ok) throw new Error(`OpenAI speech generation failed: ${response.status} ${await response.text()}`);
 
 await mkdir('assets/narration', { recursive: true });
-await writeFile('assets/narration/xen-voice-audition-v1.mp3', Buffer.from(await response.arrayBuffer()));
-console.log('Generated assets/narration/xen-voice-audition-v1.mp3');
+await writeFile('assets/narration/xen-voice-audition-v2.mp3', Buffer.from(await response.arrayBuffer()));
+console.log('Generated assets/narration/xen-voice-audition-v2.mp3');
