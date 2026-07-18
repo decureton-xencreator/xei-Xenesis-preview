@@ -70,4 +70,21 @@ describe("provider-neutral model boundary", () => {
     await expect(provider.complete(request)).resolves.toMatchObject({ text: "ok" });
     expect(receiver).toBeUndefined();
   });
+
+  it("redacts credentials from native network failures", async () => {
+    const fetcher = vi.fn(async () => { throw new TypeError("credential https://api.anthropic.com failed"); });
+    const provider = new AnthropicProvider({ apiKey: "credential", fetcher: fetcher as typeof fetch });
+    await expect(provider.complete(request)).rejects.toMatchObject({
+      message: "Anthropic network request failed (TypeError: [credential] [provider-endpoint] failed).",
+    });
+  });
+
+  it("normalizes surrounding whitespace in the protected credential", async () => {
+    const fetcher = vi.fn(async (_url: RequestInfo | URL, init?: RequestInit) => {
+      expect((init?.headers as Record<string, string>)["x-api-key"]).toBe("credential");
+      return new Response(JSON.stringify({ model: "test-model", content: [{ type: "text", text: "ok" }], usage: { input_tokens: 1, output_tokens: 1 } }));
+    });
+    const provider = new AnthropicProvider({ apiKey: "  credential\n", model: "test-model", fetcher: fetcher as typeof fetch });
+    await expect(provider.complete(request)).resolves.toMatchObject({ text: "ok" });
+  });
 });

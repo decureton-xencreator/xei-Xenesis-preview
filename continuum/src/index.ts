@@ -119,7 +119,7 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
     if (request.headers.get("origin") !== url.origin || request.headers.get("sec-fetch-site") !== "same-origin") {
       throw new RuntimeError("smoke_approval_origin_invalid", "Smoke-test approval must originate from the protected same-origin page.", 403);
     }
-    const missionId = "00000000-0000-4000-8000-000000000002";
+    const missionId = "00000000-0000-4000-8000-000000000004";
     const stub = missionStub(env, actor.tenantId, missionId);
     const existing = await stub.getMission(actor.tenantId);
     if (existing) return response({ mission: existing, reused: true, correlationId }, 200);
@@ -130,20 +130,20 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       objective: "Reply with exactly: XEN-CPC-001 Claude provider smoke test successful.",
       risk: "low",
       actor,
-      idempotencyKey: "stage2-claude-smoke:create:v2",
+      idempotencyKey: "stage2-claude-smoke:create:v4",
     });
     const awaiting = await stub.transition({
       tenantId: actor.tenantId, actor, target: "awaiting_approval", expectedVersion: created.version,
-      idempotencyKey: "stage2-claude-smoke:awaiting:v2", reason: "Owner requested a capped provider smoke test after receiver-binding repair.",
+      idempotencyKey: "stage2-claude-smoke:awaiting:v4", reason: "Owner requested a capped provider smoke test after credential normalization.",
     });
     const approved = await stub.transition({
       tenantId: actor.tenantId, actor, target: "approved", expectedVersion: awaiting.version,
-      idempotencyKey: "stage2-claude-smoke:approved:v2",
+      idempotencyKey: "stage2-claude-smoke:approved:v4",
       approvalEvidence: `Explicit protected-browser approval at ${new Date().toISOString()}.`,
     });
     const queued = await stub.transition({
       tenantId: actor.tenantId, actor, target: "queued", expectedVersion: approved.version,
-      idempotencyKey: "stage2-claude-smoke:queued:v2", reason: "Approved capped smoke test queued after receiver-binding repair.",
+      idempotencyKey: "stage2-claude-smoke:queued:v4", reason: "Approved capped smoke test queued after credential normalization.",
     });
     await indexMission(env, queued, actor.source);
     await env.CONTINUUM_QUEUE.send({

@@ -114,7 +114,7 @@ export class AnthropicProvider implements ModelProvider {
   private readonly fetcher: typeof fetch;
 
   constructor(options: AnthropicProviderOptions) {
-    this.apiKey = options.apiKey;
+    this.apiKey = options.apiKey.trim();
     this.model = options.model ?? DEFAULT_MODEL;
     this.endpoint = (options.endpoint ?? "https://api.anthropic.com").replace(/\/$/, "");
     this.timeoutMs = options.timeoutMs ?? 60_000;
@@ -231,7 +231,13 @@ export class AnthropicProvider implements ModelProvider {
         const callerAborted = request.signal?.aborted === true;
         throw new ProviderError(callerAborted ? "Anthropic request was aborted." : "Anthropic request timed out.", callerAborted ? "aborted" : "timeout", !callerAborted);
       }
-      throw new ProviderError("Anthropic network request failed.", "provider", true);
+      const detail = error instanceof Error
+        ? `${error.name}: ${error.message}`
+            .replaceAll(this.apiKey, "[credential]")
+            .replaceAll(this.endpoint, "[provider-endpoint]")
+            .slice(0, 180)
+        : "Unknown runtime failure";
+      throw new ProviderError(`Anthropic network request failed (${detail}).`, "provider", true);
     } finally {
       clearTimeout(timeout);
       request.signal?.removeEventListener("abort", onAbort);
@@ -244,6 +250,9 @@ export class AnthropicProvider implements ModelProvider {
 
   private requireCredential(): void {
     if (!this.apiKey) throw new ProviderError("Anthropic credential is not configured.", "authentication", false);
+    if (/[\u0000-\u001f\u007f]/.test(this.apiKey)) {
+      throw new ProviderError("Anthropic credential contains invalid control characters.", "authentication", false);
+    }
   }
 
   private failure(response: Response): ProviderError {
