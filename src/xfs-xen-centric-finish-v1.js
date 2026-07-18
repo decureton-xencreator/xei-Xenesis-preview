@@ -1,4 +1,6 @@
 const XFS_RELEASE=Object.freeze({studio:'XFS',version:'1.2.1',xenCentric:true,institutionalMemory:true,proofLinks:true,manualReturn:true,contentPlane:true,solutionsGateway:true,singleGateway:true,commercialReview:true,controllerOwner:'src/ed-premiere-clean-v1.js',finaleNarrationOwner:'branch-controller'});window.XFS_RELEASE=XFS_RELEASE;document.documentElement.dataset.xfs='1.2.1';
+const reportChoice=(type,path=null)=>import('./choice-telemetry.js').then(module=>module.reportChoice(type,path));
+document.querySelector('#start')?.addEventListener('click',()=>{void reportChoice('premiere_started')},{once:true});let completionReported=false;new MutationObserver(()=>{if(!completionReported&&document.body.dataset.completed==='true'){completionReported=true;void reportChoice('premiere_completed',sessionStorage.getItem('xen_gateway_path'))}}).observe(document.body,{attributes:true,attributeFilter:['data-completed']});
 
 const scene=[...document.querySelectorAll('.scene')][3];
 if(!scene)throw new Error('Institutional-memory scene is missing');
@@ -40,7 +42,7 @@ manualBack.addEventListener('click',closeManualResearch);document.addEventListen
 for(const link of proofLinks){link.dataset.canonical='full-publication';link.setAttribute('aria-label',link.textContent.trim()+' — open full governed publication in the research viewer');link.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();openManualResearch(link)})}
 
 const completion=document.querySelector('.premiere-complete');if(completion){const rolloutLink=solutionsLink.cloneNode(true);rolloutLink.classList.add('final-rollout-link');rolloutLink.textContent='Continue into the Xen Solutions Gateway →';completion.append(rolloutLink)}
-const pathByMandate={'Finish the BDC operating system':'bdc','Build one company operating layer':'company','Run a Checkmate 1 comparison':'compare'};document.addEventListener('click',event=>{const choice=event.target.closest('[data-mandate],.branch-option[data-branch]');if(!choice)return;const mandate=choice.dataset.mandate||choice.dataset.branch;const path=pathByMandate[mandate];if(path){sessionStorage.setItem('xen_gateway_path',path);document.querySelectorAll('.solutions-gateway-link').forEach(link=>{link.href='solutions.html#appointment'})}});
+const pathByMandate={'Finish the BDC operating system':'bdc','Build one company operating layer':'company','Run a Checkmate 1 comparison':'compare'};document.addEventListener('click',event=>{const choice=event.target.closest('[data-mandate],.branch-option[data-branch]');if(!choice)return;const mandate=choice.dataset.mandate||choice.dataset.branch;const path=pathByMandate[mandate];if(path){sessionStorage.setItem('xen_gateway_path',path);void reportChoice('path_selected',path);document.querySelectorAll('.solutions-gateway-link').forEach(link=>{link.href='solutions.html#appointment'})}});
 
 window.dispatchEvent(new CustomEvent('xfs:ready',{detail:XFS_RELEASE}));
 import('./xli-living-interface-v1.js');
