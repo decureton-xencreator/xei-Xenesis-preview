@@ -18,6 +18,20 @@ function response(body: unknown, status = 200): Response {
   });
 }
 
+function smokeApprovalPage(): Response {
+  return new Response(
+    `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Xen Continuum Claude Smoke Test</title><body><main><h1>Xen Continuum Claude Smoke Test</h1><p>This creates exactly one low-risk analytical mission. Maximum output: 1,024 tokens. Maximum authorized mission cost: $0.10. No repository or external action is permitted.</p><form method="post"><button type="submit">Approve and run one Claude smoke test</button></form></main></body></html>`,
+    {
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
+        "x-content-type-options": "nosniff",
+      },
+    },
+  );
+}
+
 function text(value: unknown, field: string, maxLength: number): string {
   if (typeof value !== "string" || !value.trim() || value.length > maxLength) {
     throw new RuntimeError("invalid_request", `${field} must be a non-empty string of at most ${maxLength} characters.`, 422);
@@ -97,6 +111,46 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       authorities: actor.authorities,
       correlationId,
     });
+  }
+  if (url.pathname === `${API_PREFIX}/smoke/claude`) {
+    requireAuthority(actor, "admin");
+    if (request.method === "GET") return smokeApprovalPage();
+    if (request.method !== "POST") throw new RuntimeError("method_not_allowed", "Method not allowed.", 405);
+    if (request.headers.get("origin") !== url.origin || request.headers.get("sec-fetch-site") !== "same-origin") {
+      throw new RuntimeError("smoke_approval_origin_invalid", "Smoke-test approval must originate from the protected same-origin page.", 403);
+    }
+    const missionId = "00000000-0000-4000-8000-000000000001";
+    const stub = missionStub(env, actor.tenantId, missionId);
+    const existing = await stub.getMission(actor.tenantId);
+    if (existing) return response({ mission: existing, reused: true, correlationId }, 200);
+    const created = await stub.createMission({
+      id: missionId,
+      tenantId: actor.tenantId,
+      title: "Capped Claude staging smoke test",
+      objective: "Reply with exactly: XEN-CPC-001 Claude provider smoke test successful.",
+      risk: "low",
+      actor,
+      idempotencyKey: "stage2-claude-smoke:create:v1",
+    });
+    const awaiting = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "awaiting_approval", expectedVersion: created.version,
+      idempotencyKey: "stage2-claude-smoke:awaiting:v1", reason: "Owner requested a capped provider smoke test.",
+    });
+    const approved = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "approved", expectedVersion: awaiting.version,
+      idempotencyKey: "stage2-claude-smoke:approved:v1",
+      approvalEvidence: `Explicit protected-browser approval at ${new Date().toISOString()}.`,
+    });
+    const queued = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "queued", expectedVersion: approved.version,
+      idempotencyKey: "stage2-claude-smoke:queued:v1", reason: "Approved capped smoke test queued.",
+    });
+    await indexMission(env, queued, actor.source);
+    await env.CONTINUUM_QUEUE.send({
+      missionId, tenantId: actor.tenantId, expectedVersion: queued.version,
+      correlationId, requestedBy: actor.id, runtimeMode: env.XEN_RUNTIME_MODE,
+    });
+    return response({ mission: queued, queued: true, correlationId }, 202);
   }
   const missionMatch = url.pathname.match(
     new RegExp(`^${API_PREFIX}/missions/([0-9a-fA-F-]+)(?:/(transitions|dispatch|events|artifacts))?$`),

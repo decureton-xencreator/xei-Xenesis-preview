@@ -44,6 +44,7 @@ No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost
 - Full validation passed with 14 Continuum tests before deployment.
 - JWT verifier staging Worker version: `428f430c-d79c-4f19-bea2-b0b3c80e3e38`.
 - Authenticated browser-session verification and the capped live Claude smoke test remain open; no provider call or cost is claimed.
+- Owner-only, same-origin smoke approval page deployed in Worker version `05357672-bb0f-4674-a1d0-23db849613c5`; it is idempotent and cannot invoke Claude until the protected approval button is pressed.
 
 ## Staging evidence — 2026-07-19
 
