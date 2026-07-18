@@ -1,5 +1,6 @@
+import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import { clips, instructions, voice } from './xen-mastered-narration-copy-v1.mjs';
+import { clips, instructions, voice, voiceContract } from './xen-mastered-narration-copy-v1.mjs';
 
 const apiKey = process.env.OPENAI_API_KEY;
 if (!apiKey) throw new Error('OPENAI_API_KEY is required');
@@ -31,6 +32,8 @@ await writeFile(`${outputDirectory}/manifest.json`, `${JSON.stringify({
   generatedAt: new Date().toISOString(),
   model: 'gpt-4o-mini-tts',
   voice,
+  voiceContract,
+  instructionsSha256: createHash('sha256').update(instructions).digest('hex'),
   approvedAudition: 'assets/narration/xen-voice-audition-v2.mp3',
   clips: generated.map(({ text, ...clip }) => clip)
 }, null, 2)}\n`);
