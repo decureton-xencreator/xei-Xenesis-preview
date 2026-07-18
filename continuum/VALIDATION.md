@@ -49,6 +49,13 @@ No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost
 - Receiver-binding regression test added; 15 Continuum tests pass. Repaired one-time smoke gate deployed in Worker version `379b7478-9661-46a0-ac2d-f8e034026642` and requires a new explicit owner approval.
 - Diagnostic mission `0003` identified `TypeError: Invalid header value` before Anthropic accepted the request. No tokens, cost, artifact, or completion evidence were recorded.
 - Credential boundary now trims surrounding copy/paste whitespace and rejects remaining control characters; 17 Continuum tests pass. Mission `0004` gate deployed in Worker version `ddbab580-d369-4636-8abd-86168fcc499c` and requires explicit owner approval.
+- Mission `0004` confirmed the original protected secret contained an internal control character and was rejected before provider acceptance. The secret was replaced without exposing its value.
+- Mission `0005` completed successfully in staging Worker version `f746b365-efa5-4b27-b62e-4cd4735a01d3`.
+- Cloudflare Workflow completed all five governed steps in 2 seconds: authority/load, checkpoint, running transition, provider invocation, and validation/completion.
+- Anthropic invocation `15288e47-99f6-4aa7-aa87-ebcce7a7b513` used `claude-sonnet-5`: 117 input tokens, 24 output tokens, estimated cost `$0.000474`.
+- D1 mission state is `succeeded` at version 6; provider invocation and Workflow state are `succeeded`; no mission `0005` dead-letter exists.
+- R2 artifact is 50 bytes and contains exactly `XEN-CPC-001 Claude provider smoke test successful.`
+- R2 content SHA-256, D1 artifact hash, and D1 validation-evidence hash all match: `044436c990cbbac9fa00a696c3e9f4366f84b8fa5b40cc6f704ff5231e9b270d`.
 
 ## Staging evidence — 2026-07-19
 
