@@ -15,8 +15,13 @@ for (const clip of manifest.clips) {
   if (!expected.delete(clip.id)) throw new Error(`Unexpected or duplicate clip: ${clip.id}`);
   const info = await stat(clip.path);
   if (info.size < 1024 || info.size !== clip.bytes) throw new Error(`Invalid mastered asset: ${clip.id}`);
+  const bytes = await readFile(clip.path);
+  const digest = createHash('sha256').update(bytes).digest('hex');
+  if (!clip.sha256 || clip.sha256 !== digest) throw new Error(`Content hash mismatch: ${clip.id}`);
 }
 if (expected.size) throw new Error(`Missing mastered clips: ${[...expected].join(', ')}`);
+const expectedBatch = createHash('sha256').update(manifest.clips.map(clip => `${clip.id}:${clip.sha256}`).join('|')).digest('hex');
+if (!manifest.generationBatch || manifest.generationBatch !== expectedBatch) throw new Error('Mixed or invalid narration generation batch');
 
 for (const audience of ['ed', 'kim', 'ahmer', 'faith']) {
   if (!manifest.clips.some(clip => clip.id === `intro-${audience}`)) throw new Error(`Missing ${audience} introduction`);
@@ -27,4 +32,4 @@ for (const path of ['bdc', 'company', 'compare']) {
   if (!appointment?.requiresExplicitContinue) throw new Error(`${path} appointment must require explicit continuation`);
 }
 
-console.log(`PASS Warden mastered narration gate · ${manifest.clips.length} verified clips · ${voiceContract} · no alternate voice permitted`);
+console.log(`PASS Warden mastered narration gate · ${manifest.clips.length} content-addressed clips · one generation batch · ${voiceContract} · no alternate voice permitted`);
