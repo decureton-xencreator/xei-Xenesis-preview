@@ -2,6 +2,14 @@ name: Generate Xen mastered narration
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/xen-mastered-narration-copy-v1.mjs'
+      - 'scripts/generate-xen-mastered-narration.mjs'
+      - 'scripts/verify-xen-mastered-narration.mjs'
+      - 'governance/XVS-001-CANONICAL-VOICE.json'
+      - '.github/workflows/generate-xen-mastered-narration.yml'
 
 permissions:
   contents: write
