@@ -58,4 +58,16 @@ describe("provider-neutral model boundary", () => {
     await expect(provider.complete({ ...request, maxTokens: 0 })).rejects.toMatchObject({ kind: "invalid_request", retryable: false });
     expect(fetcher).not.toHaveBeenCalled();
   });
+
+  it("invokes fetch without binding the provider as its receiver", async () => {
+    let receiver: unknown = "not-called";
+    async function receiverSensitiveFetcher(this: unknown): Promise<Response> {
+      receiver = this;
+      if (this !== undefined) throw new TypeError("Illegal invocation");
+      return new Response(JSON.stringify({ model: "test-model", content: [{ type: "text", text: "ok" }], usage: { input_tokens: 1, output_tokens: 1 } }));
+    }
+    const provider = new AnthropicProvider({ apiKey: "credential", model: "test-model", fetcher: receiverSensitiveFetcher as typeof fetch });
+    await expect(provider.complete(request)).resolves.toMatchObject({ text: "ok" });
+    expect(receiver).toBeUndefined();
+  });
 });

@@ -45,6 +45,8 @@ No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost
 - JWT verifier staging Worker version: `428f430c-d79c-4f19-bea2-b0b3c80e3e38`.
 - Authenticated browser-session verification and the capped live Claude smoke test remain open; no provider call or cost is claimed.
 - Owner-only, same-origin smoke approval page deployed in Worker version `05357672-bb0f-4674-a1d0-23db849613c5`; it is idempotent and cannot invoke Claude until the protected approval button is pressed.
+- First live attempt failed before reaching Anthropic because the stored fetch function was invoked with an invalid receiver. No tokens, cost, artifact, or completion evidence were recorded; the mission correctly failed and produced a dead-letter record.
+- Receiver-binding regression test added; 15 Continuum tests pass. Repaired one-time smoke gate deployed in Worker version `379b7478-9661-46a0-ac2d-f8e034026642` and requires a new explicit owner approval.
 
 ## Staging evidence — 2026-07-19
 

@@ -188,7 +188,8 @@ export class AnthropicProvider implements ModelProvider {
   async health(signal?: AbortSignal): Promise<ProviderHealth> {
     this.requireCredential();
     const started = Date.now();
-    const response = await this.fetcher(`${this.endpoint}/v1/models/${encodeURIComponent(this.model)}`, {
+    const fetcher = this.fetcher;
+    const response = await fetcher(`${this.endpoint}/v1/models/${encodeURIComponent(this.model)}`, {
       headers: this.headers(),
       ...(signal ? { signal } : {}),
     });
@@ -215,7 +216,8 @@ export class AnthropicProvider implements ModelProvider {
         ...(request.tools?.length ? { tools: request.tools.map((tool) => ({ name: tool.name, description: tool.description, input_schema: tool.inputSchema, ...(tool.strict === undefined ? {} : { strict: tool.strict }) })) } : {}),
         ...(request.outputSchema ? { output_config: { format: { type: "json_schema", schema: request.outputSchema } } } : {}),
       };
-      const response = await this.fetcher(`${this.endpoint}/v1/messages`, {
+      const fetcher = this.fetcher;
+      const response = await fetcher(`${this.endpoint}/v1/messages`, {
         method: "POST",
         headers: this.headers(),
         body: JSON.stringify(body),
