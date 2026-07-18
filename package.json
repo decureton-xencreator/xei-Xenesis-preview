@@ -1,1 +1,14 @@
-{"name":"xei-001-gold-master","version":"1.0.0","private":true,"type":"module","scripts":{"test":"node tests/validate.mjs","validate":"node tests/validate.mjs"},"engines":{"node":">=20"}}
+{
+  "name": "xei-001-gold-master",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/validate.mjs",
+    "validate": "node tests/validate.mjs",
+    "certify": "node tests/validate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

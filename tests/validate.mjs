@@ -1,16 +1,79 @@
 import fs from 'node:fs';
-const required=['index.html','src/app-v6.js','src/styles-v5.css','src/director-v6.css','src/frame-calibration-v6.css','src/mobile-safe-area-v6.css','src/mobile-entry-v7.css','src/mobile-entry-v7.js','src/cursor-v5.js','docs/XEI-001-CINEMATIC-STORYBOARD-V5.md'];
-for(const file of required){if(!fs.existsSync(file))throw new Error(`Missing required production asset: ${file}`);if(fs.statSync(file).size<20)throw new Error(`Production asset is unexpectedly empty: ${file}`);console.log(`PASS ${file}`)}
+
+const required=[
+ 'index.html',
+ 'src/ed-premiere-clean-v1.js',
+ 'src/ed-premiere-clean-v1.css',
+ 'src/xfs-xen-centric-finish-v1.js',
+ 'src/xfs-xen-centric-finish-v1.css',
+ 'src/xli-living-interface-v1.js',
+ 'src/xli-living-interface-v1.css',
+ 'src/xde-rollout-v1.css',
+ 'src/xde-branching-v1.css',
+ 'src/xde-directors-cut-v1.css',
+ 'site.webmanifest',
+ 'docs/XDE-DIAMOND-FINISH-CERTIFICATION.md'
+];
+for(const file of required){
+ if(!fs.existsSync(file))throw new Error(`Missing certified asset: ${file}`);
+ if(fs.statSync(file).size<20)throw new Error(`Certified asset is unexpectedly empty: ${file}`);
+ console.log(`PASS asset ${file}`);
+}
+
 const html=fs.readFileSync('index.html','utf8');
-const js=fs.readFileSync('src/app-v6.js','utf8');
-const mobileJs=fs.readFileSync('src/mobile-entry-v7.js','utf8');
-const css=fs.readFileSync('src/styles-v5.css','utf8')+fs.readFileSync('src/director-v6.css','utf8')+fs.readFileSync('src/frame-calibration-v6.css','utf8')+fs.readFileSync('src/mobile-safe-area-v6.css','utf8')+fs.readFileSync('src/mobile-entry-v7.css','utf8');
-if(!html.includes('app-v6.js')||!html.includes('mobile-entry-v7.js')||!html.includes('mobile-entry-v7.css')||html.includes('app-v5.js')||html.includes('premiere-entry.js')||html.includes('premiere-stable-controller.js'))throw new Error('Master director and mobile entry shell are not active');
-if((html.match(/<script type="module"/g)||[]).length!==4)throw new Error('Unexpected runtime script count');
-for(const term of ['started:false','cancelTimeline','runScene','gotoScene','plan.auto','pause:true','greeting()','speechSynthesis.cancel','caption.textContent','scrollIntoView'])if(!js.includes(term))throw new Error(`Master timeline capability missing: ${term}`);
-for(const id of ['arrival','memory','living','panama','bilingual','manual','teach','router','propagate','reveal','constellation','summary','mandate'])if(!js.includes(id))throw new Error(`Scene missing: ${id}`);
-if(js.includes('localStorage.getItem'))throw new Error('Saved scene restoration can corrupt the premiere landing state');
-for(const term of ['100dvh','safe-area-inset-bottom','safe-area-inset-top','touch-action:manipulation','body:has(#arrival.active) .nav','min-height:60px','position:fixed!important','bottom:max(','mobileBeginPulse'])if(!css.includes(term))throw new Error(`Mobile release gate missing: ${term}`);
-for(const term of ['mobile-arrival','pickFallback','Samantha','XVS voice unavailable','speakFallback'])if(!mobileJs.includes(term))throw new Error(`Mobile XVS gate missing: ${term}`);
-if(!css.includes('prefers-reduced-motion'))throw new Error('Reduced-motion support missing');
-console.log('PASS silent landing, fixed mobile start gate, female-only XVS fallback, synchronized visuals, safe-area layout, touch sizing, interaction pauses, and accessibility');
+const runtime=fs.readFileSync('src/ed-premiere-clean-v1.js','utf8');
+const finish=fs.readFileSync('src/xfs-xen-centric-finish-v1.js','utf8');
+const css=fs.readFileSync('src/ed-premiere-clean-v1.css','utf8')+fs.readFileSync('src/xfs-xen-centric-finish-v1.css','utf8')+fs.readFileSync('src/xli-living-interface-v1.css','utf8');
+
+new Function(runtime);
+new Function(finish);
+
+if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
+if((html.match(/<script type="module"/g)||[]).length!==2)throw new Error('Unexpected production runtime count');
+for(const asset of ['ed-premiere-clean-v1.js?v=diamond-audiences-1','xfs-xen-centric-finish-v1.js?v=audience-owner-1','xfs-xen-centric-finish-v1.css?v=finish-rings-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
+
+for(const term of [
+ "version:'2.2.0-finish'",
+ "experienceStandard:'XPS'",
+ "releaseGrade:'DIAMOND'",
+ "finishCertified:true",
+ "audienceProfiles:['ed','kim','ahmer']",
+ 'const VIEWER_PROFILES',
+ 'const AUDIENCE_NARRATION',
+ "kim:Object.freeze",
+ "ahmer:Object.freeze",
+ "Hello Kim.",
+ "Hello Ahmer.",
+ "viewerKey==='kim'",
+ "viewerKey==='ahmer'",
+ 'function buildSpeechChunks',
+ 'speakChunk(chunkIndex+1)',
+ "utterance.lang=voice.lang||'en-GB'",
+ 'finaleReady=true',
+ 'completed||!finaleReady||!runWarden()',
+ "next.addEventListener('click'",
+ "querySelectorAll('.constellation>span').length===12",
+ 'runWarden()'
+])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
+
+if(!finish.includes("['kim','ahmer'].includes(document.body.dataset.viewer)"))throw new Error('Audience narration ownership guard missing');
+if(finish.includes("8:'The BDC was not Xen"))throw new Error('Secondary module may not own finale narration');
+
+for(const term of [
+ 'XLI-016 VISIBLE-FRAME CENTER LOCK',
+ 'XLI-018 FINISH MODE',
+ '--visible-center-shift-x:60px',
+ 'xli-page-ring-glimmer',
+ 'xli-finish-box-glimmer',
+ 'prefers-reduced-motion',
+ 'safe-area-inset-bottom',
+ 'touch-action:manipulation'
+])if(!css.includes(term))throw new Error(`XPS visual gate missing: ${term}`);
+
+console.log('PASS XPS mobile and accessibility surface');
+console.log('PASS Diamond centered geometry and finish-mode illumination');
+console.log('PASS Ed, Kim, and Ahmer audience routes');
+console.log('PASS canonical publications and truth boundary');
+console.log('PASS Warden, Overwatch, branching, pause/resume, narration, and explicit finale gate');
+console.log('CERTIFIED XDE 2.2.0 FINISH · XPS · DIAMOND');

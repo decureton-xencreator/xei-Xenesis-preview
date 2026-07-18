@@ -22,3 +22,13 @@ This repository contains the public preview implementation of the Xenesis execut
 Preview experiences must distinguish operational functions from prototypes and future capabilities. Live geolocation, flight status, automated publishing, personal-data access, real-time market/news ingestion, provider playback, licensing-dependent features, private BDC publications, employee records, CRM data, and academy records may not be represented as operational until implemented and validated.
 
 All preview surfaces must inherit mobile-first XPS/XDL design, accessible interaction patterns, clear source links, privacy-aware presentation, explicit preview labeling, and canonical-source truth boundaries.
+
+## XDE 2.2 Diamond finish
+
+The Checkmate private executive documentary is certified under `docs/XDE-DIAMOND-FINISH-CERTIFICATION.md`.
+
+- Ed: `/?viewer=ed`
+- Kim: `/?viewer=kim`
+- Ahmer: `/?viewer=ahmer`
+
+All three routes use the same governed nine-scene proof, canonical XBM publications, finish-mode visual system, and branch-specific second-appointment outcomes. Audience-specific narration is presentation framing only; the truth boundary does not change.

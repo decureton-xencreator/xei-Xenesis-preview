@@ -22,7 +22,7 @@ const narrationByScene=Object.freeze({
 
 });
 const narration=document.querySelector('#directorNarration');
-function applyNarration(){if(!narration)return;const i=Number(document.body.dataset.scene||0);if(i>=8)return;if(narrationByScene[i])narration.textContent=narrationByScene[i]}
+function applyNarration(){if(!narration)return;if(['kim','ahmer'].includes(document.body.dataset.viewer))return;const i=Number(document.body.dataset.scene||0);if(i>=8)return;if(narrationByScene[i])narration.textContent=narrationByScene[i]}
 new MutationObserver(applyNarration).observe(document.body,{attributes:true,attributeFilter:['data-scene']});
 applyNarration();
 
