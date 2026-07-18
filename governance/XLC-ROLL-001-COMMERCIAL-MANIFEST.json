@@ -4,6 +4,7 @@
   "status": "approved-implementation",
   "authority": "Darren Cureton",
   "entry": "solutions.html",
+  "single_gateway": true,
   "offers": [
     "individual-manual-license",
     "complete-bdc-system-license",

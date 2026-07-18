@@ -38,7 +38,7 @@ new Function(solutionsRuntime);
 
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==2)throw new Error('Unexpected production runtime count');
-for(const asset of ['ed-premiere-clean-v1.js?v=manual-resume-1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-1','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['ed-premiere-clean-v1.js?v=manual-resume-1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
 
 for(const term of [
@@ -69,12 +69,16 @@ if(!runtime.includes("window.addEventListener('xen:resume'"))throw new Error('Ma
 
 if(!finish.includes("['kim','ahmer'].includes(document.body.dataset.viewer)"))throw new Error('Audience narration ownership guard missing');
 if(finish.includes("8:'The BDC was not Xen"))throw new Error('Secondary module may not own finale narration');
-for(const term of ['manualReturn:true','contentPlane:true','solutionsGateway:true','manual-research-viewer','Back to Xen Demo','event.preventDefault()','xen:resume','solutions-gateway-link'])if(!finish.includes(term))throw new Error(`Manual research and rollout contract missing: ${term}`);
+for(const term of ['manualReturn:true','contentPlane:true','solutionsGateway:true','singleGateway:true','manual-research-viewer','Back to Xen Demo','event.preventDefault()','xen:resume','solutions-gateway-link','xen_gateway_path'])if(!finish.includes(term))throw new Error(`Manual research and rollout contract missing: ${term}`);
 
 for(const term of ['Buy the system.','Deploy the proof.','Build the Living Company.','Open Complete XBM Suite','SECOND APPOINTMENT ROUTER','No discovery questionnaire is required'])if(!solutions.includes(term))throw new Error(`Solutions Gateway contract missing: ${term}`);
 if((solutionsRuntime.match(/\['XBM-10[1-9]'/g)||[]).length!==9)throw new Error('Solutions Gateway must expose nine standalone manual routes');
 for(const term of ['BDC DEPLOYMENT + MEASUREMENT SESSION','LIVING COMPANY BLUEPRINT SESSION','CHECKMATE OPERATING-LAYER COMPARISON','navigator.clipboard.writeText','window.print()'])if(!solutionsRuntime.includes(term))throw new Error(`Commercial continuation capability missing: ${term}`);
+for(const term of ['data-select-path="bdc"','data-select-path="company"','solutions.js?v=rollout-2','solutions.css?v=rollout-2'])if(!solutions.includes(term))throw new Error(`Single Gateway indexed interaction missing: ${term}`);
+if(solutions.includes('?path=')||finish.includes('solutions.html?source=')||finish.includes("link.href='solutions.html?"))throw new Error('Commercial path URLs must not multiply the canonical gateway');
+for(const term of ['sessionStorage.setItem','history.replaceState',"document.getElementById('appointment').scrollIntoView",'[data-select-path]'])if(!solutionsRuntime.includes(term))throw new Error(`Deterministic single-gateway state missing: ${term}`);
 const rollout=JSON.parse(fs.readFileSync('governance/XLC-ROLL-001-COMMERCIAL-MANIFEST.json','utf8'));if(rollout.standard!=='XLC-ROLL-001'||rollout.publications.length!==9||!rollout.truth_boundary.no_invented_pricing)throw new Error('Commercial rollout governance failed');
+if(!rollout.single_gateway)throw new Error('Single canonical gateway rule missing');
 
 for(const term of [
  'XLI-016 VISIBLE-FRAME CENTER LOCK',
@@ -98,4 +102,5 @@ console.log('PASS full-publication research viewer and deterministic return to p
 console.log('PASS content-plane layering: borders and shimmer remain behind all language');
 console.log('PASS standalone manual family, offer ladder, and three second-appointment continuations');
 console.log('PASS Living Company commercial truth and privacy boundaries');
-console.log('CERTIFIED XDE 2.3.0 COMMERCIAL ROLLOUT · XPS · DIAMOND');
+console.log('PASS one canonical gateway with indexed internal commercial states');
+console.log('CERTIFIED XDE 2.3.1 SINGLE-GATEWAY ROLLOUT · XPS · DIAMOND');

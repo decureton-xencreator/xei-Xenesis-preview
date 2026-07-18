@@ -18,6 +18,10 @@ The rollout must create revenue from the governed manual family while using that
 5. **Guided implementation** — adapts, installs, trains, measures, and governs the operating system.
 6. **Living Company Blueprint** — maps company truth before a broader operating-memory pilot is proposed.
 
+## Single-gateway rule
+
+The rollout publishes one canonical Xen Solutions Gateway URL. BDC deployment, Living Company Blueprint, and Checkmate comparison are internal states of that gateway, not separate campaign URLs. The documentary preserves a viewer's selected path in session state and opens the same canonical gateway at the appropriate indexed section. Separate public links are reserved for genuinely separate products—the nine individual manuals and the complete XBM suite.
+
 ## Three appointment continuations
 
 | Documentary choice | Commercial continuation | Required working session |
