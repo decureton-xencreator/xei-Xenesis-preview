@@ -1,0 +1,36 @@
+name: Generate Xen mastered narration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: xen-mastered-narration
+  cancel-in-progress: false
+
+jobs:
+  narration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - name: Generate complete mastered Xen narration
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate-xen-mastered-narration.mjs
+      - name: Warden asset verification
+        run: node scripts/verify-xen-mastered-narration.mjs
+      - name: Commit mastered narration package
+        run: |
+          git config user.name "xen-voice-master"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/narration/mastered-v1
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate Xen mastered narration v1"
+            git push
+          fi

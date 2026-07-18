@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["Generate Xen voice audition"]
+    workflows: ["Generate Xen voice audition", "Generate Xen mastered narration"]
     types: [completed]
 
 permissions:

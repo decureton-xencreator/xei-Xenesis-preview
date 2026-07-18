@@ -24,6 +24,10 @@ const required=[
  ,'tracking-worker/wrangler.jsonc'
  ,'tracking-worker/migrations/0001_choice_reporting.sql'
  ,'choice-report.html'
+ ,'scripts/xen-mastered-narration-copy-v1.mjs'
+ ,'scripts/generate-xen-mastered-narration.mjs'
+ ,'scripts/verify-xen-mastered-narration.mjs'
+ ,'.github/workflows/generate-xen-mastered-narration.yml'
 ];
 for(const file of required){
  if(!fs.existsSync(file))throw new Error(`Missing certified asset: ${file}`);
@@ -41,6 +45,9 @@ const trackingWorker=fs.readFileSync('tracking-worker/src/index.js','utf8');
 const trackingMigration=fs.readFileSync('tracking-worker/migrations/0001_choice_reporting.sql','utf8');
 const choiceReport=fs.readFileSync('choice-report.html','utf8');
 const css=fs.readFileSync('src/ed-premiere-clean-v1.css','utf8')+fs.readFileSync('src/xfs-xen-centric-finish-v1.css','utf8')+fs.readFileSync('src/xli-living-interface-v1.css','utf8');
+const masteredCopy=fs.readFileSync('scripts/xen-mastered-narration-copy-v1.mjs','utf8');
+const masteredGenerator=fs.readFileSync('scripts/generate-xen-mastered-narration.mjs','utf8');
+const masteredWorkflow=fs.readFileSync('.github/workflows/generate-xen-mastered-narration.yml','utf8');
 
 new Function(runtime);
 new Function(finish);
@@ -48,7 +55,7 @@ new Function(solutionsRuntime);
 
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==2)throw new Error('Unexpected production runtime count');
-for(const asset of ['ed-premiere-clean-v1.js?v=manual-resume-1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['ed-premiere-clean-v1.js?v=system-tts-disabled-1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
 
 for(const term of [
@@ -56,7 +63,7 @@ for(const term of [
  "experienceStandard:'XPS'",
  "releaseGrade:'DIAMOND'",
  "finishCertified:true",
- "audienceProfiles:['ed','kim','ahmer']",
+ "audienceProfiles:['ed','kim','ahmer','faith']",
  'const VIEWER_PROFILES',
  'const AUDIENCE_NARRATION',
  "kim:Object.freeze",
@@ -67,7 +74,7 @@ for(const term of [
  "viewerKey==='ahmer'",
  'function buildSpeechChunks',
  'speakChunk(chunkIndex+1)',
- "utterance.lang=voice.lang||'en-GB'",
+ "utterance.lang='en-GB'",
  'finaleReady=true',
  'completed||!finaleReady||!runWarden()',
  "next.addEventListener('click'",
@@ -91,6 +98,9 @@ for(const term of ['xen_invite_token','crypto.randomUUID()','credentials:\'omit\
 for(const term of ['origin_not_allowed','payload_too_large','crypto.subtle.timingSafeEqual','INSERT OR IGNORE INTO events','revoked_at IS NULL','/v1/admin/report','/v1/admin/invites'])if(!trackingWorker.includes(term))throw new Error(`Choice reporting security contract missing: ${term}`);
 for(const term of ['CHECK (audience IN','CHECK (event_type IN','FOREIGN KEY (invite_hash)','CREATE INDEX events_invite_created_idx'])if(!trackingMigration.includes(term))throw new Error(`Choice reporting D1 contract missing: ${term}`);
 if(!finish.includes("reportChoice('path_selected',path)")||!solutionsRuntime.includes("reportChoice('second_appointment_continued',key)"))throw new Error('Choice reporting instrumentation missing');
+for(const term of ["voice = 'marin'",'Hello Ed.','Hello Kim.','Hello Ahmer.','Hello Faith.','roughly six months','requiresExplicitContinue: true'])if(!masteredCopy.includes(term))throw new Error(`Mastered narration source contract missing: ${term}`);
+for(const term of ["model: 'gpt-4o-mini-tts'",'assets/narration/mastered-v1','manifest.json'])if(!masteredGenerator.includes(term))throw new Error(`Mastered narration generator contract missing: ${term}`);
+for(const term of ['workflow_dispatch','Warden asset verification','verify-xen-mastered-narration.mjs'])if(!masteredWorkflow.includes(term))throw new Error(`Mastered narration workflow contract missing: ${term}`);
 for(const term of ['Private choice report.','Create a private premiere link','/v1/admin/report','/v1/admin/invites','never stored by this page'])if(!choiceReport.includes(term))throw new Error(`Owner choice report missing: ${term}`);
 const rollout=JSON.parse(fs.readFileSync('governance/XLC-ROLL-001-COMMERCIAL-MANIFEST.json','utf8'));if(rollout.standard!=='XLC-ROLL-001'||rollout.publications.length!==9||!rollout.truth_boundary.no_invented_pricing)throw new Error('Commercial rollout governance failed');
 if(!rollout.single_gateway)throw new Error('Single canonical gateway rule missing');
