@@ -1,6 +1,6 @@
 # Xen Capability Inheritance Notice
 
-**Repository:** `decureton-xencreator/xei-genesis-preview`  
+**Repository:** `decureton-xencreator/xei-Xenesis-preview`  
 **Status:** Active public derivative inheritance  
 **Canonical authority:** `decureton-xencreator/xen-operating-system`
 

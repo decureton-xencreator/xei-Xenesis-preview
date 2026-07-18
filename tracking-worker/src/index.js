@@ -33,7 +33,7 @@ async function createInvite(request,env,origin){
  if(!AUDIENCES.has(audience))return json({error:'invalid_audience'},400,cors(origin));
  const token=crypto.randomUUID();const tokenHash=await sha256(token);
  await env.DB.prepare('INSERT INTO invites (token_hash, audience, label) VALUES (?, ?, ?)').bind(tokenHash,audience,label).run();
- return json({audience,invite:token,premiere_url:`https://decureton-xencreator.github.io/xei-genesis-preview/?viewer=${audience}&invite=${token}`},201,cors(origin));
+ return json({audience,invite:token,premiere_url:`https://decureton-xencreator.github.io/xei-Xenesis-preview/?viewer=${audience}&invite=${token}`},201,cors(origin));
 }
 
 async function report(env,origin){

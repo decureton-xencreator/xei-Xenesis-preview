@@ -1,6 +1,6 @@
 # Xen Canonical Bootstrap — XEI Genesis / Executive Symphony
 
-**Repository:** `decureton-xencreator/xei-genesis-preview`  
+**Repository:** `decureton-xencreator/xei-Xenesis-preview`  
 **Branch:** `main`  
 **Role:** Public production runtime for XEI Genesis and Executive Symphony experiences  
 **Canonical authority:** `decureton-xencreator/xen-operating-system`  

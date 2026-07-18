@@ -23,7 +23,7 @@ This repository is the public Xenesis preview implementation. It inherits canoni
 
 - `decureton-xencreator/xen-operating-system` — canonical source of truth
 - `decureton-xencreator/daily-bread-` — Daily Bread implementation
-- `decureton-xencreator/xei-genesis-preview` — public Xenesis preview
+- `decureton-xencreator/xei-Xenesis-preview` — public Xenesis preview
 - `decureton-xencreator/xenengine-site` — public Xen Engine website
 
 ## Sync state
