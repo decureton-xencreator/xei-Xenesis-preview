@@ -361,3 +361,48 @@ body[data-scene="8"] .handoff-close{animation:xli-appointment-pulse 3.2s ease-in
   .propagation-map>span:nth-child(6){left:22%!important;top:84%!important}
   .propagation-map>span:nth-child(7){left:78%!important;top:84%!important}
 }
+
+
+/* XLI-016 VISIBLE-FRAME CENTER LOCK
+   Calibrated to the marked target. This is the sole final owner for pages 2 and 6. */
+.knowledge-field,.propagation-map{--visible-center-shift-x:60px;--visible-center-rise-y:26px}
+
+/* Page 2: LOST and its four labels move as one centered system. */
+.knowledge-field .void{
+  left:calc(50% - var(--visible-center-shift-x))!important;
+  top:calc(48% - var(--visible-center-rise-y))!important;
+  transform:translate(-50%,-50%)!important;
+}
+.knowledge-field>span:nth-child(1){left:calc(18% - var(--visible-center-shift-x))!important;top:18%!important}
+.knowledge-field>span:nth-child(2){left:calc(82% - var(--visible-center-shift-x))!important;top:18%!important}
+.knowledge-field>span:nth-child(3){left:calc(18% - var(--visible-center-shift-x))!important;top:82%!important}
+.knowledge-field>span:nth-child(4){left:calc(82% - var(--visible-center-shift-x))!important;top:82%!important}
+
+/* Page 6: XEN MEMORY and its six labels move as one centered system. */
+.propagation-map .core,
+.propagation-map:before,
+.propagation-map:after{
+  left:calc(50% - var(--visible-center-shift-x))!important;
+  top:calc(46% - var(--visible-center-rise-y))!important;
+}
+.propagation-map .core{transform:translate(-50%,-50%)!important}
+.propagation-map>span:nth-child(2){left:calc(20% - var(--visible-center-shift-x))!important;top:17%!important}
+.propagation-map>span:nth-child(3){left:calc(80% - var(--visible-center-shift-x))!important;top:17%!important}
+.propagation-map>span:nth-child(4){left:calc(16% - var(--visible-center-shift-x))!important;top:50%!important}
+.propagation-map>span:nth-child(5){left:calc(84% - var(--visible-center-shift-x))!important;top:50%!important}
+.propagation-map>span:nth-child(6){left:calc(23% - var(--visible-center-shift-x))!important;top:83%!important}
+.propagation-map>span:nth-child(7){left:calc(77% - var(--visible-center-shift-x))!important;top:83%!important}
+
+@media(max-width:430px){
+  .knowledge-field,.propagation-map{--visible-center-shift-x:48px;--visible-center-rise-y:22px}
+  .knowledge-field>span:nth-child(1){left:calc(18% - var(--visible-center-shift-x))!important;top:17%!important}
+  .knowledge-field>span:nth-child(2){left:calc(82% - var(--visible-center-shift-x))!important;top:17%!important}
+  .knowledge-field>span:nth-child(3){left:calc(18% - var(--visible-center-shift-x))!important;top:83%!important}
+  .knowledge-field>span:nth-child(4){left:calc(82% - var(--visible-center-shift-x))!important;top:83%!important}
+  .propagation-map>span:nth-child(2){left:calc(19% - var(--visible-center-shift-x))!important;top:16%!important}
+  .propagation-map>span:nth-child(3){left:calc(81% - var(--visible-center-shift-x))!important;top:16%!important}
+  .propagation-map>span:nth-child(4){left:calc(16% - var(--visible-center-shift-x))!important;top:50%!important}
+  .propagation-map>span:nth-child(5){left:calc(84% - var(--visible-center-shift-x))!important;top:50%!important}
+  .propagation-map>span:nth-child(6){left:calc(22% - var(--visible-center-shift-x))!important;top:84%!important}
+  .propagation-map>span:nth-child(7){left:calc(78% - var(--visible-center-shift-x))!important;top:84%!important}
+}
