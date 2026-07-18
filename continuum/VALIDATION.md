@@ -36,6 +36,15 @@ No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost
 - Provider invocation is limited to one non-retried call, 1,024 output tokens, a $0.10 configured mission budget, one configured concurrent Anthropic request, and an approved queued mission.
 - No live Anthropic request has been made. Staging authentication remains fail-closed until Cloudflare Access JWT issuer/audience verification is configured.
 
+## Cloudflare Access verification — 2026-07-18
+
+- Access application `Xen Continuum Stage 2 Staging` created for the exact staging Worker hostname.
+- Access returned an unauthenticated HTTP 302 to the verified team domain.
+- RS256 signature verification uses Cloudflare's remote JWKS and enforces issuer, audience, expiry, not-before, subject, application-token type, and an owner-email SHA-256 allowlist.
+- Full validation passed with 14 Continuum tests before deployment.
+- JWT verifier staging Worker version: `428f430c-d79c-4f19-bea2-b0b3c80e3e38`.
+- Authenticated browser-session verification and the capped live Claude smoke test remain open; no provider call or cost is claimed.
+
 ## Staging evidence — 2026-07-19
 
 - Cloudflare account verified: `724d8b5c193838ea2871cca7aef7e0fb`.

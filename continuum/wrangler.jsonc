@@ -73,6 +73,9 @@
       "vars": {
         "XEN_RUNTIME_MODE": "staging",
         "XEN_AUTH_MODE": "cloudflare-access",
+        "XEN_ACCESS_TEAM_DOMAIN": "https://cool-silence-82b1.cloudflareaccess.com",
+        "XEN_ACCESS_AUD": "c007ebf6201f421334e7234f20eea96dfbf6106e1b985c28cc9bf1f1684b0d02",
+        "XEN_ACCESS_ADMIN_EMAIL_SHA256": "8bc36a88c3de70a77d268157d44a980966d977e894fdfe7d14ad094e5af25206",
         "XEN_MODEL_EXECUTION": "enabled",
         "ANTHROPIC_MODEL": "claude-sonnet-5",
         "ANTHROPIC_MAX_CONCURRENCY": "1",

@@ -89,7 +89,15 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
     });
   }
 
-  const actor = authenticate(request, env);
+  const actor = await authenticate(request, env);
+  if (request.method === "GET" && url.pathname === `${API_PREFIX}/session`) {
+    return response({
+      authenticated: true,
+      identitySource: actor.source,
+      authorities: actor.authorities,
+      correlationId,
+    });
+  }
   const missionMatch = url.pathname.match(
     new RegExp(`^${API_PREFIX}/missions/([0-9a-fA-F-]+)(?:/(transitions|dispatch|events|artifacts))?$`),
   );
