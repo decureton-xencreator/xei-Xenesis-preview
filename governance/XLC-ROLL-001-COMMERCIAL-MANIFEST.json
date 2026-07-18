@@ -1,0 +1,26 @@
+{
+  "standard": "XLC-ROLL-001",
+  "version": "1.0.0",
+  "status": "approved-implementation",
+  "authority": "Darren Cureton",
+  "entry": "solutions.html",
+  "offers": [
+    "individual-manual-license",
+    "complete-bdc-system-license",
+    "guided-bdc-implementation",
+    "living-company-blueprint"
+  ],
+  "appointment_routes": {
+    "bdc": "BDC Deployment + Measurement Session",
+    "company": "Living Company Blueprint Session",
+    "compare": "Checkmate Operating-Layer Comparison"
+  },
+  "publications": ["XBM-101", "XBM-102", "XBM-103", "XBM-104", "XBM-105", "XBM-106", "XBM-107", "XBM-108", "XBM-109"],
+  "truth_boundary": {
+    "no_invented_pricing": true,
+    "no_unapproved_contact_data": true,
+    "no_private_discovery_on_public_gateway": true,
+    "full_publication_links_are_canonical": true
+  },
+  "pending_connections": ["checkout", "pricing", "scheduler", "sales_contact", "crm"]
+}

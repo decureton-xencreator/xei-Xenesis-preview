@@ -32,3 +32,14 @@ The Checkmate private executive documentary is certified under `docs/XDE-DIAMOND
 - Ahmer: `/?viewer=ahmer`
 
 All three routes use the same governed nine-scene proof, canonical XBM publications, finish-mode visual system, and branch-specific second-appointment outcomes. Audience-specific narration is presentation framing only; the truth boundary does not change.
+
+## Living Company commercial rollout
+
+The public commercial gateway is `solutions.html`.
+
+- Standalone manual library: `/solutions.html#manuals`
+- BDC deployment path: `/solutions.html?path=bdc#appointment`
+- Living Company Blueprint path: `/solutions.html?path=company#appointment`
+- Checkmate operating-layer comparison: `/solutions.html?path=compare#appointment`
+
+The gateway connects the manual product family to guided implementation and Living Company strategy without inventing pricing, collecting private discovery information, or exposing unapproved sales credentials. Commercial provider connections are governed by `docs/XLC-ROLL-001-LIVING-COMPANY-COMMERCIAL-ROLLOUT.md`.
