@@ -1,0 +1,17 @@
+{
+  "standard": "XVS-001",
+  "status": "CANONICAL_LOCKED",
+  "voice_contract": "XVS-001-MARIN-EXCLUSIVE-v1",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "approved_audition": "assets/narration/xen-voice-audition-v2.mp3",
+  "scope": "ALL_XEN_MODEL_NARRATION",
+  "rules": {
+    "exclusive": true,
+    "alternate_voices_permitted": false,
+    "browser_speech_fallback_permitted": false,
+    "recipient_specific_voice_substitution_permitted": false,
+    "regeneration_requires_same_contract": true,
+    "change_requires_explicit_owner_authorization": true
+  }
+}
