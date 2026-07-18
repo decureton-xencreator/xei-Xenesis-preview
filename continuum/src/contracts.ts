@@ -69,7 +69,9 @@ export interface DispatchMessage {
   requestedBy: string;
 }
 
-export interface MissionWorkflowParams extends DispatchMessage {}
+export interface MissionWorkflowParams extends DispatchMessage {
+  runtimeMode?: string;
+}
 
 export interface ApiErrorBody {
   error: {

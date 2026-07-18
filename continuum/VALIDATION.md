@@ -27,6 +27,15 @@ Wrangler emitted a sandbox-local logging warning when the default `/root/.config
 
 No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost, cross-device, or deployment evidence is claimed.
 
+## Claude staging connection — 2026-07-18
+
+- Cloudflare secret metadata verified: `ANTHROPIC_API_KEY` exists as `secret_text`; its value was not read or logged.
+- Full `npm run validate`: passed (production shell, structure, TypeScript, 13 Continuum tests).
+- Wrangler staging dry-run passed with D1, R2, Queue, Workflow, and Durable Object bindings.
+- Staging deployment version: `63551857-c749-403c-a0d7-c32b642677d8`.
+- Provider invocation is limited to one non-retried call, 1,024 output tokens, a $0.10 configured mission budget, one configured concurrent Anthropic request, and an approved queued mission.
+- No live Anthropic request has been made. Staging authentication remains fail-closed until Cloudflare Access JWT issuer/audience verification is configured.
+
 ## Staging evidence — 2026-07-19
 
 - Cloudflare account verified: `724d8b5c193838ea2871cca7aef7e0fb`.

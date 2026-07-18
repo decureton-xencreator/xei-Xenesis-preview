@@ -73,7 +73,7 @@
       "vars": {
         "XEN_RUNTIME_MODE": "staging",
         "XEN_AUTH_MODE": "cloudflare-access",
-        "XEN_MODEL_EXECUTION": "disabled",
+        "XEN_MODEL_EXECUTION": "enabled",
         "ANTHROPIC_MODEL": "claude-sonnet-5",
         "ANTHROPIC_MAX_CONCURRENCY": "1",
         "ANTHROPIC_DAILY_BUDGET_USD": "5.00",

@@ -82,7 +82,8 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       status: "ok",
       service: "xen-continuum-stage2",
       mode: env.XEN_RUNTIME_MODE,
-      externalEffects: "disabled",
+      externalEffects: env.XEN_MODEL_EXECUTION === "enabled" ? "approval-gated" : "disabled",
+      modelProvider: env.XEN_MODEL_EXECUTION === "enabled" ? "anthropic" : "disabled",
       correlationId,
     });
   }
@@ -170,6 +171,7 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       expectedVersion: mission.version,
       correlationId,
       requestedBy: actor.id,
+      runtimeMode: env.XEN_RUNTIME_MODE,
     });
     return response({ mission, queued: true, correlationId }, 202);
   }
