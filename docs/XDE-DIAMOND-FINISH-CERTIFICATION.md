@@ -1,6 +1,6 @@
 # XDE Diamond Finish Certification
 
-**Release:** XDE 2.2.0 Finish  
+**Release:** XDE 2.2.1 Finish  
 **Experience standard:** XPS  
 **Release grade:** Diamond  
 **Audience routes:** Ed, Kim, Ahmer  
@@ -32,13 +32,15 @@ All routes inherit the same canonical manuals, controlled choices, branch-specif
 - Page 2 and page 6 visible-frame geometry locked after all historical overrides.
 - Twelve illuminated Xen Core nodes.
 - Canonical BDC manual links; no substitute summaries.
+- Full-publication research viewer with a persistent Back to Xen Demo control and exact page-4 return.
 - Corrected Marisol six-month narrative.
 - British voice preference with safe platform fallback.
 - Sentence-chunked narration and pause/resume continuity.
 - Constant guided finale scroll with additional narration bridge.
 - Finale completion requires Warden clearance, completed narration, completed scroll, and explicit viewer activation.
 - Secondary finish modules cannot overwrite audience or finale narration.
-- Finish-mode blue page rings and radiant shimmer are overlays and do not own layout.
+- Finish-mode blue page rings and radiant shimmer run below the protected content plane and never cross language.
+- Marisol, Xen, and Vianka inheritance cards use an opaque top content layer above the animated border field.
 
 ## Truth boundary
 
@@ -54,4 +56,4 @@ npm run validate
 
 A passing run ends with:
 
-`CERTIFIED XDE 2.2.0 FINISH · XPS · DIAMOND`
+`CERTIFIED XDE 2.2.1 FINISH · XPS · DIAMOND`

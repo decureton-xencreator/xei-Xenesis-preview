@@ -30,7 +30,7 @@ new Function(finish);
 
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==2)throw new Error('Unexpected production runtime count');
-for(const asset of ['ed-premiere-clean-v1.js?v=diamond-audiences-1','xfs-xen-centric-finish-v1.js?v=audience-owner-1','xfs-xen-centric-finish-v1.css?v=finish-rings-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['ed-premiere-clean-v1.js?v=manual-resume-1','xfs-xen-centric-finish-v1.js?v=manual-viewer-1','xfs-xen-centric-finish-v1.css?v=content-plane-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
 
 for(const term of [
@@ -57,12 +57,17 @@ for(const term of [
  'runWarden()'
 ])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
 
+if(!runtime.includes("window.addEventListener('xen:resume'"))throw new Error('Manual research resume event missing');
+
 if(!finish.includes("['kim','ahmer'].includes(document.body.dataset.viewer)"))throw new Error('Audience narration ownership guard missing');
 if(finish.includes("8:'The BDC was not Xen"))throw new Error('Secondary module may not own finale narration');
+for(const term of ['manualReturn:true','contentPlane:true','manual-research-viewer','Back to Xen Demo','event.preventDefault()','xen:resume'])if(!finish.includes(term))throw new Error(`Manual research return contract missing: ${term}`);
 
 for(const term of [
  'XLI-016 VISIBLE-FRAME CENTER LOCK',
  'XLI-018 FINISH MODE',
+ 'XLI-019 CONTENT PLANE',
+ '.manual-research-viewer',
  '--visible-center-shift-x:60px',
  'xli-page-ring-glimmer',
  'xli-finish-box-glimmer',
@@ -76,4 +81,6 @@ console.log('PASS Diamond centered geometry and finish-mode illumination');
 console.log('PASS Ed, Kim, and Ahmer audience routes');
 console.log('PASS canonical publications and truth boundary');
 console.log('PASS Warden, Overwatch, branching, pause/resume, narration, and explicit finale gate');
-console.log('CERTIFIED XDE 2.2.0 FINISH · XPS · DIAMOND');
+console.log('PASS full-publication research viewer and deterministic return to page 4');
+console.log('PASS content-plane layering: borders and shimmer remain behind all language');
+console.log('CERTIFIED XDE 2.2.1 FINISH · XPS · DIAMOND');
