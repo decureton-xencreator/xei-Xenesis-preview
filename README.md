@@ -37,9 +37,8 @@ All three routes use the same governed nine-scene proof, canonical XBM publicati
 
 The public commercial gateway is `solutions.html`.
 
-- Standalone manual library: `/solutions.html#manuals`
-- BDC deployment path: `/solutions.html?path=bdc#appointment`
-- Living Company Blueprint path: `/solutions.html?path=company#appointment`
-- Checkmate operating-layer comparison: `/solutions.html?path=compare#appointment`
+- One canonical public gateway: `/solutions.html`
+- Standalone manual index inside the gateway: `/solutions.html#manuals`
+- BDC deployment, Living Company Blueprint, and Checkmate comparison are internal selectable states—not separate marketed URLs.
 
 The gateway connects the manual product family to guided implementation and Living Company strategy without inventing pricing, collecting private discovery information, or exposing unapproved sales credentials. Commercial provider connections are governed by `docs/XLC-ROLL-001-LIVING-COMPANY-COMMERCIAL-ROLLOUT.md`.
