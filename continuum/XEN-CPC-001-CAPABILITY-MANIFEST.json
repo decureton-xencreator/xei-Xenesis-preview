@@ -43,8 +43,10 @@
   },
   "truth": {
     "productionShellModified": false,
-    "deployed": false,
-    "cloudResourcesProvisioned": false,
+    "deployed": true,
+    "deploymentEnvironment": "staging-fail-closed",
+    "stagingUrl": "https://xen-continuum-stage2-staging.decureton.workers.dev",
+    "cloudResourcesProvisioned": true,
     "remoteValidationCompleted": false,
     "certified": false
   }

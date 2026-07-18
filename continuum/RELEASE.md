@@ -13,3 +13,5 @@ Repository validation results are recorded in VALIDATION.md. Any later staging r
 This revision synchronizes the candidate with implementation mainline `d026bdddaf721e889935029b9a2f41df74b73035`, records the verified family dependencies, and resolves the missing choice-telemetry and stale-validation conflicts discovered during synchronization.
 
 Version 0.3.0 adds the production-oriented provider-neutral contract and Anthropic implementation for completion, streaming, tools, structured output, aborts, timeouts, retry classification, health, token accounting, and configurable cost accounting. It does not claim that Claude is connected: Cloudflare authentication, protected secret entry, staging deployment, and a capped live smoke test remain open gates.
+
+The fail-closed Stage 2 runtime was deployed to Cloudflare staging on 2026-07-19 at `https://xen-continuum-stage2-staging.decureton.workers.dev`. D1, R2, Queues, Durable Objects, and Workflows are bound and the health route is verified. External model execution remains disabled, Anthropic is not connected, Cloudflare Access JWT verification remains unconfigured, and no live provider smoke test has occurred.

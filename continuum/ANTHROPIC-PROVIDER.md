@@ -26,7 +26,7 @@ After the exact Cloudflare account, staging Worker name, resource bindings, and 
 
 Signing up for Claude or Claude Pro does not by itself prove Claude API billing and key access. Verify the Claude Console organization, API key permission, and spend limit before the smoke test.
 
-Cloudflare account verification completed on 2026-07-19 for account `724d8b5c193838ea2871cca7aef7e0fb`. Staging D1 and mission/dead-letter queues were provisioned. R2 remains blocked until R2 is enabled in the account dashboard. Model execution remains disabled and no Anthropic secret has been entered.
+Cloudflare account verification completed on 2026-07-19 for account `724d8b5c193838ea2871cca7aef7e0fb`. Staging D1, mission/dead-letter queues, R2, Durable Object, and Workflow resources were provisioned. The fail-closed Worker is deployed at `https://xen-continuum-stage2-staging.decureton.workers.dev`; its health endpoint returned HTTP 200 with `mode: staging` and `externalEffects: disabled`. Model execution remains disabled and no Anthropic secret has been entered.
 
 ## Safe initial policy
 

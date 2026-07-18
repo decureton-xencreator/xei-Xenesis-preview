@@ -26,3 +26,17 @@ Synchronization corrections:
 Wrangler emitted a sandbox-local logging warning when the default `/root/.config` path was unavailable. Re-running with a writable temporary configuration path removed that warning. In this environment Wrangler left an idle proxy handle after printing successful completion; it was terminated after the results above were emitted.
 
 No remote, physical-device, Cloudflare account, Access JWT, provider, load, cost, cross-device, or deployment evidence is claimed.
+
+## Staging evidence — 2026-07-19
+
+- Cloudflare account verified: `724d8b5c193838ea2871cca7aef7e0fb`.
+- R2 bucket created: `xen-continuum-stage2-staging-artifacts`.
+- D1 database created: `xen-continuum-stage2-staging` (`4e502b48-4281-4e87-89aa-6d840e40c81a`).
+- D1 migration `0001_stage2_runtime.sql` applied remotely: 26 commands succeeded.
+- Mission and dead-letter queues created.
+- Durable Object and Workflow bindings deployed.
+- Worker version: `b80bdb28-953c-4010-ae9a-724133c38aae`.
+- Health endpoint returned HTTP 200 with `mode: staging` and `externalEffects: disabled`.
+- Anthropic secret absent; model execution disabled; no provider call or cost incurred.
+
+The earlier statement denying all remote deployment evidence is retained as the historical local-validation boundary. This section is the later, bounded staging evidence and does not establish provider, Access, cross-device, load, cost, or production certification.
