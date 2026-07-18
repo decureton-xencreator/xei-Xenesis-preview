@@ -55,7 +55,7 @@ new Function(solutionsRuntime);
 
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==2)throw new Error('Unexpected production runtime count');
-for(const asset of ['ed-premiere-clean-v1.js?v=system-tts-disabled-1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['ed-premiere-clean-v1.js?v=mastered-audio-v1','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
 
 for(const term of [
@@ -72,15 +72,19 @@ for(const term of [
  "Hello Ahmer.",
  "viewerKey==='kim'",
  "viewerKey==='ahmer'",
- 'function buildSpeechChunks',
- 'speakChunk(chunkIndex+1)',
- "utterance.lang='en-GB'",
+ 'const masteredAudio=new Audio()',
+ "masteredAudio.setAttribute('playsinline','')",
+ 'masteredAudio.currentTime',
+ "assets/narration/mastered-v1/${id}.mp3",
  'finaleReady=true',
  'completed||!finaleReady||!runWarden()',
  "next.addEventListener('click'",
  "querySelectorAll('.constellation>span').length===12",
+ "voiceProfile==='mastered-v1'",
+ "speakText(personalizedVoice,{force:true,advance:false})",
  'runWarden()'
 ])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
+for(const forbidden of ['speechSynthesis','SpeechSynthesisUtterance','DISTRIBUTED_SYSTEM_TTS_ENABLED'])if(runtime.includes(forbidden))throw new Error(`Unmastered voice fallback restored: ${forbidden}`);
 
 if(!runtime.includes("window.addEventListener('xen:resume'"))throw new Error('Manual research resume event missing');
 
