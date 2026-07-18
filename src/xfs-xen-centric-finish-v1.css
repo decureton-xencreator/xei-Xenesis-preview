@@ -406,3 +406,46 @@ body[data-scene="8"] .handoff-close{animation:xli-appointment-pulse 3.2s ease-in
   .propagation-map>span:nth-child(6){left:calc(22% - var(--visible-center-shift-x))!important;top:84%!important}
   .propagation-map>span:nth-child(7){left:calc(78% - var(--visible-center-shift-x))!important;top:84%!important}
 }
+
+
+/* XLI-017 BROADWAY LIVENESS — dimensional, restrained, never layout-owning */
+main{isolation:isolate;overflow:hidden;background:
+ radial-gradient(circle at 50% 42%,rgba(110,231,255,.055),transparent 34%),
+ radial-gradient(circle at 18% 70%,rgba(217,182,111,.028),transparent 28%),
+ linear-gradient(135deg,rgba(36,141,255,.018),transparent 42%,rgba(114,242,178,.016));
+ animation:xli-stage-breathe 7.5s ease-in-out infinite}
+main:before{content:"";position:absolute;inset:-18%;pointer-events:none;z-index:0;opacity:.26;
+ background:repeating-radial-gradient(circle at 50% 48%,transparent 0 54px,rgba(110,231,255,.055) 55px,transparent 57px 86px);
+ animation:xli-stage-ripple 11s linear infinite}
+main:after{content:"";position:absolute;inset:-35% -70%;pointer-events:none;z-index:12;opacity:.16;mix-blend-mode:screen;
+ background:linear-gradient(108deg,transparent 42%,rgba(255,255,255,.05) 48%,rgba(110,231,255,.11) 50%,rgba(217,182,111,.045) 52%,transparent 58%);
+ transform:translateX(-32%);animation:xli-stage-sweep 9.5s cubic-bezier(.35,0,.65,1) infinite}
+.scene{z-index:1}
+header,footer{box-shadow:0 0 30px rgba(36,141,255,.045),inset 0 1px rgba(255,255,255,.025)}
+.progress i{background:linear-gradient(90deg,#fff,var(--xli-cyan),#f5d992,var(--xli-cyan));background-size:240% 100%;
+ animation:xli-progress-shimmer 3.8s linear infinite;box-shadow:0 0 12px rgba(110,231,255,.48)}
+.scene.active .eyebrow,.scene.active .brand{animation:xli-type-breathe 4.8s ease-in-out infinite}
+.knowledge-field,.propagation-map,.constellation,.manual-proof,.review-invitation,.branch-shell,.company-handoff,.overwatch-gate,.premiere-complete{
+ border-color:rgba(110,231,255,.24)!important;
+ box-shadow:0 0 30px rgba(36,141,255,.085),inset 0 0 32px rgba(110,231,255,.025)}
+.knowledge-field:after{width:2px!important;height:2px!important;border-radius:50%;
+ animation:xli-field-heartbeat 3.9s ease-in-out infinite!important}
+.void:before,.void:after,.propagation-map:before,.propagation-map:after,.constellation:before{
+ filter:drop-shadow(0 0 7px rgba(110,231,255,.55))}
+.knowledge-field>span:before,.propagation-map>span:before,.constellation>span:after{
+ filter:drop-shadow(0 0 8px rgba(110,231,255,.72)) drop-shadow(0 0 2px rgba(245,217,146,.3))!important}
+.choice:after,.branch-option:after,.proof-links a:after{content:"";position:absolute;inset:-1px;pointer-events:none;border-radius:inherit;
+ background:linear-gradient(110deg,transparent 34%,rgba(255,255,255,.035) 45%,rgba(110,231,255,.12) 50%,rgba(245,217,146,.045) 54%,transparent 66%);
+ transform:translateX(-115%);animation:xli-surface-shimmer 7.2s ease-in-out infinite}
+.choice,.branch-option,.proof-links a{position:relative;overflow:hidden}
+.director-narration{box-shadow:0 0 26px rgba(36,141,255,.09),inset 0 0 22px rgba(110,231,255,.025)}
+.pause-btn:not(:disabled),.primary:not(:disabled),.landing-action:not(:disabled){
+ box-shadow:0 14px 38px rgba(0,0,0,.3),0 0 22px rgba(110,231,255,.08),inset 0 0 0 1px rgba(255,255,255,.16)}
+@keyframes xli-stage-breathe{0%,100%{box-shadow:inset 0 0 80px rgba(36,141,255,.015)}50%{box-shadow:inset 0 0 125px rgba(110,231,255,.055)}}
+@keyframes xli-stage-ripple{0%{transform:scale(.92);opacity:.12}50%{opacity:.34}100%{transform:scale(1.12);opacity:.08}}
+@keyframes xli-stage-sweep{0%,18%{transform:translateX(-34%);opacity:0}38%{opacity:.18}58%{transform:translateX(34%);opacity:.12}72%,100%{transform:translateX(34%);opacity:0}}
+@keyframes xli-progress-shimmer{to{background-position:240% 0}}
+@keyframes xli-type-breathe{0%,100%{text-shadow:0 0 5px rgba(110,231,255,.08)}50%{color:#dff9ff;text-shadow:0 0 13px rgba(110,231,255,.35),0 0 22px rgba(217,182,111,.08)}}
+@keyframes xli-field-heartbeat{0%,100%{opacity:.42;box-shadow:0 0 48px 24px rgba(0,0,0,.86)}46%{opacity:.95;box-shadow:0 0 62px 34px rgba(36,141,255,.2),0 0 95px 46px rgba(0,0,0,.82)}58%{opacity:.66;box-shadow:0 0 50px 28px rgba(110,231,255,.09)}}
+@keyframes xli-surface-shimmer{0%,58%{transform:translateX(-115%);opacity:0}67%{opacity:.7}82%{transform:translateX(115%);opacity:.35}100%{transform:translateX(115%);opacity:0}}
+@media(prefers-reduced-motion:reduce){main,main:before,main:after,.progress i,.scene.active .eyebrow,.scene.active .brand,.knowledge-field:after,.choice:after,.branch-option:after,.proof-links a:after{animation:none!important}}
