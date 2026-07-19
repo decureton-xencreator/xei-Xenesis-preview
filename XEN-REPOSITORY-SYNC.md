@@ -39,3 +39,8 @@ Xenesis Preview may demonstrate XSMDE concepts only with explicit preview/implem
 ## XSMDE-003 propagation — 2026-07-19
 
 Xenesis Preview may demonstrate M3 and reconstruction-adapter concepts only as explicit reference-runtime or preview states.
+
+
+## XSMDE 1.0.0 completion — 2026-07-19
+
+Xenesis Preview may demonstrate the completed XSMDE reference product with explicit reference/demo/external-gate states and no private evidence.
