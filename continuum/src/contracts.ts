@@ -28,6 +28,16 @@ export interface Mission {
   tenantId: string;
   title: string;
   objective: string;
+  exactIntent?: string;
+  constraints?: string[];
+  successCriteria?: string[];
+  capabilityClass?: string;
+  weightedMissionUnits?: number;
+  parentMissionId?: string;
+  groupId?: string;
+  priority?: number;
+  progress?: number;
+  currentOperation?: string;
   state: MissionState;
   risk: RiskLevel;
   version: number;
@@ -39,6 +49,19 @@ export interface Mission {
     approvedAt: string;
     evidence: string;
   };
+}
+
+export interface ModifyMissionInput {
+  tenantId: string;
+  actor: Actor;
+  expectedVersion: number;
+  idempotencyKey: string;
+  title?: string;
+  objective?: string;
+  constraints?: string[];
+  successCriteria?: string[];
+  priority?: number;
+  currentOperation?: string;
 }
 
 export interface CreateMissionInput {

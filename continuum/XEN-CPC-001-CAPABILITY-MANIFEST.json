@@ -1,7 +1,7 @@
 {
   "capabilityId": "XEN-CPC-001-STAGE-2-DURABLE-RUNTIME",
-  "version": "0.3.0-reconstruction",
-  "status": "local-repository-validation-candidate",
+  "version": "0.4.0-stage2-candidate",
+  "status": "staging-validation-candidate",
   "reconstruction": {
     "kind": "new-reconstruction-from-partial-canonical-evidence",
     "recoveredOriginalCommits": false,
@@ -11,7 +11,7 @@
   },
   "authority": {
     "canonicalRepository": "decureton-xencreator/xen-operating-system",
-    "implementationRepository": "decureton-xencreator/xei-genesis-preview",
+    "implementationRepository": "decureton-xencreator/xei-Xenesis-preview",
     "canonicalControls": ["XRI-005", "XWF-001", "XEF-001", "XAU-001", "XSS-001", "XPF-003"],
     "futureControls": ["XRI-006"],
     "relatedImplementations": ["PATLAS-007", "apps/atlas/runtime/continuum-runtime.js"],
@@ -26,18 +26,19 @@
     "worker": "src/index.ts",
     "durableObject": "MissionCoordinator",
     "workflow": "MissionWorkflow",
-    "d1Migration": "migrations/0001_stage2_runtime.sql",
-    "tableCount": 20,
+    "d1Migrations": ["migrations/0001_stage2_runtime.sql", "migrations/0002_canonical_mission_contract.sql", "migrations/0003_completion_evidence_backfill.sql"],
+    "schemaContract": "forward-expanded; preliminary evidence preserved",
     "queue": "CONTINUUM_QUEUE",
     "artifactStore": "CONTINUUM_ARTIFACTS",
     "modelExecutionDefault": "disabled",
     "providers": {
       "anthropic": {
-        "adapter": "implemented-local-validation",
+        "adapter": "implemented-and-staging-validated",
         "defaultModel": "claude-sonnet-5",
         "secretName": "ANTHROPIC_API_KEY",
-        "connected": false,
-        "liveSmokeTest": false
+        "connected": true,
+        "liveSmokeTest": true,
+        "liveSmokeEvidence": "Exact identifiers, usage, cost, and integrity evidence are retained in the private canonical repository."
       }
     }
   },
@@ -45,9 +46,10 @@
     "productionShellModified": false,
     "deployed": true,
     "deploymentEnvironment": "staging-fail-closed",
-    "stagingUrl": "https://xen-continuum-stage2-staging.decureton.workers.dev",
+    "stagingUrl": "Cloudflare Access-protected endpoint; exact deployment evidence retained privately",
     "cloudResourcesProvisioned": true,
-    "remoteValidationCompleted": false,
+    "remoteValidationCompleted": true,
+    "shellIntegrationGate": "The certified nine-scene shell owns exactly two production runtimes; Continuum remains isolated until that validation contract is deliberately superseded.",
     "certified": false
   }
 }

@@ -6,7 +6,7 @@ const transitions: Record<MissionState, readonly MissionState[]> = {
   draft: ["awaiting_approval", "cancelled"],
   awaiting_approval: ["approved", "draft", "cancelled"],
   approved: ["queued", "cancelled"],
-  queued: ["running", "cancelled"],
+  queued: ["running", "paused", "cancelled"],
   running: ["paused", "succeeded", "failed"],
   paused: ["queued", "cancelled"],
   succeeded: [],

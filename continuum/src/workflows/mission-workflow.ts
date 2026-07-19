@@ -91,6 +91,9 @@ export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkf
           if (output.usage.estimatedCostUsd > missionBudget) throw new Error("Actual provider cost exceeded the authorized mission budget.");
           const artifactSha256 = await sha256(output.text);
           const artifactKey = `${params.tenantId}/${params.missionId}/provider-result-${artifactSha256}.txt`;
+          const artifactId = crypto.randomUUID();
+          const canonicalArtifactId = crypto.randomUUID();
+          const validationId = crypto.randomUUID();
           await this.env.CONTINUUM_ARTIFACTS.put(artifactKey, output.text, {
             httpMetadata: { contentType: "text/plain; charset=utf-8" },
             customMetadata: { sha256: artifactSha256, provider: output.provider, model: output.model },
@@ -100,11 +103,19 @@ export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkf
             this.env.CONTINUUM_DB.prepare("UPDATE model_invocations SET status = 'succeeded', input_tokens = ?, output_tokens = ?, completed_at = ? WHERE id = ?")
               .bind(output.usage.inputTokens, output.usage.outputTokens, completedAt, invocationId),
             this.env.CONTINUUM_DB.prepare("INSERT INTO artifacts(id, tenant_id, mission_id, storage_key, sha256, size_bytes, media_type, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, 'text/plain', 'continuum-workflow', ?)")
-              .bind(crypto.randomUUID(), params.tenantId, params.missionId, artifactKey, artifactSha256, new TextEncoder().encode(output.text).byteLength, completedAt),
+              .bind(artifactId, params.tenantId, params.missionId, artifactKey, artifactSha256, new TextEncoder().encode(output.text).byteLength, completedAt),
             this.env.CONTINUUM_DB.prepare("INSERT INTO evidence_records(id, tenant_id, mission_id, evidence_type, subject_id, document, sha256, created_at) VALUES (?, ?, ?, 'provider_completion', ?, ?, ?, ?)")
               .bind(crypto.randomUUID(), params.tenantId, params.missionId, invocationId, JSON.stringify({ provider: output.provider, model: output.model, artifactKey, usage: output.usage }), artifactSha256, completedAt),
+            this.env.CONTINUUM_DB.prepare("INSERT INTO mission_artifacts(id, mission_id, tenant_id, storage_key, media_type, size_bytes, integrity_hash, validation_state, created_by, created_at) VALUES (?, ?, ?, ?, 'text/plain', ?, ?, 'validated', 'continuum-workflow', ?)")
+              .bind(canonicalArtifactId, params.missionId, params.tenantId, artifactKey, new TextEncoder().encode(output.text).byteLength, artifactSha256, completedAt),
+            this.env.CONTINUUM_DB.prepare("INSERT INTO mission_validation_evidence(id, mission_id, artifact_id, validator, evidence_type, result, evidence_document, integrity_hash, created_at) VALUES (?, ?, ?, 'continuum-workflow', 'provider_completion', 'passed', ?, ?, ?)")
+              .bind(validationId, params.missionId, canonicalArtifactId, JSON.stringify({ provider: output.provider, model: output.model, artifactKey, usage: output.usage }), artifactSha256, completedAt),
+            this.env.CONTINUUM_DB.prepare("INSERT INTO mission_costs(id, mission_id, tenant_id, provider, model, estimated_cost_usd, actual_cost_usd, input_tokens, output_tokens, provider_calls, recorded_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)")
+              .bind(crypto.randomUUID(), params.missionId, params.tenantId, output.provider, output.model, output.usage.estimatedCostUsd, output.usage.estimatedCostUsd, output.usage.inputTokens, output.usage.outputTokens, completedAt),
+            this.env.CONTINUUM_DB.prepare("INSERT INTO provider_calls(id, mission_id, provider, model, request_hash, response_hash, status, input_tokens, output_tokens, estimated_cost_usd, actual_cost_usd, started_at, completed_at) VALUES (?, ?, ?, ?, ?, ?, 'succeeded', ?, ?, ?, ?, ?, ?)")
+              .bind(invocationId, params.missionId, output.provider, output.model, requestHash, artifactSha256, output.usage.inputTokens, output.usage.outputTokens, output.usage.estimatedCostUsd, output.usage.estimatedCostUsd, startedAt, completedAt),
           ]);
-          return { ...output.usage, provider: output.provider, model: output.model, artifactKey, artifactSha256 };
+          return { ...output.usage, provider: output.provider, model: output.model, artifactKey, artifactSha256, validationId };
         },
       );
       await step.do("validate-and-complete", async () => {
@@ -116,6 +127,8 @@ export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkf
         await this.env.CONTINUUM_DB.batch([
           this.env.CONTINUUM_DB.prepare("UPDATE missions SET state = ?, version = ?, updated_at = ? WHERE id = ? AND tenant_id = ?")
             .bind(completed.state, completed.version, completed.updatedAt, completed.id, completed.tenantId),
+          this.env.CONTINUUM_DB.prepare("UPDATE missions SET completion_evidence_document = ? WHERE id = ? AND tenant_id = ?")
+            .bind(JSON.stringify({ validationId: result.validationId, artifactKey: result.artifactKey, artifactSha256: result.artifactSha256, provider: result.provider, model: result.model }), completed.id, completed.tenantId),
           this.env.CONTINUUM_DB.prepare("UPDATE workflow_instances SET state = 'succeeded', completed_at = ? WHERE id = ?")
             .bind(completed.updatedAt, workflowId),
         ]);

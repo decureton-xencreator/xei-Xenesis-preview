@@ -7,6 +7,8 @@ const required = [
   "wrangler.jsonc",
   "openapi.yaml",
   "migrations/0001_stage2_runtime.sql",
+  "migrations/0002_canonical_mission_contract.sql",
+  "migrations/0003_completion_evidence_backfill.sql",
   "schemas/mission.schema.json",
   "schemas/event-envelope.schema.json",
   "src/index.ts",
@@ -29,14 +31,20 @@ const manifest = JSON.parse(fs.readFileSync(path.join(runtimeRoot, "XEN-CPC-001-
 assert.ok(!manifest.authority.canonicalControls.includes("XRI-006"), "Prospective XRI-006 must not be represented as an existing canonical control");
 assert.ok(manifest.authority.futureControls.includes("XRI-006"), "XRI-006 continuation dependency must remain explicit");
 
-const migration = fs.readFileSync(path.join(runtimeRoot, "migrations/0001_stage2_runtime.sql"), "utf8");
-const tableCount = [...migration.matchAll(/^CREATE TABLE /gm)].length;
-assert.equal(tableCount, 20, "The Stage 2 D1 migration must define exactly 20 tables");
+const migration = fs.readFileSync(path.join(runtimeRoot, "migrations/0002_canonical_mission_contract.sql"), "utf8");
+for (const table of [
+  "users", "identities", "workspaces", "conversations", "mission_dependencies",
+  "mission_context_references", "mission_events", "mission_checkpoints", "mission_approvals",
+  "mission_artifacts", "mission_validation_evidence", "mission_attempts", "mission_costs",
+  "resource_locks", "worker_leases", "provider_calls", "attention_preferences", "audit_records",
+  "dead_letter_records",
+]) assert.match(migration, new RegExp(`CREATE TABLE ${table} \\(`), `Canonical D1 table missing: ${table}`);
+for (const column of ["exact_intent", "constraints_document", "success_criteria_document", "authority_document", "provenance_document", "capability_class", "weighted_mission_units", "priority", "progress", "current_operation", "completion_evidence_document"])
+  assert.match(migration, new RegExp(`ALTER TABLE missions ADD COLUMN ${column}`), `Canonical mission field missing: ${column}`);
 
 const config = fs.readFileSync(path.join(runtimeRoot, "wrangler.jsonc"), "utf8");
-assert.match(config, /00000000-0000-0000-0000-000000000001/, "D1 must use the documented local placeholder");
-assert.match(config, /local-reconstruction/, "Runtime must remain explicitly local");
-assert.doesNotMatch(config, /routes?\s*":/, "Local reconstruction must not define production routes");
+assert.match(config, /xen-continuum-stage2-staging/, "Staging bindings must remain explicit");
+assert.match(config, /cloudflare-access/, "Staging authentication boundary must remain explicit");
 
 const inspect = [...walk(runtimeRoot), path.resolve("package.json")];
 const secretPatterns = [
@@ -63,7 +71,7 @@ for (const productionAsset of [
   assert.ok(fs.existsSync(productionAsset), `Production shell asset is missing: ${productionAsset}`);
 }
 
-console.log("PASS Stage 2 bounded-module structure, 20-table migration, local-only configuration, secret scan, and production-shell presence");
+console.log("PASS Stage 2 bounded-module structure, canonical forward migration, protected staging configuration, secret scan, and production-shell isolation");
 
 function* walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {

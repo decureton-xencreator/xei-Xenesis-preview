@@ -1,5 +1,5 @@
 import { DurableObject } from "cloudflare:workers";
-import type { CreateMissionInput, Mission, TransitionInput } from "../contracts";
+import type { CreateMissionInput, Mission, ModifyMissionInput, TransitionInput } from "../contracts";
 import { RuntimeError } from "../errors";
 import { requireAuthority } from "../auth";
 import { transitionMission } from "../state-machine";
@@ -47,6 +47,13 @@ export class MissionCoordinator extends DurableObject<Env> {
       tenantId: input.tenantId,
       title: input.title,
       objective: input.objective,
+      exactIntent: input.objective,
+      constraints: [],
+      successCriteria: [],
+      capabilityClass: "analytical",
+      weightedMissionUnits: 1,
+      priority: 50,
+      progress: 0,
       state: "draft",
       risk: input.risk,
       version: 1,
@@ -56,6 +63,29 @@ export class MissionCoordinator extends DurableObject<Env> {
     };
     this.persist(mission, "mission.created", input.idempotencyKey);
     return mission;
+  }
+
+  modifyMission(input: ModifyMissionInput): Mission {
+    requireAuthority(input.actor, "propose");
+    const replay = this.idempotentResult(input.idempotencyKey);
+    if (replay) return replay;
+    const mission = this.readMission();
+    if (!mission || mission.tenantId !== input.tenantId) throw new RuntimeError("mission_not_found", "Mission does not exist.", 404);
+    if (mission.version !== input.expectedVersion) throw new RuntimeError("version_conflict", "Mission version no longer matches expectedVersion.", 409);
+    if (["running", "succeeded", "cancelled"].includes(mission.state)) throw new RuntimeError("mission_not_modifiable", `Mission cannot be modified while ${mission.state}.`, 409);
+    const next: Mission = {
+      ...mission,
+      ...(input.title !== undefined ? { title: input.title } : {}),
+      ...(input.objective !== undefined ? { objective: input.objective, exactIntent: input.objective } : {}),
+      ...(input.constraints !== undefined ? { constraints: input.constraints } : {}),
+      ...(input.successCriteria !== undefined ? { successCriteria: input.successCriteria } : {}),
+      ...(input.priority !== undefined ? { priority: input.priority } : {}),
+      ...(input.currentOperation !== undefined ? { currentOperation: input.currentOperation } : {}),
+      version: mission.version + 1,
+      updatedAt: new Date().toISOString(),
+    };
+    this.persist(next, "mission.modified", input.idempotencyKey);
+    return next;
   }
 
   getMission(tenantId: string): Mission | null {
