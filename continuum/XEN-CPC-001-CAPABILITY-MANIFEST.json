@@ -29,7 +29,7 @@
     "governor": "src/governor.ts",
     "scheduler": "src/scheduler.ts",
     "enforcedControls": ["dependency-readiness", "priority-admission", "bounded-starvation-aging", "tenant-activity-fairness", "scheduled-time-eligibility", "weighted-mission-unit-envelope", "worker-lease", "provider-resource-lock", "mission-budget", "daily-budget", "monthly-budget", "provider-call-limit", "safe-mode", "emergency-stop", "pre-provider-state-recheck"],
-    "d1Migrations": ["migrations/0001_stage2_runtime.sql", "migrations/0002_canonical_mission_contract.sql", "migrations/0003_completion_evidence_backfill.sql", "migrations/0004_canonical_evidence_backfill.sql"],
+    "d1Migrations": ["migrations/0001_stage2_runtime.sql", "migrations/0002_canonical_mission_contract.sql", "migrations/0003_completion_evidence_backfill.sql", "migrations/0004_canonical_evidence_backfill.sql", "migrations/0005_global_provider_lock.sql"],
     "schemaContract": "forward-expanded; preliminary evidence preserved",
     "queue": "CONTINUUM_QUEUE",
     "artifactStore": "CONTINUUM_ARTIFACTS",
