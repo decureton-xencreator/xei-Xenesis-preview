@@ -51,3 +51,11 @@ Xenesis Preview records the live XSMDE product as deployed while preserving priv
 Xenesis Preview inherits the active Xen Governance Warden lifecycle and truth gates from the canonical activation receipt at `Governance/Warden/WARDEN-ACTIVATION-2026-07-19.md`.
 
 Warden enforcement applies to preview truth labels, privacy boundaries, dependency inheritance, synchronization evidence, and prevention of candidate or demonstration state being represented as production completion. This record does not claim a continuously hosted Warden service inside this repository without separate runtime evidence.
+
+## XAA-001 Academy synchronization — 2026-07-19
+
+Xenesis Preview may demonstrate the Xen Academy Dashboard, Academic Advisor, mission briefs, Voice Learning Protocol, and Resume Anywhere experience only with explicit preview or reference-runtime labels.
+
+The preview must not expose private learner history, scores, progress, voice transcripts, or personal course-state records. Persistent-state, live coaching, XP, mastery, and certification claims require verified runtime evidence.
+
+AM-002 permits governed preview synchronization; XGW-001 enforces privacy, evidence, accessibility, truth-label, and continuation boundaries.
