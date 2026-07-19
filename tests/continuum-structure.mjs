@@ -10,6 +10,7 @@ const required = [
   "migrations/0002_canonical_mission_contract.sql",
   "migrations/0003_completion_evidence_backfill.sql",
   "migrations/0004_canonical_evidence_backfill.sql",
+  "migrations/0005_global_provider_lock.sql",
   "schemas/mission.schema.json",
   "schemas/event-envelope.schema.json",
   "src/index.ts",
@@ -35,6 +36,8 @@ assert.ok(!manifest.authority.canonicalControls.includes("XRI-006"), "Prospectiv
 assert.ok(manifest.authority.futureControls.includes("XRI-006"), "XRI-006 continuation dependency must remain explicit");
 
 const migration = fs.readFileSync(path.join(runtimeRoot, "migrations/0002_canonical_mission_contract.sql"), "utf8");
+const globalLockMigration = fs.readFileSync(path.join(runtimeRoot, "migrations/0005_global_provider_lock.sql"), "utf8");
+assert.match(globalLockMigration, /ON resource_locks\(resource_type, resource_key\) WHERE released_at IS NULL/, "Provider lock must be globally unique while active");
 for (const table of [
   "users", "identities", "workspaces", "conversations", "mission_dependencies",
   "mission_context_references", "mission_events", "mission_checkpoints", "mission_approvals",
