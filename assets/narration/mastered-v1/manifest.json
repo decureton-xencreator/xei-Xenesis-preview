@@ -1,212 +1,212 @@
 {
   "schema": "xen-mastered-narration/v1",
-  "generatedAt": "2026-07-19T00:02:00.566Z",
+  "generatedAt": "2026-07-20T19:28:26.186Z",
   "model": "gpt-4o-mini-tts",
   "voice": "marin",
   "voiceContract": "XVS-001-MARIN-EXCLUSIVE-v1",
   "instructionsSha256": "68204773c3a1ceab7643aa9f838c64054015d39668f5bb8bb2065ed0c1cc0066",
   "approvedAudition": "assets/narration/xen-voice-audition-v2.mp3",
-  "generationBatch": "ed35750668622ac60bb755129ed21dd3b6879fe72febb15346d0b450206c8a7d",
+  "generationBatch": "43df84967b933f5579760e4a22ffe3fbcc8b04584c9e908cac92715ee200c147",
   "clips": [
     {
       "id": "intro-ed",
       "audience": "ed",
       "scene": 0,
       "path": "assets/narration/mastered-v1/intro-ed.mp3",
-      "bytes": 405120,
-      "sha256": "c1eab58581885e145e8b609ecd0a67352609d95a69077e1a42ad439551b11fce"
+      "bytes": 419328,
+      "sha256": "b7dfa1e066b3beafaf187682af4e2a84d57711beedfacf6c510704fdbeab7d14"
     },
     {
       "id": "intro-kim",
       "audience": "kim",
       "scene": 0,
       "path": "assets/narration/mastered-v1/intro-kim.mp3",
-      "bytes": 313728,
-      "sha256": "af5b7829fca46dae7fb31abfc9ffb74323c80e1ea0ac86a39e2b53b1a94afc64"
+      "bytes": 279168,
+      "sha256": "5e71314f9cb8329821a2dc9fb8d7b585550db355cd7d2ef51aee1efa19f5aec5"
     },
     {
       "id": "intro-ahmer",
       "audience": "ahmer",
       "scene": 0,
       "path": "assets/narration/mastered-v1/intro-ahmer.mp3",
-      "bytes": 306432,
-      "sha256": "acb3e7119d9203396ece2132a15e6691a72b1e0e815c5cf5fcaed3b6bbdede50"
+      "bytes": 295296,
+      "sha256": "2e93d8ff214ac4906eb716bd8ca0ff4cff7466ddc854ddb9517c6fdbba4ae2da"
     },
     {
       "id": "intro-faith",
       "audience": "faith",
       "scene": 0,
       "path": "assets/narration/mastered-v1/intro-faith.mp3",
-      "bytes": 325632,
-      "sha256": "ac9bb67555ff03ade14698aac407667e6e8902c423baa283c57c223d00ec4791"
+      "bytes": 282624,
+      "sha256": "e551b7484ba6eb0b145026e35905ca3ec2be31bdb8229a493f9569895cb4c100"
     },
     {
       "id": "scene-1-default",
       "audience": "default",
       "scene": 1,
       "path": "assets/narration/mastered-v1/scene-1-default.mp3",
-      "bytes": 81024,
-      "sha256": "76ee9627e89b44b6ae3c2c64e69631252d5bc675707915e9a6d8deff6fdba17e"
+      "bytes": 83328,
+      "sha256": "855ca35b349690b3946a8849c92a91e409937312b57c95f8eabcff6e1faee12e"
     },
     {
       "id": "scene-2-default",
       "audience": "default",
       "scene": 2,
       "path": "assets/narration/mastered-v1/scene-2-default.mp3",
-      "bytes": 97920,
-      "sha256": "d5c84520b8170b19f49e7a1b21d48a5047770042e16c38ba9784f2edfd1afa70"
+      "bytes": 99456,
+      "sha256": "c3429f1279d4086244a4e7069041946e3d91109722196e79f5ff4e4aeddfe538"
     },
     {
       "id": "scene-3-default",
       "audience": "default",
       "scene": 3,
       "path": "assets/narration/mastered-v1/scene-3-default.mp3",
-      "bytes": 443520,
-      "sha256": "b6b8a3a196d27bae7ba02f0a0898208e2f4709acaa558ff2ea3b93ccba2dabae"
+      "bytes": 451200,
+      "sha256": "153ed2e72ffb15d94673042f55d0ef10f824b8a669ef5ef45b7dac81939b44cd"
     },
     {
       "id": "scene-4-default",
       "audience": "default",
       "scene": 4,
       "path": "assets/narration/mastered-v1/scene-4-default.mp3",
-      "bytes": 204288,
-      "sha256": "4f86c5176a353b30c13618434b26f1183a6e7e2c8f11d7bfd9964693edb3e936"
+      "bytes": 221568,
+      "sha256": "d94388aaf5307092d3b290d78032bdb9ad67993f4393bee6527d072d1b782c47"
     },
     {
       "id": "scene-5-default",
       "audience": "default",
       "scene": 5,
       "path": "assets/narration/mastered-v1/scene-5-default.mp3",
-      "bytes": 90624,
-      "sha256": "63c5befc97310c151e83492e5f560e48bc0763d4fcc43cd7781ee0c1944228f0"
+      "bytes": 92160,
+      "sha256": "52e7369f0c89341ae027b8c07cee9f03db7f56ff6921f2180b52fb30c50c20cf"
     },
     {
       "id": "scene-6-default",
       "audience": "default",
       "scene": 6,
       "path": "assets/narration/mastered-v1/scene-6-default.mp3",
-      "bytes": 89088,
-      "sha256": "e0c1c7299fcc4f49ad674d80a8fc0617f6a927743fdae46cc01bb895b8a2504b"
+      "bytes": 83328,
+      "sha256": "842e4fbcf690e58ce2119acd69e8b56acd99a9eb02d48aaeb563c7b307172aa7"
     },
     {
       "id": "scene-7-default",
       "audience": "default",
       "scene": 7,
       "path": "assets/narration/mastered-v1/scene-7-default.mp3",
-      "bytes": 132864,
-      "sha256": "31f7310392fd7f2d97da8f7837701175842cb5788ef31d545bad5c2871dce49c"
+      "bytes": 138624,
+      "sha256": "160ca563138cf491095db4ce468c379defb72c05272ae5d967d6b653edeea2af"
     },
     {
       "id": "scene-1-kim",
       "audience": "kim",
       "scene": 1,
       "path": "assets/narration/mastered-v1/scene-1-kim.mp3",
-      "bytes": 165888,
-      "sha256": "9105584b45309aa2335c4eccc290c18629cb07cbbaf709f7ed49e321094b4711"
+      "bytes": 142464,
+      "sha256": "b1ee6b11034a8208f9cc7bb70d79132cf5409d7434f09f515c73d4de804c976a"
     },
     {
       "id": "scene-2-kim",
       "audience": "kim",
       "scene": 2,
       "path": "assets/narration/mastered-v1/scene-2-kim.mp3",
-      "bytes": 124800,
-      "sha256": "aa07f25ef691d8276d694b66bb4b6a5ea069e291d86fb2ac3066f7ffed734657"
+      "bytes": 117120,
+      "sha256": "b807fe9964dfa5c3acddb1314f653b2ad5ffdeca6ea7ac6d9baf0d8e6f489db6"
     },
     {
       "id": "scene-3-kim",
       "audience": "kim",
       "scene": 3,
       "path": "assets/narration/mastered-v1/scene-3-kim.mp3",
-      "bytes": 470400,
-      "sha256": "4a31ec168cb8dd18b617a513accfc0aee3aa67d2b2bedea3ea71d32fcc2bd954"
+      "bytes": 473856,
+      "sha256": "b428a5a0c31e673b823de58a927620a4d9e66380ee8a3d82b6d4352447b22737"
     },
     {
       "id": "scene-4-kim",
       "audience": "kim",
       "scene": 4,
       "path": "assets/narration/mastered-v1/scene-4-kim.mp3",
-      "bytes": 248832,
-      "sha256": "546fd4267972ec586eae5d2ec09f13d9faeebf88388968a8ab4fe131366f2c7d"
+      "bytes": 221568,
+      "sha256": "17e1da0e86a273da7afa410fe20c6ed880966277a5b973b81ca143c32c52210e"
     },
     {
       "id": "scene-5-kim",
       "audience": "kim",
       "scene": 5,
       "path": "assets/narration/mastered-v1/scene-5-kim.mp3",
-      "bytes": 131328,
-      "sha256": "8bb6d0e371391dc7e0542d06d1293ea915fe4eee6022957a7919ff5d77a00c08"
+      "bytes": 134400,
+      "sha256": "34783af3c910e7921b0280fdafd741384bdc4068bbbd3f70498829270409391f"
     },
     {
       "id": "scene-6-kim",
       "audience": "kim",
       "scene": 6,
       "path": "assets/narration/mastered-v1/scene-6-kim.mp3",
-      "bytes": 121728,
-      "sha256": "34addd3f1552bfc5c1212158856b21ad0f21801cbf7da90eebb36cdd5158e5aa"
+      "bytes": 126720,
+      "sha256": "5602b86a52239a0533ba42ee53d5ea21fc290220b97e5317aac0f8f1ec4c767c"
     },
     {
       "id": "scene-7-kim",
       "audience": "kim",
       "scene": 7,
       "path": "assets/narration/mastered-v1/scene-7-kim.mp3",
-      "bytes": 110592,
-      "sha256": "8e2bb50bb1935f663a1c4c1f206d7e0b2c01e66b957a5352e72ae8f3294c5b85"
+      "bytes": 154368,
+      "sha256": "909d3e4078c9c4633a3ae2567ed3e00b65cb6a35485e8ce65937eac5193fd91f"
     },
     {
       "id": "scene-1-ahmer",
       "audience": "ahmer",
       "scene": 1,
       "path": "assets/narration/mastered-v1/scene-1-ahmer.mp3",
-      "bytes": 130560,
-      "sha256": "b5671824200208d2d3ed543d4f6160d217e8003b93c443ba236252fda91fce18"
+      "bytes": 153600,
+      "sha256": "210cc4af204264fd7caa9c68e1fd4fa7fdce464c924a2ec3ee97e07e67467354"
     },
     {
       "id": "scene-2-ahmer",
       "audience": "ahmer",
       "scene": 2,
       "path": "assets/narration/mastered-v1/scene-2-ahmer.mp3",
-      "bytes": 129024,
-      "sha256": "b26ef487b04462679a4574a5351f6b1f819a39db4c5ec35e644f62d5a379e408"
+      "bytes": 130560,
+      "sha256": "71e450b926993777383e4d56e604b45286c1baf9dc7264826728db719df01c9d"
     },
     {
       "id": "scene-3-ahmer",
       "audience": "ahmer",
       "scene": 3,
       "path": "assets/narration/mastered-v1/scene-3-ahmer.mp3",
-      "bytes": 443520,
-      "sha256": "aa61b60cf71fd6d55ff35b579a1924c7a79be7efc1460c9bd68f7e732f27748c"
+      "bytes": 469632,
+      "sha256": "377a64655d90d639ab2664c80b5102f7b63f5a8de0ea96b8e2183d1c4dc50b3c"
     },
     {
       "id": "scene-4-ahmer",
       "audience": "ahmer",
       "scene": 4,
       "path": "assets/narration/mastered-v1/scene-4-ahmer.mp3",
-      "bytes": 237696,
-      "sha256": "a52c014cf85c145f6c202fb16e6c580e2479e696862bec6204f2e16c64f910c8"
+      "bytes": 248064,
+      "sha256": "b516125d09a3977a72e47aa3f12062adee76aead0a883b8b6cacc34dee98fb03"
     },
     {
       "id": "scene-5-ahmer",
       "audience": "ahmer",
       "scene": 5,
       "path": "assets/narration/mastered-v1/scene-5-ahmer.mp3",
-      "bytes": 123264,
-      "sha256": "4ed5b2069d250a635b18c6d709f3e6f645c6edbbc9ed3e2905418e8338934385"
+      "bytes": 119424,
+      "sha256": "7fe900022db2814f985835db49d19a0f817f9cd7c1cd41ca481d3faa7299a0f2"
     },
     {
       "id": "scene-6-ahmer",
       "audience": "ahmer",
       "scene": 6,
       "path": "assets/narration/mastered-v1/scene-6-ahmer.mp3",
-      "bytes": 124032,
-      "sha256": "6be532b3e43a6e6647347a1efaf23bc1aebb6f20cc8b98bac4455997eb7820b9"
+      "bytes": 138624,
+      "sha256": "85537a2557b730730440f71eb40a8b7737348f65bb4a9b060f58cb8fe68efd6d"
     },
     {
       "id": "scene-7-ahmer",
       "audience": "ahmer",
       "scene": 7,
       "path": "assets/narration/mastered-v1/scene-7-ahmer.mp3",
-      "bytes": 132864,
-      "sha256": "86d48c7b53be06519fa9700cd33f7553aaa5ac7bb25fd428fa75f9883f890585"
+      "bytes": 120960,
+      "sha256": "5bad183ba277e55477defb2ff365c4ea0d1735a5250feb112f20ed4d644ed69a"
     },
     {
       "id": "ending-bdc",
@@ -214,8 +214,8 @@
       "scene": 8,
       "path": "assets/narration/mastered-v1/ending-bdc.mp3",
       "phase": "ending",
-      "bytes": 753792,
-      "sha256": "489a4a410a6b5b2eab82b924beb3565c0facccf71a1d2d36f7c05c0772aa2264"
+      "bytes": 725760,
+      "sha256": "83805a8b574797f43d13d08d026ab2d77bba0c92719d27999c96fcd8bc91dad0"
     },
     {
       "id": "ending-company",
@@ -223,8 +223,8 @@
       "scene": 8,
       "path": "assets/narration/mastered-v1/ending-company.mp3",
       "phase": "ending",
-      "bytes": 1092096,
-      "sha256": "44aedc8e5c8b39abfba4831a4efeae35111a813d4823bb50a9afd8534e51767d"
+      "bytes": 1112064,
+      "sha256": "b113f4b074ba937749dbe970178c1527798c1aa69094f5045dad8d267e207692"
     },
     {
       "id": "ending-compare",
@@ -232,8 +232,8 @@
       "scene": 8,
       "path": "assets/narration/mastered-v1/ending-compare.mp3",
       "phase": "ending",
-      "bytes": 783360,
-      "sha256": "ba6a068fa664879409a82e0807ee3c07c1bce21c39491550c2e3ca89b6a4a53b"
+      "bytes": 780288,
+      "sha256": "f7326f8fd3f4138bd18d19e9544f545205c1e6b999b9df3f70ad0b57d5b9d620"
     },
     {
       "id": "appointment-bdc",
@@ -242,8 +242,8 @@
       "path": "assets/narration/mastered-v1/appointment-bdc.mp3",
       "phase": "appointment",
       "requiresExplicitContinue": true,
-      "bytes": 229632,
-      "sha256": "8c8dfaf6b97fda1b3e5d7105790f0e622798899acdb6492ae81c4d39866ec2df"
+      "bytes": 233088,
+      "sha256": "3a5a9241e65993557a707acc2242882d54d4df71010c8bebb56fa1ad375d0834"
     },
     {
       "id": "appointment-company",
@@ -252,8 +252,8 @@
       "path": "assets/narration/mastered-v1/appointment-company.mp3",
       "phase": "appointment",
       "requiresExplicitContinue": true,
-      "bytes": 218496,
-      "sha256": "f9e12599b166f7358f0cc6028b4f62e11ca460091ae181ff59a6e1dce45de2c9"
+      "bytes": 231168,
+      "sha256": "3fd1d7cf07359a459084a7f9c125cd9e039503c8275bdb6d8c3d020cf36c48c1"
     },
     {
       "id": "appointment-compare",
@@ -262,8 +262,8 @@
       "path": "assets/narration/mastered-v1/appointment-compare.mp3",
       "phase": "appointment",
       "requiresExplicitContinue": true,
-      "bytes": 225024,
-      "sha256": "f3a96a2dd651cf2a4e7c2361bdb04ebe91d2bf793454ce4fc7a67331cdabcc67"
+      "bytes": 228864,
+      "sha256": "a3b279e00ff320d8acfea35dadaebfa735afc77e230614872cb0e98192c24154"
     }
   ]
 }
