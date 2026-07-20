@@ -1,0 +1,13 @@
+{
+  "schema": "xen-executive-pitch/v1",
+  "generatedAt": "2026-07-20T15:52:25.944Z",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "voiceContract": "XVS-001-MARIN-EXCLUSIVE-v1",
+  "approvedAudition": "assets/narration/xen-voice-audition-v2.mp3",
+  "pitchId": "ed-executive-pitch-v1",
+  "textSha256": "20ffe7e68dbf872f98583fb92794c15c0c8289a2ea213828a3243d266c5422d8",
+  "path": "assets/narration/xcm-v1/ed-executive-pitch-v1.mp3",
+  "bytes": 2416128,
+  "sha256": "15863e90b015339e20b2f811476ff12457d018c99c45d174eb476bb32e171a2c"
+}
