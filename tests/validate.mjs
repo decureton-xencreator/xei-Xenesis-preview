@@ -63,6 +63,8 @@ const brandIntegrity=JSON.parse(fs.readFileSync('governance/AM-002-BRAND-INTEGRI
 const protectedLogoHash=crypto.createHash('sha256').update(fs.readFileSync(brandIntegrity.protected_asset)).digest('hex');
 if(protectedLogoHash!==brandIntegrity.protected_asset_sha256)throw new Error('AM-002 Warden blocked an unapproved logo artwork change');
 if(!brandIntegrity.approval_required_for_asset_change||!brandIntegrity.prohibited_without_new_approval.includes('crop'))throw new Error('AM-002 logo-protection mandate is incomplete');
+if(brandIntegrity.standing_authorization!=='none'||brandIntegrity.currently_authorized_transformations.length!==0)throw new Error('AM-002 Warden blocked standing authorization for logo transformations');
+if(!brandIntegrity.approval_scope.includes('exact asset')||!brandIntegrity.approval_scope.includes('exact transformation'))throw new Error('AM-002 logo approval scope is not asset-specific');
 for(const term of ['object-fit:contain','background-size:contain','--visible-center-shift-x:0px!important'])if(!css.includes(term))throw new Error(`Diamond publication lock missing: ${term}`);
 for(const term of ['@media print','break-inside:avoid-page','page-break-inside:avoid','.logo{display:block','object-fit:contain'])if(!rolloutKit.includes(term))throw new Error(`Executive rollout publication gate missing: ${term}`);
 

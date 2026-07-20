@@ -4,10 +4,9 @@
   "mandate": "Never change user-provided logo artwork without prior explicit approval.",
   "protected_asset": "assets/checkmate-executive-mark.svg",
   "protected_asset_sha256": "92d21653f30837770f39ef046732abb61bd74250a63255deb391c1fb3a231171",
-  "currently_authorized_transformations": [
-    "background removal",
-    "faithful vector tracing that does not alter geometry, colour, proportion, typography, or composition"
-  ],
+  "standing_authorization": "none",
+  "currently_authorized_transformations": [],
+  "approval_scope": "A new explicit approval naming the exact asset and exact transformation is required before any asset-byte change.",
   "prohibited_without_new_approval": [
     "redraw",
     "recolour",

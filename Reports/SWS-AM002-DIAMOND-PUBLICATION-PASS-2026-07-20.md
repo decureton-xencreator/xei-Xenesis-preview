@@ -25,6 +25,6 @@ Scope: Checkmate bespoke executive premiere and rollout kit
 
 ## Brand-integrity boundary
 
-The current repository asset is protected by `governance/AM-002-BRAND-INTEGRITY.json` and a deterministic hash assertion in `tests/validate.mjs`. Any future change to the provided logo requires prior explicit approval.
+The current repository asset is protected by `governance/AM-002-BRAND-INTEGRITY.json` and a deterministic hash assertion in `tests/validate.mjs`. No standing transformation authorization exists. Any future change requires a new, explicit approval naming the exact logo asset and exact transformation.
 
 The original uploaded raster source was not available in this checkout during this pass. Therefore this certification confirms that the repository logo was not altered; it does not claim a new original-to-vector trace comparison.
