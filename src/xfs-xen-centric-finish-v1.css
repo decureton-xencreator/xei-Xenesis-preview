@@ -548,3 +548,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #6ee7ff;outline-offset:3p
 @media(max-width:899px){main{margin:6px 7px 0;border-radius:20px}.brand{white-space:nowrap}}
 @media(max-width:620px){header{gap:9px;padding-inline:12px}.brand{font-size:8px;letter-spacing:.11em}footer{min-height:70px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
+
+/* Ed page 1: tall opening content must begin at the top, never clip above the scroll origin. */
+body[data-viewer="ed"] .scene.landing.active{justify-content:flex-start!important}
