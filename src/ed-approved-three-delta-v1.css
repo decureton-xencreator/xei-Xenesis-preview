@@ -47,3 +47,6 @@
   .knowledge-field>span,.propagation-map>span{max-width:98px!important}
   .propagation-map>span{width:98px!important}
 }
+
+/* Page 6 content is taller than the viewport: anchor it at the top so no title is clipped. */
+.scene.propagation.active{justify-content:flex-start!important;padding-top:30px!important;padding-bottom:48px!important}
