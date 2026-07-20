@@ -5,7 +5,11 @@
   "protected_asset": "assets/checkmate-holding-group-approved.jpeg",
   "protected_asset_sha256": "f387c09879ef3257727d0361e435b4546751b4bd6dc4c3fb86f8cc06272e2b86",
   "standing_authorization": "none",
-  "currently_authorized_transformations": [],
+  "currently_authorized_transformations": [
+    "Remove only the near-white background from the protected JPEG to create a transparent PNG derivative; preserve the complete artwork, typography, spacing, colors, proportions, and 1024x718 geometry."
+  ],
+  "approved_derivative": "assets/checkmate-holding-group-transparent-v1.png",
+  "approved_derivative_sha256": "0001a14c08f5c8dfba04b1fdb59c39a2404b57a6df66fd1ea3cd9220d705ff52",
   "approval_scope": "A new explicit approval naming the exact asset and exact transformation is required before any asset-byte change.",
   "prohibited_without_new_approval": [
     "redraw",
@@ -17,6 +21,6 @@
     "change typography",
     "change proportions"
   ],
-  "presentation_rule": "Always display the complete approved Checkmate Holding Group lockup, including the name beneath the symbol. Containers must use contain and centre alignment; artwork must never be clipped, covered, redrawn, or substituted.",
+  "presentation_rule": "Always display the complete approved Checkmate Holding Group lockup, including the name beneath the symbol. The transparent derivative may use CSS-only living light, outline geometry, and drop shadows behind or around it. Containers must use contain and centre alignment; artwork must never be clipped, covered, redrawn, retyped, or substituted.",
   "approval_required_for_asset_change": true
 }
