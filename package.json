@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node tests/validate.mjs",
     "validate": "node tests/validate.mjs",
-    "certify": "node tests/validate.mjs"
+    "certify": "node tests/validate.mjs && node tests/xen-conversation-mode-v1.mjs",
+    "test:conversation": "node tests/xen-conversation-mode-v1.mjs"
   },
   "engines": {
     "node": ">=20"
