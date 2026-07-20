@@ -33,6 +33,7 @@ const required=[
  ,'assets/checkmate-holding-group-transparent-v1.png'
  ,'src/executive-arrival-v1.css'
  ,'src/checkmate-living-lockup-v1.css'
+ ,'src/xps-living-surfaces-v1.css'
  ,'src/executive-arrival-v1.js'
  ,'src/xps-diamond-publication-lock-v1.css'
  ,'executive-rollout-kit.html'
@@ -81,7 +82,7 @@ for(const viewer of ['ed','kim','ahmer'])if(rolloutKit.split(canonicalPremiereBa
 if(rolloutKit.includes('https://decureton-xencreator.github.io/xei-genesis-preview/'))throw new Error('Case-broken GitHub Pages route restored');
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==4)throw new Error('Unexpected production runtime count');
-for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=transparent-chg-lockup-2','checkmate-living-lockup-v1.css?v=1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=transparent-chg-lockup-2','checkmate-living-lockup-v1.css?v=1','xps-living-surfaces-v1.css?v=1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if(html.includes('src/xps-diamond-publication-lock-v1.css'))throw new Error('Post-approval geometry override must not be active in the bespoke premiere');
 for(const term of ['A BESPOKE EXECUTIVE EXPERIENCE','data-arrival-name','Checkmate Holding Group','Nine scenes · Governed proof · Your decision'])if(!html.includes(term))throw new Error(`Bespoke executive arrival contract missing: ${term}`);
 if(!html.includes('assets/checkmate-holding-group-transparent-v1.png'))throw new Error('Approved transparent Checkmate Holding Group full lockup missing from arrival');
