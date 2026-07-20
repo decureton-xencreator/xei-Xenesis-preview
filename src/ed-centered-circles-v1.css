@@ -1,0 +1,29 @@
+/* Reuse the canonical centered-circle geometry for pages 2 and 6 only. */
+.scene:nth-of-type(2).active>.knowledge-field,
+.scene:nth-of-type(6).propagation.active>.propagation-map{
+  width:min(100%,620px)!important;
+  grid-column:1 / -1!important;
+  grid-row:auto!important;
+  align-self:center!important;
+  justify-self:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  --visible-center-shift-x:0px!important;
+  --visible-center-rise-y:0px!important;
+}
+.scene:nth-of-type(2)>.knowledge-field>.void,
+.scene:nth-of-type(6)>.propagation-map>.core{
+  left:50%!important;
+  top:50%!important;
+  transform:translate(-50%,-50%)!important;
+}
+.scene:nth-of-type(2)>.knowledge-field>span:nth-child(1),
+.scene:nth-of-type(2)>.knowledge-field>span:nth-child(3){left:20%!important}
+.scene:nth-of-type(2)>.knowledge-field>span:nth-child(2),
+.scene:nth-of-type(2)>.knowledge-field>span:nth-child(4){left:80%!important}
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(2),
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(4),
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(6){left:20%!important}
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(3),
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(5),
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(7){left:80%!important}
