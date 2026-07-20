@@ -6,8 +6,9 @@ Scope: Checkmate bespoke executive premiere and rollout kit
 ## Verified implementation
 
 - The exact supplied Checkmate Holding Group logo-and-name lockup is byte-locked at SHA-256 `f387c09879ef3257727d0361e435b4546751b4bd6dc4c3fb86f8cc06272e2b86`.
+- The explicitly approved transparent-background derivative is separately byte-locked at SHA-256 `0001a14c08f5c8dfba04b1fdb59c39a2404b57a6df66fd1ea3cd9220d705ff52`.
 - Brand artwork was not redrawn, recoloured, reshaped, cropped, substituted, stylised, retyped, or reproportioned.
-- Logo presentation uses centred `contain` geometry on a dedicated white gallery plate, preserving the complete blue/green mark and the CHECKMATE HOLDING GROUP name beneath it.
+- Logo presentation uses centred `contain` geometry inside a CSS-only living blue/emerald field with fine outline geometry; the white gallery plate has been removed while preserving the complete blue/green mark and CHECKMATE HOLDING GROUP name beneath it.
 - Pages 2 and 6 use true 50% / 50% centre geometry with symmetric orbital labels.
 - The desktop cinematic frame no longer receives an incompatible two-column layout.
 - Text, controls, borders, and shimmer use a content-plane hierarchy that prevents decorative lines from crossing language.
