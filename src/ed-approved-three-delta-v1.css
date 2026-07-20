@@ -50,3 +50,15 @@
 
 /* Page 6 content is taller than the viewport: anchor it at the top so no title is clipped. */
 .scene.propagation.active{justify-content:flex-start!important;padding-top:30px!important;padding-bottom:48px!important}
+
+
+/* Lock pages 2 and 6 to the full scene axis; the desktop editorial grid must not shift them into column 2. */
+.scene.active>.knowledge-field,
+.scene.propagation.active>.propagation-map{
+  grid-column:1 / -1!important;
+  grid-row:auto!important;
+  justify-self:center!important;
+  align-self:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
