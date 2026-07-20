@@ -129,6 +129,7 @@ for(const term of [
 ])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
 for(const forbidden of ['speechSynthesis','SpeechSynthesisUtterance','DISTRIBUTED_SYSTEM_TTS_ENABLED'])if(runtime.includes(forbidden))throw new Error(`Unmastered voice fallback restored: ${forbidden}`);
 for(const term of ["const ED_CANONICAL_CLIPS=Object.freeze",'xen-voice-audition-v2.mp3',"document.body.dataset.voiceRoute='ed-canonical-only'","if(index===0)return 'intro-ed'","return `scene-${index}-default`"])if(!runtime.includes(term))throw new Error(`Ed canonical single-voice route missing: ${term}`);
+for(const term of ['function guidedScrollTarget(){return 0}','if(current)current.scrollTop=0'])if(!runtime.includes(term))throw new Error(`Canonical scene anchor missing: ${term}`);
 
 if(!runtime.includes("window.addEventListener('xen:resume'"))throw new Error('Manual research resume event missing');
 
