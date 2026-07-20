@@ -6,4 +6,5 @@ for(const asset of ['src/xen-conversation-mode-v1.js','src/xen-conversation-mode
 for(const term of ['the presentation is complete. But our conversation is not.','Living Companies','The Globe','Daily Bread','Xen Academy','Executive GPS','Media Intelligence','ten-thousand-dollar','executive-guest','authority:\'none\'','/v1/xen/conversation'])if(!js.includes(term))throw new Error(`Missing conversation contract: ${term}`);
 for(const term of ['.xcm-launch','.xcm-main','.xcm-transcript','100dvh','prefers-reduced-motion'])if(!css.includes(term))throw new Error(`Missing visual contract: ${term}`);
 if(/speechSynthesis/.test(js))throw new Error('Conversation runtime must not imply an unconnected synthetic-voice service');
+if(css.includes('.scene ')||css.includes('.scene{')||css.includes('.knowledge-field')||css.includes('.propagation-map'))throw new Error('Conversation Mode must not alter approved premiere scene geometry');
 console.log('PASS XCM-001: cinematic handoff, invite-gated Executive Guest conversation with broad access and zero authority, seven Xen nodes, truthful guided fallback, capital analysis, competitive positioning, voice input, responsive runtime.');
