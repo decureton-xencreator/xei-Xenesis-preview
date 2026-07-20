@@ -32,7 +32,7 @@ const pitchSlides=[
   {cue:.49,kicker:'THE XEN DIFFERENCE',title:'They generate. Xen maintains the journey.',body:'A model answers the prompt in front of it. Xen is designed to remember who is acting, what the company knows, what is authorized, where the mission is going, and whether execution remains true.',visual:'<div class="xcm-distinction"><article><small>AI ENGINES</small><strong>ANSWER + GENERATE</strong><span>Powerful intelligence at the moment of request.</span></article><b>≠</b><article class="xen"><small>XEN</small><strong>REMEMBER + GOVERN + EXECUTE</strong><span>Persistent intelligence across the entire journey.</span></article></div>'},
   {cue:.575,kicker:'EXCLUSIVE XEN ENVIRONMENTS',title:'One Xen. Seven living expressions.',body:'Each environment is a working surface of the same governed intelligence—not a disconnected product menu.',visual:'<div class="xcm-env-grid"><article><b>Living Companies</b><span>Preserve what an organization learns.</span></article><article><b>The Globe</b><span>A living view of the world that matters.</span></article><article><b>Daily Bread</b><span>The right intelligence before the noise.</span></article><article><b>Xen Academy</b><span>Remember learning and resume the mission.</span></article><article><b>Executive GPS</b><span>Destination, present position, and route.</span></article><article><b>Memory + Truth</b><span>Continuity without confident drift.</span></article><article class="wide"><b>Media Intelligence</b><span>Briefings, audio, and experiences that recognize their audience.</span></article></div>'},
   {cue:.715,kicker:'THE STRATEGIC SEED',title:'Investment follows evidence.',body:'If Alpha One reaches its milestone, Ed receives the first serious opportunity to discuss a strategic position and a formal Checkmate Living Company deployment.',visual:'<div class="xcm-figure"><span>EVIDENCE BEFORE EQUITY</span><strong>PROVE → DECIDE</strong><div class="xcm-chip-grid"><span>Fund 30 days</span><span>Inspect Alpha One</span><span>Discuss strategic position</span><span>Choose first deployment</span></div></div>'},
-  {cue:.825,kicker:'YOUR PRIVATE ACCESS',title:'Now see what Xen can do.',body:'The pitch ends here. Ed’s private guest access opens next: explore every environment, question Xen directly, compare platforms, and challenge the plan.',visual:'<div class="xcm-figure"><span>FULL FEATURE EXPLORATION · NO AUTHORITY</span><strong>ACCESS OPEN</strong><div class="xcm-chip-grid"><span>Ask Xen directly</span><span>Explore environments</span><span>Challenge the $10K plan</span><span>Compare AI platforms</span></div></div>',access:true}
+  {cue:.825,kicker:'YOUR PRIVATE ACCESS',title:'Now see what Xen can do.',body:'The pitch ends here. Ed’s private guest access opens next: explore every environment, question Xen directly, compare platforms, and challenge the plan.',visual:'<div class="xcm-figure"><span>FULL FEATURE EXPLORATION · NO AUTHORITY</span><strong>ACCESS OPEN</strong><div class="xcm-chip-grid"><span>Ask Xen directly</span><span>Explore environments</span><span>Challenge the $10K plan</span><span>Compare AI platforms</span></div><a class="xcm-chat-access" href="https://chatgpt.com/s/t_6a5eab23628c8191b22682bafd0817a2" target="_blank" rel="noopener">ENTER ED’S LIVE XEN CHAT →</a></div>',access:true}
 ];
 const pitchCues=pitchSlides.map(slide=>slide.cue);
 
@@ -90,9 +90,11 @@ async function respond(value){
   setTimeout(()=>{shell.dataset.thinking='false';add('xen',response,`${meta} · GUIDED FALLBACK`)},420);
 }
 function finishPitch(){
-  shell.classList.remove('pitching');shell.classList.add('conversation-ready');pitchStage.setAttribute('aria-hidden','true');
-  if(!transcript.children.length){add('xen',`${name}, that is the immediate proposition. You now have broad access to explore the Xen environments and challenge the thirty-day plan. You have no owner, builder, financial, governance, deployment, memory, or external-action authority.`,'PITCH COMPLETE');add('xen','Ask what the ten-thousand-dollar sprint accomplishes, select an intelligence environment, compare Xen with another platform, or challenge what is real today.','INVITATION')}
-  question.focus({preventScroll:true});
+  showPitchSlide(pitchSlideElements.length-1);
+  shell.classList.add('access-ready');
+  document.body.dataset.pitchAccess='ready';
+  const status=shell.querySelector('.xcm-pitch-status span');if(status)status.textContent='ED’S LIVE XEN CHAT · ACCESS READY';
+  const access=shell.querySelector('.xcm-chat-access');if(access)access.focus({preventScroll:true});
 }
 function openConversation(){
   if(!pitchReady){document.body.dataset.warden='blocked';return}
