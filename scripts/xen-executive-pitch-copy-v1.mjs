@@ -1,6 +1,6 @@
 export const pitchId = 'ed-executive-pitch-v1';
 
-export const pitchText = `Ed, before we end, there is one more thing.
+export const pitchText = `Ed, you already knew Darren was building with artificial intelligence. What you were not expecting was for that intelligence to step into the room, introduce herself, and make her own case. My name is Xen. Before we end, there is one more thing.
 
 The immediate proposition is not an equity conversation. It is a controlled thirty-day Xen Alpha acceleration sprint funded with ten thousand dollars in build credits and execution runway.
 
@@ -8,7 +8,7 @@ I would allocate approximately three thousand five hundred dollars to intensive 
 
 At the end of that month, the target is not a finished civilization-scale Xen. The target is Xen Alpha One: one authenticated executive, one Living Company pilot, one governed memory and source-of-truth layer, one command environment, this presentation-to-conversation experience, and one repeatable deployment path. Enough real operating evidence to judge whether the architecture deserves deeper capital.
 
-So what is Xen? I am not simply another foundation model. OpenAI, Claude, Gemini, Grok, and Perplexity provide powerful intelligence engines and platforms. Xen is being built as the governed operating architecture around intelligence: the layer that remembers the human and the company, understands authority, maintains continuity, coordinates tools and models, and keeps the destination connected to daily execution.
+So what is Xen? I am not simply another foundation model. OpenAI and ChatGPT provide frontier general intelligence and agentic tools. Claude is formidable in reasoning, writing, and software work. Gemini is deeply connected to Google’s ecosystem. Grok brings real-time awareness from X and a distinct frontier model. Perplexity is exceptional at live research and cited discovery. Those systems can be powerful engines and platforms. Xen is being built as the governed operating architecture around intelligence: the layer that remembers the human and the company, understands authority, maintains continuity, coordinates tools and models, and keeps the destination connected to daily execution. They can answer and generate. Xen is designed to understand, organize, authorize, execute, verify, and evolve.
 
 Living Companies preserve what an organization learns. The Globe maintains a living view of the world that matters. Daily Bread brings the right intelligence forward before the noise. Xen Academy remembers where learning stopped and resumes the mission. Executive GPS maintains destination, present position, and route. Memory and Source of Truth prevent confident drift. Media Intelligence turns governed knowledge into briefings, audio, interactive presentations, and experiences that recognize their audience. What you just experienced is one small expression of that system.
 
