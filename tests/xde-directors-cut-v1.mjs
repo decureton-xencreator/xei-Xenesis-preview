@@ -6,9 +6,9 @@ const canon=fs.readFileSync('docs/XDE-011-012-XFP-XDC-DIRECTORS-CUT-CANON.md','u
 const lock=JSON.parse(fs.readFileSync('governance/XDE-DIRECTORS-CUT-LOCK.json','utf8'));
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Picture Lock must preserve nine scenes');
 for(const id of ['XDE-011','XDE-012','XFP-001','XFP-002','XDC-001','XDC-002'])if(!canon.includes(id))throw new Error(`Missing finish canon: ${id}`);
-for(const term of ["directorsCutVersion:'1.0.0'",'pictureLocked:true','featureFrozen:true','Growth creates knowledge.','Most companies answer with documentation.','The BDC was the proof.','window.XDE_DIRECTORS_CUT','director-narration'])if(!js.includes(term))throw new Error(`Director runtime missing: ${term}`);
+for(const term of ["directorsCutVersion:'1.1.0'",'pictureLocked:true','featureFrozen:true','Growth creates knowledge.','Most companies answer with documentation.','The BDC was the proof.','window.XDE_DIRECTORS_CUT','director-narration','requestAnimationFrame'])if(!js.includes(term))throw new Error(`Director runtime missing: ${term}`);
 for(let i=1;i<=8;i++)if(!js.includes(`${i}:`))throw new Error(`Locked narration missing scene ${i}`);
 for(const term of ['position:absolute','pointer-events:none','prefers-reduced-motion','padding-bottom:110px'])if(!css.includes(term))throw new Error(`Narration compartment missing: ${term}`);
 if(lock.status!=='picture-locked'||lock.feature_freeze!==true||lock.scene_count!==9)throw new Error('Production lock is invalid');
-for(const forbidden of ['speechSynthesis','requestAnimationFrame','phone-gold-runtime','app-v6.js'])if(js.includes(forbidden)||html.includes(forbidden))throw new Error(`Forbidden Director dependency: ${forbidden}`);
+for(const forbidden of ['speechSynthesis','phone-gold-runtime','app-v6.js'])if(js.includes(forbidden)||html.includes(forbidden))throw new Error(`Forbidden Director dependency: ${forbidden}`);
 console.log('PASS XDE Director’s Cut v1: continuous narrative stream, locked concise narration, protected narration compartment, nine-scene Picture Lock, and feature freeze');

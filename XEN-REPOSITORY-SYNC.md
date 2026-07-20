@@ -65,3 +65,9 @@ AM-002 permits governed preview synchronization; XGW-001 enforces privacy, evide
 The Checkmate executive premiere now inherits AM-002 Version 1.3 and active Warden scope on top of the current repository baseline. The implementation includes Checkmate-first arrival, recipient-specific Ed/Kim/Ahmer routes, XMP Milestone 4 presentation principles, a copy-ready owner rollout kit, and an explicit distinction between personalized public routes and access-controlled Worker invitations.
 
 Repository completion does not certify GitHub Pages publication, external audio delivery, physical-device acceptance, or invitation-worker availability. Those states require separate release evidence.
+
+## Repository-backed conversation continuity re-synchronization — 2026-07-20
+
+Previously approved conversation-derived decisions were reconciled against `origin/main` and the active AM-002 rollout branch. The governing repository artifacts remain AM-002 Version 1.3, XRR-001, XGW Warden, XPS/XLI presentation contracts, the XAA preview boundary, and the XBE-001 bespoke executive rollout records.
+
+Only approved decisions, implementation requirements, truth classifications, and verification evidence are repository-backed. Raw private chat transcripts, credentials, personal data, and unapproved commercial details are not synchronized. The reconciliation evidence is recorded in `governance/CHAT-CONTINUITY-RESYNC-2026-07-20.md`.
