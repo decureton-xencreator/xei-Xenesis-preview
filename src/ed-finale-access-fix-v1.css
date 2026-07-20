@@ -1,0 +1,23 @@
+/* Scoped page-9 and Guest Access corrections. */
+body[data-scene="8"] footer .primary,
+.finale .solutions-gateway-link,
+.finale .final-rollout-link,
+.finale .completion-cta{
+  border:1px solid rgba(110,231,255,.42)!important;
+  background:linear-gradient(135deg,#071722,#061016)!important;
+  color:#dff9ff!important;
+  box-shadow:0 0 24px rgba(36,141,255,.14),inset 0 0 18px rgba(110,231,255,.035)!important;
+}
+body[data-scene="8"] .finale>.director-narration{display:none!important}
+.xcm-dialogue{position:relative!important;min-height:0!important;max-height:100%!important;overflow:hidden!important}
+.xcm-transcript{min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain;padding-bottom:22px!important}
+.xcm-suggestions{position:relative;z-index:20;background:linear-gradient(180deg,transparent,rgba(2,7,10,.94) 30%)}
+.xcm-input{position:relative!important;z-index:30!important;flex-shrink:0!important;background:#050c10!important;box-shadow:0 -18px 42px rgba(2,5,7,.86),0 18px 50px rgba(0,0,0,.3)!important}
+
+/* Comparison slide: executive-readable typography; no microcopy. */
+.xcm-compare{gap:14px!important;width:94%!important}
+.xcm-compare article{min-height:96px!important;padding:18px!important;gap:9px!important}
+.xcm-compare b{font-size:15px!important;line-height:1.2!important;letter-spacing:.07em!important}
+.xcm-compare span{font-size:13px!important;line-height:1.45!important;color:#a9bec7!important}
+.xcm-compare .xen-layer b{font-size:17px!important;color:#63f5ad!important}
+.xcm-compare .xen-layer span{font-size:14px!important;color:#d8f8e9!important}
