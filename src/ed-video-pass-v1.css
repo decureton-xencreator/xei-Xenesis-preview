@@ -57,13 +57,13 @@ html[data-xpe="active"] .scene.landing .landing-action{margin-top:18px!important
 html[data-xpe="active"] .scene.landing .status{margin-top:10px!important}
 
 /* Page 02 · restore all four information cards as a readable intelligence field. */
-html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field{opacity:.92!important;z-index:2!important;inset:34% -4% 4% 8%!important}
+html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field{opacity:.92!important;z-index:2!important;inset:34% -4% auto 8%!important;height:clamp(300px,48vh,420px)!important;min-height:300px!important}
 html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field>span{display:grid!important;place-items:center!important;opacity:1!important;visibility:visible!important;z-index:4!important;min-width:112px!important;min-height:42px!important;border-radius:13px!important;box-shadow:inset 0 0 18px rgba(110,231,255,.06),0 14px 32px rgba(0,0,0,.25)!important}
 html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field>span:after{opacity:.48!important}
 
 /* Page 06 · preserve the headline and keep the operating-memory graphic behind it. */
 html[data-xpe="active"] .scene:nth-of-type(6)>h1{font-size:clamp(38px,5.8vh,54px)!important;line-height:.93!important;margin-top:0!important}
-html[data-xpe="active"] .scene:nth-of-type(6)>.propagation-map{z-index:2!important;opacity:.88!important;inset:38% -8% 2% 6%!important}
+html[data-xpe="active"] .scene:nth-of-type(6)>.propagation-map{z-index:2!important;opacity:.88!important;inset:38% -8% auto 6%!important;height:clamp(300px,46vh,410px)!important;min-height:300px!important}
 html[data-xpe="active"] .scene:nth-of-type(6)>.propagation-map>span{z-index:4!important;opacity:1!important;visibility:visible!important}
 
 /* Page 07 · restore the complete twelve-company information constellation. */
