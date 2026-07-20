@@ -2,8 +2,8 @@
   "standard": "AM-002-BRAND-INTEGRITY-v1",
   "status": "active",
   "mandate": "Never change user-provided logo artwork without prior explicit approval.",
-  "protected_asset": "assets/checkmate-executive-mark.svg",
-  "protected_asset_sha256": "92d21653f30837770f39ef046732abb61bd74250a63255deb391c1fb3a231171",
+  "protected_asset": "assets/checkmate-holding-group-approved.jpeg",
+  "protected_asset_sha256": "f387c09879ef3257727d0361e435b4546751b4bd6dc4c3fb86f8cc06272e2b86",
   "standing_authorization": "none",
   "currently_authorized_transformations": [],
   "approval_scope": "A new explicit approval naming the exact asset and exact transformation is required before any asset-byte change.",
@@ -17,6 +17,6 @@
     "change typography",
     "change proportions"
   ],
-  "presentation_rule": "Containers must use contain and centre alignment; artwork must never be clipped or covered.",
+  "presentation_rule": "Always display the complete approved Checkmate Holding Group lockup, including the name beneath the symbol. Containers must use contain and centre alignment; artwork must never be clipped, covered, redrawn, or substituted.",
   "approval_required_for_asset_change": true
 }

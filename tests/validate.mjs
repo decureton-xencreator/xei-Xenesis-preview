@@ -29,7 +29,7 @@ const required=[
  ,'scripts/generate-xen-mastered-narration.mjs'
  ,'scripts/verify-xen-mastered-narration.mjs'
  ,'.github/workflows/generate-xen-mastered-narration.yml'
- ,'assets/checkmate-executive-mark.svg'
+ ,'assets/checkmate-holding-group-approved.jpeg'
  ,'src/executive-arrival-v1.css'
  ,'src/executive-arrival-v1.js'
  ,'src/xps-diamond-publication-lock-v1.css'
@@ -77,9 +77,13 @@ for(const viewer of ['ed','kim','ahmer'])if(rolloutKit.split(canonicalPremiereBa
 if(rolloutKit.includes('https://decureton-xencreator.github.io/xei-genesis-preview/'))throw new Error('Case-broken GitHub Pages route restored');
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==4)throw new Error('Unexpected production runtime count');
-for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=bespoke-1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=approved-chg-lockup-1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
 if(html.includes('src/xps-diamond-publication-lock-v1.css'))throw new Error('Post-approval geometry override must not be active in the bespoke premiere');
 for(const term of ['A BESPOKE EXECUTIVE EXPERIENCE','data-arrival-name','Checkmate Holding Group','Nine scenes · Governed proof · Your decision'])if(!html.includes(term))throw new Error(`Bespoke executive arrival contract missing: ${term}`);
+if(!html.includes('assets/checkmate-holding-group-approved.jpeg'))throw new Error('Approved Checkmate Holding Group full lockup missing from arrival');
+const executiveArrivalRuntime=fs.readFileSync('src/executive-arrival-v1.js','utf8');
+if(executiveArrivalRuntime.includes('checkmate-executive-mark.svg')||html.includes('checkmate-executive-mark.svg'))throw new Error('Unapproved substitute Checkmate mark restored to active premiere');
+if(!brandIntegrity.presentation_rule.includes('name beneath'))throw new Error('AM-002 must protect the complete logo-and-name lockup');
 if((html.match(/checkmate-bdc-operating-system\.pages\.dev/g)||[]).length<5)throw new Error('Canonical BDC manual links missing');
 
 for(const term of [
