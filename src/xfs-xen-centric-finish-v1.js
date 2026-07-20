@@ -16,7 +16,7 @@ scene.dataset.proof='XBM-SUITE';
 const narrationByScene=Object.freeze({
   1:'Growth creates knowledge. Xen makes sure growth does not lose what it teaches.',
   2:'Most companies answer that risk with documents. Xen preserves the judgment behind them.',
-  3:'Marisol worked with Checkmate for roughly six months. During that time, she used the operating knowledge base you created with Xen. When she left the role, that shared knowledge did not leave with her. Xen preserved the connected department, its standards, and the reasoning already built into the work. Vianka inherited governed operating memory instead of an empty chair. Browse the complete manuals below and choose one governed publication to inspect the proof.',
+  3:'Marisol worked with Checkmate for roughly six months. During that time, she used the operating knowledge base you created with Xen. When she left the role, that shared knowledge did not leave with her. Xen preserved the connected department, its standards, and the reasoning already built into the work. Vianka inherited governed operating memory instead of an empty chair. Take a look at the complete manuals above, then choose one governed publication to inspect the proof.',
   4:'A Living Company learns when leadership teaches Xen what must endure.',
   5:'One approved principle becomes operating memory across every authorized layer.',
   6:'Once Xen proves what works in one company, the ecosystem can compound it.',
