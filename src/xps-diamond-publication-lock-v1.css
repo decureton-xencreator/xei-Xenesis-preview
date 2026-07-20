@@ -1,0 +1,40 @@
+/* XPS Diamond publication lock
+   Brand artwork is immutable. This layer controls only presentation geometry. */
+.arrival-logo{display:block!important;width:auto!important;max-width:min(76vw,500px)!important;height:auto!important;max-height:min(34dvh,330px)!important;margin-inline:auto!important;object-fit:contain!important;object-position:center!important}
+.brand:before{width:24px!important;height:24px!important;flex:0 0 24px!important;background-position:center!important;background-size:contain!important;background-repeat:no-repeat!important}
+
+/* Pages 2 and 6: the message circle is locked to the true frame centre. */
+.knowledge-field,.propagation-map{--visible-center-shift-x:0px!important;--visible-center-rise-y:0px!important;min-width:0;margin-inline:auto!important}
+.knowledge-field>.void,.propagation-map>.core{left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important}
+.knowledge-field>span:nth-child(1){left:18%!important;top:18%!important}
+.knowledge-field>span:nth-child(2){left:82%!important;top:18%!important}
+.knowledge-field>span:nth-child(3){left:18%!important;top:82%!important}
+.knowledge-field>span:nth-child(4){left:82%!important;top:82%!important}
+.propagation-map>span:nth-child(2){left:20%!important;top:17%!important}
+.propagation-map>span:nth-child(3){left:80%!important;top:17%!important}
+.propagation-map>span:nth-child(4){left:16%!important;top:50%!important}
+.propagation-map>span:nth-child(5){left:84%!important;top:50%!important}
+.propagation-map>span:nth-child(6){left:23%!important;top:83%!important}
+.propagation-map>span:nth-child(7){left:77%!important;top:83%!important}
+.scene h1,.scene h2,.scene p,.choice,.branch-option,.director-narration{min-width:0;overflow-wrap:anywhere}
+
+/* The premiere is a 520px cinematic frame on wide displays.  Keep its
+   content in one centred column instead of forcing a desktop split inside
+   that frame. */
+@media(min-width:900px){
+ .scene.active{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;align-content:initial!important;column-gap:0!important}
+ .scene.active>h1,.scene.active>h2,.scene.active>p,.scene.active>.eyebrow{width:100%!important;grid-column:auto!important;grid-row:auto!important}
+ .scene.active>.knowledge-field,.scene.active>.manual-stack,.scene.active>.metric-row,.scene.active>.choice-grid,.scene.active>.propagation-map,.scene.active>.constellation{width:min(100%,620px)!important;grid-column:auto!important;grid-row:auto!important;align-self:center!important;margin-inline:auto!important}
+ .scene.landing.active,.scene.finale.active,.institutional-scene.active{display:flex!important}
+ .scene.active>h1,.scene.active>h2{font-size:clamp(42px,4vw,56px)!important;line-height:.94!important;overflow-wrap:normal!important;word-break:normal!important}
+}
+
+@media(max-width:620px){
+ .arrival-logo{width:auto!important;max-width:min(88vw,420px)!important;max-height:min(33dvh,300px)!important}
+ .knowledge-field>span,.propagation-map>span{max-width:42%;white-space:normal}
+ .knowledge-field>span:nth-child(1),.knowledge-field>span:nth-child(3){left:20%!important}
+ .knowledge-field>span:nth-child(2),.knowledge-field>span:nth-child(4){left:80%!important}
+ .propagation-map>span:nth-child(2),.propagation-map>span:nth-child(4),.propagation-map>span:nth-child(6){left:20%!important}
+ .propagation-map>span:nth-child(3),.propagation-map>span:nth-child(5),.propagation-map>span:nth-child(7){left:80%!important}
+}
+@media(prefers-reduced-motion:reduce){.arrival-logo{transform:none!important}}

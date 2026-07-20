@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 
 const required=[
  'index.html',
@@ -31,7 +32,10 @@ const required=[
  ,'assets/checkmate-executive-mark.svg'
  ,'src/executive-arrival-v1.css'
  ,'src/executive-arrival-v1.js'
+ ,'src/xps-diamond-publication-lock-v1.css'
  ,'executive-rollout-kit.html'
+ ,'governance/AM-002-BRAND-INTEGRITY.json'
+ ,'Reports/SWS-AM002-DIAMOND-PUBLICATION-PASS-2026-07-20.md'
  ,'Reports/SWS-XBE-AM002-WARDEN-CLOSE-2026-07-19.md'
 ];
 for(const file of required){
@@ -49,11 +53,18 @@ const telemetry=fs.readFileSync('src/choice-telemetry.js','utf8');
 const trackingWorker=fs.readFileSync('tracking-worker/src/index.js','utf8');
 const trackingMigration=fs.readFileSync('tracking-worker/migrations/0001_choice_reporting.sql','utf8');
 const choiceReport=fs.readFileSync('choice-report.html','utf8');
-const css=fs.readFileSync('src/ed-premiere-clean-v1.css','utf8')+fs.readFileSync('src/xfs-xen-centric-finish-v1.css','utf8')+fs.readFileSync('src/xli-living-interface-v1.css','utf8');
+const css=fs.readFileSync('src/ed-premiere-clean-v1.css','utf8')+fs.readFileSync('src/xfs-xen-centric-finish-v1.css','utf8')+fs.readFileSync('src/xli-living-interface-v1.css','utf8')+fs.readFileSync('src/xps-diamond-publication-lock-v1.css','utf8');
 const masteredCopy=fs.readFileSync('scripts/xen-mastered-narration-copy-v1.mjs','utf8');
 const masteredGenerator=fs.readFileSync('scripts/generate-xen-mastered-narration.mjs','utf8');
 const masteredWorkflow=fs.readFileSync('.github/workflows/generate-xen-mastered-narration.yml','utf8');
 const rolloutKit=fs.readFileSync('executive-rollout-kit.html','utf8');
+const brandIntegrity=JSON.parse(fs.readFileSync('governance/AM-002-BRAND-INTEGRITY.json','utf8'));
+
+const protectedLogoHash=crypto.createHash('sha256').update(fs.readFileSync(brandIntegrity.protected_asset)).digest('hex');
+if(protectedLogoHash!==brandIntegrity.protected_asset_sha256)throw new Error('AM-002 Warden blocked an unapproved logo artwork change');
+if(!brandIntegrity.approval_required_for_asset_change||!brandIntegrity.prohibited_without_new_approval.includes('crop'))throw new Error('AM-002 logo-protection mandate is incomplete');
+for(const term of ['object-fit:contain','background-size:contain','--visible-center-shift-x:0px!important'])if(!css.includes(term))throw new Error(`Diamond publication lock missing: ${term}`);
+for(const term of ['@media print','break-inside:avoid-page','page-break-inside:avoid','.logo{display:block','object-fit:contain'])if(!rolloutKit.includes(term))throw new Error(`Executive rollout publication gate missing: ${term}`);
 
 new Function(runtime);
 new Function(finish);
@@ -126,7 +137,7 @@ for(const term of [
  'XLI-018 FINISH MODE',
  'XLI-019 CONTENT PLANE',
  '.manual-research-viewer',
- '--visible-center-shift-x:60px',
+ '--visible-center-shift-x:0px!important',
  'xli-page-ring-glimmer',
  'xli-finish-box-glimmer',
  'prefers-reduced-motion',
