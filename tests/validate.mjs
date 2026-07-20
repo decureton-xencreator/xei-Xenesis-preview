@@ -59,7 +59,9 @@ new Function(runtime);
 new Function(finish);
 new Function(solutionsRuntime);
 for(const term of ['Ed’s package','Kim’s package','Ahmer’s package','AM-002 v1.3 · Warden truth boundary','viewer=ed','viewer=kim','viewer=ahmer','Copy Ed’s email','Copy Kim’s email','Copy Ahmer’s email'])if(!rolloutKit.includes(term))throw new Error(`Executive rollout kit contract missing: ${term}`);
-
+const canonicalPremiereBase='https://decureton-xencreator.github.io/xei-Xenesis-preview/';
+for(const viewer of ['ed','kim','ahmer'])if(rolloutKit.split(canonicalPremiereBase+`?viewer=${viewer}`).length-1!==3)throw new Error(`Canonical ${viewer} premiere route must appear exactly three times`);
+if(rolloutKit.includes('https://decureton-xencreator.github.io/xei-genesis-preview/'))throw new Error('Case-broken GitHub Pages route restored');
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==3)throw new Error('Unexpected production runtime count');
 for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=bespoke-1','ed-premiere-clean-v1.js?v=mastered-audio-v3','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
