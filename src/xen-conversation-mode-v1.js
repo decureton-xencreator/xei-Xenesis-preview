@@ -43,7 +43,8 @@ const transcript=shell.querySelector('#xcmTranscript');
 const question=shell.querySelector('#xcmQuestion');
 const suggestions=shell.querySelector('#xcmSuggestions');
 const nodeRail=shell.querySelector('#xcmNodes');
-const pitchStage=shell.querySelector('#xcmPitch');\nconst pitchSlideElements=[...shell.querySelectorAll('[data-pitch-slide]')];const pitchProgress=[...shell.querySelectorAll('.xcm-pitch-progress i')];let pitchSlideIndex=0;function showPitchSlide(next){pitchSlideIndex=Math.max(0,Math.min(pitchSlideElements.length-1,next));pitchSlideElements.forEach((slide,i)=>slide.classList.toggle('active',i===pitchSlideIndex));pitchProgress.forEach((dot,i)=>dot.classList.toggle('active',i===pitchSlideIndex));document.body.dataset.pitchSlide=String(pitchSlideIndex+1)}
+const pitchStage=shell.querySelector('#xcmPitch');
+const pitchSlideElements=[...shell.querySelectorAll('[data-pitch-slide]')];const pitchProgress=[...shell.querySelectorAll('.xcm-pitch-progress i')];let pitchSlideIndex=0;function showPitchSlide(next){pitchSlideIndex=Math.max(0,Math.min(pitchSlideElements.length-1,next));pitchSlideElements.forEach((slide,i)=>slide.classList.toggle('active',i===pitchSlideIndex));pitchProgress.forEach((dot,i)=>dot.classList.toggle('active',i===pitchSlideIndex));document.body.dataset.pitchSlide=String(pitchSlideIndex+1)}
 const pitchAudio=document.createElement('audio');pitchAudio.preload='auto';pitchAudio.setAttribute('playsinline','');pitchAudio.setAttribute('webkit-playsinline','');pitchAudio.setAttribute('aria-hidden','true');shell.append(pitchAudio);
 const viewer=(new URLSearchParams(location.search).get('viewer')||'ed').toLowerCase();
 const name=viewer==='ed'?'Ed':viewer.charAt(0).toUpperCase()+viewer.slice(1);
