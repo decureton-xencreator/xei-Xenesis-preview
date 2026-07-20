@@ -129,10 +129,10 @@ for(const term of [
 ])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
 for(const forbidden of ['speechSynthesis','SpeechSynthesisUtterance','DISTRIBUTED_SYSTEM_TTS_ENABLED'])if(runtime.includes(forbidden))throw new Error(`Unmastered voice fallback restored: ${forbidden}`);
 for(const term of ["const ED_CANONICAL_CLIPS=Object.freeze",'xen-voice-audition-v2.mp3',"document.body.dataset.voiceRoute='ed-canonical-only'","if(index===0)return 'intro-ed'","return `scene-${index}-default`"])if(!runtime.includes(term))throw new Error(`Ed canonical single-voice route missing: ${term}`);
-for(const term of ["mainStage.addEventListener('scroll'",'function guidedScrollTarget(){return 0}','mainStage.scrollTop=0','if(current)current.scrollTop=0'])if(!runtime.includes(term))throw new Error(`Canonical scene anchor missing: ${term}`);
+for(const term of ["mainStage.addEventListener('scroll'",'function guidedScrollTarget(current=scenes[index])','current.scrollHeight-current.clientHeight','finishGuidedScroll(null,remaining)','mainStage.scrollTop=0','if(current)current.scrollTop=0'])if(!runtime.includes(term))throw new Error(`Canonical scene anchor missing: ${term}`);
 if(runtime.includes('current.focus({preventScroll:true})'))throw new Error('Canonical scene focus must not scroll the parent stage');
 const videoPass=readFileSync('src/ed-video-pass-v1.css','utf8');
-for(const term of ['.scene{overflow:hidden!important','Scene 02 · knowledge at risk','Scene 06 · operating memory','.xcm-pitch-slide.active'])if(!videoPass.includes(term))throw new Error(`Ed video-review lock missing: ${term}`);
+for(const term of ['overflow-y:auto!important','Scene 02 · knowledge at risk','Scene 06 · operating memory','.xcm-pitch-slide.active'])if(!videoPass.includes(term))throw new Error(`Ed video-review lock missing: ${term}`);
 const conversationRuntime=readFileSync('src/xen-conversation-mode-v1.js','utf8');
 for(const term of ['const pitchSlides=[','CONTROLLED BUILD RUNWAY','showPitchSlide(','PITCH_TEXT_SHA256','YOUR PRIVATE ACCESS'])if(!conversationRuntime.includes(term))throw new Error(`Executive pitch visual sequence missing: ${term}`);
 

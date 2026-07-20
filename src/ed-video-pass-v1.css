@@ -1,5 +1,5 @@
 /* Ed video-review lock · final controlled delta */
-.scene{overflow:hidden!important;overscroll-behavior:none!important}
+.scene{overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior:contain!important;scrollbar-width:none!important}.scene::-webkit-scrollbar{display:none!important}
 .scene.active{isolation:isolate}
 .scene.active>.eyebrow,.scene.active>h1,.scene.active>h2,.scene.active>p,.scene.active>.quote,.scene.active>.selected-principle{position:relative;z-index:8}
 .scene.active>h1,.scene.active>h2,.scene.active>p{filter:drop-shadow(0 3px 12px #030506)}
