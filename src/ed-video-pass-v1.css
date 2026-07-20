@@ -1,0 +1,38 @@
+/* Ed video-review lock · final controlled delta */
+.scene{overflow:hidden!important;overscroll-behavior:none!important}
+.scene.active{isolation:isolate}
+.scene.active>.eyebrow,.scene.active>h1,.scene.active>h2,.scene.active>p,.scene.active>.quote,.scene.active>.selected-principle{position:relative;z-index:8}
+.scene.active>h1,.scene.active>h2,.scene.active>p{filter:drop-shadow(0 3px 12px #030506)}
+
+/* Scene 02 · knowledge at risk: graphic becomes the atmosphere, never a text obstacle. */
+.scene:nth-of-type(2){padding-right:clamp(22px,7vw,54px)}
+.scene:nth-of-type(2)>.knowledge-field{position:absolute!important;z-index:1!important;inset:30% -8% 5% 18%!important;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;opacity:.72;overflow:hidden!important;border:0!important;background:radial-gradient(circle at 56% 54%,rgba(110,231,255,.15),rgba(36,141,255,.035) 30%,transparent 68%)!important;mask-image:linear-gradient(to bottom,transparent 0,#000 18%,#000 88%,transparent)}
+.scene:nth-of-type(2)>.knowledge-field:before{content:"";position:absolute;inset:12%;border:1px solid rgba(110,231,255,.13);border-radius:50%;box-shadow:0 0 0 34px rgba(36,141,255,.025),0 0 0 68px rgba(110,231,255,.018)}
+.scene:nth-of-type(2)>.knowledge-field .void{width:112px!important;height:112px!important;left:56%!important;top:56%!important;background:radial-gradient(circle,#030506 28%,rgba(4,12,17,.96) 62%,transparent 70%)!important;box-shadow:0 0 0 1px rgba(110,231,255,.38),0 0 48px rgba(36,141,255,.3)!important}
+.scene:nth-of-type(2)>.knowledge-field>span{z-index:2!important;width:auto!important;min-width:92px!important;min-height:34px!important;padding:8px 12px!important;background:rgba(3,8,11,.78)!important;border-color:rgba(110,231,255,.24)!important;backdrop-filter:blur(12px)}
+.scene:nth-of-type(2)>.knowledge-field>span:nth-child(1){left:23%!important;top:25%!important}.scene:nth-of-type(2)>.knowledge-field>span:nth-child(2){left:82%!important;top:25%!important}.scene:nth-of-type(2)>.knowledge-field>span:nth-child(3){left:23%!important;top:82%!important}.scene:nth-of-type(2)>.knowledge-field>span:nth-child(4){left:82%!important;top:82%!important}
+
+/* Scene 06 · operating memory: one clean orbital system behind protected copy. */
+.scene:nth-of-type(6)>.propagation-map{position:absolute!important;z-index:1!important;inset:27% -10% 3% 10%!important;width:auto!important;height:auto!important;min-height:0!important;margin:0!important;opacity:.76;border:0!important;overflow:hidden!important;background:radial-gradient(circle at 58% 56%,rgba(110,231,255,.14),rgba(36,141,255,.035) 35%,transparent 69%)!important;mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 90%,transparent)}
+.scene:nth-of-type(6)>.propagation-map:before{width:68%!important;max-width:330px;aspect-ratio:1;left:58%!important;top:56%!important;border-color:rgba(110,231,255,.15)!important}
+.scene:nth-of-type(6)>.propagation-map:after{left:58%!important;top:56%!important}
+.scene:nth-of-type(6)>.propagation-map .core{left:58%!important;top:56%!important;width:108px!important;height:108px!important}
+.scene:nth-of-type(6)>.propagation-map>span{z-index:2!important;width:118px!important;min-height:38px!important;padding:8px 10px!important;background:rgba(3,8,11,.82)!important}
+.scene:nth-of-type(6)>.propagation-map>span:nth-child(2){left:27%!important;top:22%!important}.scene:nth-of-type(6)>.propagation-map>span:nth-child(3){left:84%!important;top:22%!important}.scene:nth-of-type(6)>.propagation-map>span:nth-child(4){left:20%!important;top:55%!important}.scene:nth-of-type(6)>.propagation-map>span:nth-child(5){left:91%!important;top:55%!important}.scene:nth-of-type(6)>.propagation-map>span:nth-child(6){left:31%!important;top:86%!important}.scene:nth-of-type(6)>.propagation-map>span:nth-child(7){left:81%!important;top:86%!important}
+
+/* Spoken pitch · one visual idea at a time, synchronized to the canonical audio. */
+.xcm-pitch{overflow:hidden!important;display:none!important;padding:clamp(24px,4vw,56px)!important}
+.xcm.pitching.present .xcm-pitch{display:grid!important;grid-template-columns:1fr!important;place-items:stretch!important}
+.xcm-pitch-deck{position:relative;width:min(1120px,100%);height:100%;margin:auto;overflow:hidden}
+.xcm-pitch-slide{position:absolute;inset:0;display:grid;grid-template-columns:minmax(260px,.78fr) minmax(360px,1.22fr);gap:clamp(28px,6vw,86px);align-items:center;padding:clamp(18px,3vw,42px);opacity:0;visibility:hidden;transform:translateY(16px) scale(.992);transition:opacity .65s ease,transform .65s ease,visibility .65s}
+.xcm-pitch-slide.active{opacity:1;visibility:visible;transform:none}
+.xcm-pitch-copy{position:relative;z-index:3}.xcm-pitch-copy small{color:var(--xcm-cyan);font-size:8px;letter-spacing:.22em}.xcm-pitch-copy h2{margin:18px 0 18px;font-size:clamp(38px,5.7vw,78px);line-height:.92;letter-spacing:-.06em}.xcm-pitch-copy p{max-width:620px;margin:0;color:#9eb1ba;font-size:clamp(14px,1.35vw,18px);line-height:1.55}
+.xcm-pitch-visual{position:relative;z-index:1;min-height:360px;display:grid;place-items:center;border:1px solid rgba(139,233,255,.15);border-radius:26px;overflow:hidden;background:radial-gradient(circle at 50% 50%,rgba(71,119,255,.13),rgba(3,9,13,.94) 62%);box-shadow:inset 0 0 70px rgba(139,233,255,.035),0 28px 80px rgba(0,0,0,.3)}
+.xcm-pitch-visual:before{content:"";position:absolute;width:72%;aspect-ratio:1;border:1px solid rgba(139,233,255,.12);border-radius:50%;box-shadow:0 0 0 38px rgba(71,119,255,.025),0 0 0 76px rgba(139,233,255,.018)}
+.xcm-figure{position:relative;z-index:2;width:82%;display:grid;gap:10px}.xcm-figure strong{font-size:clamp(42px,7vw,92px);line-height:.9;letter-spacing:-.07em;color:#effcff}.xcm-figure>span{font-size:9px;letter-spacing:.2em;color:var(--xcm-cyan)}
+.xcm-bars{display:grid;gap:9px}.xcm-bar{display:grid;grid-template-columns:minmax(120px,1fr) auto;gap:12px;align-items:center}.xcm-bar i{display:block;height:8px;border-radius:99px;background:linear-gradient(90deg,#4777ff,#8be9ff);box-shadow:0 0 18px rgba(139,233,255,.2);width:var(--w)}.xcm-bar b{font-size:12px;color:#dff8ff}.xcm-bar small{grid-column:1/-1;color:#78909a;font-size:9px}
+.xcm-chip-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.xcm-chip-grid span{padding:14px;border:1px solid rgba(139,233,255,.14);border-radius:12px;background:rgba(4,12,16,.78);font-size:11px;color:#d8e8ed}.xcm-access{border-color:rgba(99,245,173,.35)!important}.xcm-access .xcm-figure>span{color:#63f5ad}.xcm-access strong{font-size:clamp(32px,5vw,64px)}
+.xcm-pitch-progress{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:8;display:flex;gap:8px}.xcm-pitch-progress i{width:28px;height:2px;background:rgba(139,233,255,.18)}.xcm-pitch-progress i.active{background:#8be9ff;box-shadow:0 0 12px #8be9ff}
+@media(max-width:900px){.xcm-pitch-slide{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:18px;padding:12px}.xcm-pitch-copy h2{font-size:clamp(36px,10vw,56px)}.xcm-pitch-copy p{font-size:14px}.xcm-pitch-visual{min-height:260px}.xcm-figure strong{font-size:clamp(38px,13vw,68px)}}
+@media(max-height:760px){.scene{padding-top:18px!important;padding-bottom:20px!important}.scene h1{font-size:clamp(30px,7.8vw,44px)!important;margin-bottom:12px!important}.scene p{font-size:14px!important;line-height:1.42!important}.xcm-pitch-copy h2{font-size:clamp(32px,7vh,58px)}.xcm-pitch-visual{min-height:240px}}
+@media(prefers-reduced-motion:reduce){.xcm-pitch-slide{transition:none!important}}

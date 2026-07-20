@@ -87,8 +87,8 @@ for(const viewer of ['ed','kim','ahmer'])if(rolloutKit.split(canonicalPremiereBa
 if(rolloutKit.includes('https://decureton-xencreator.github.io/xei-genesis-preview/'))throw new Error('Case-broken GitHub Pages route restored');
 if((html.match(/class="scene/g)||[]).length!==9)throw new Error('Nine-scene documentary contract failed');
 if((html.match(/<script type="module"/g)||[]).length!==4)throw new Error('Unexpected production runtime count');
-for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=transparent-chg-lockup-2','xps-diamond-publication-lock-v1.css?v=canonical-geometry-2','checkmate-living-lockup-v1.css?v=1','ed-canonical-guard-v1.css?v=1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
-const cssOrder=['xfs-xen-centric-finish-v1.css','executive-arrival-v1.css','xps-diamond-publication-lock-v1.css','checkmate-living-lockup-v1.css','ed-canonical-guard-v1.css','xen-conversation-mode-v1.css'].map(asset=>html.indexOf(asset));
+for(const asset of ['executive-arrival-v1.js?v=bespoke-1','executive-arrival-v1.css?v=transparent-chg-lockup-2','xps-diamond-publication-lock-v1.css?v=canonical-geometry-2','checkmate-living-lockup-v1.css?v=1','ed-canonical-guard-v1.css?v=1','ed-premiere-clean-v1.js?v=xvs-001-ed-canonical-v4','xfs-xen-centric-finish-v1.js?v=solutions-gateway-2','xfs-xen-centric-finish-v1.css?v=commercial-rollout-1','xen-conversation-mode-v1.js?v=1','xen-conversation-mode-v1.css?v=1','ed-video-pass-v1.css?v=video-review-1'])if(!html.includes(asset))throw new Error(`Active finish asset missing: ${asset}`);
+const cssOrder=['xfs-xen-centric-finish-v1.css','executive-arrival-v1.css','xps-diamond-publication-lock-v1.css','checkmate-living-lockup-v1.css','ed-canonical-guard-v1.css','xen-conversation-mode-v1.css','ed-video-pass-v1.css'].map(asset=>html.indexOf(asset));
 if(cssOrder.some(index=>index<0)||cssOrder.some((index,i)=>i&&index<=cssOrder[i-1]))throw new Error('Ed canonical CSS cascade order failed');
 if(!fs.readFileSync('src/xps-diamond-publication-lock-v1.css','utf8').includes('.scene.active{display:flex!important'))throw new Error('Ed canonical desktop geometry neutralizer missing');
 for(const selector of ['.arrival-enter','.landing-action','.primary','.finale .xcm-launch'])if(!canonicalControlCss.includes(selector))throw new Error(`Ed dark control treatment missing: ${selector}`);
@@ -129,7 +129,13 @@ for(const term of [
 ])if(!runtime.includes(term))throw new Error(`Runtime certification capability missing: ${term}`);
 for(const forbidden of ['speechSynthesis','SpeechSynthesisUtterance','DISTRIBUTED_SYSTEM_TTS_ENABLED'])if(runtime.includes(forbidden))throw new Error(`Unmastered voice fallback restored: ${forbidden}`);
 for(const term of ["const ED_CANONICAL_CLIPS=Object.freeze",'xen-voice-audition-v2.mp3',"document.body.dataset.voiceRoute='ed-canonical-only'","if(index===0)return 'intro-ed'","return `scene-${index}-default`"])if(!runtime.includes(term))throw new Error(`Ed canonical single-voice route missing: ${term}`);
-for(const term of ["mainStage.addEventListener('scroll'",'function guidedScrollTarget(){return 0}','mainStage.scrollTop=0','if(current)current.scrollTop=0'])if(!runtime.includes(term))throw new Error(`Canonical scene anchor missing: ${term}`);\nif(runtime.includes('current.focus({preventScroll:true})'))throw new Error('Canonical scene focus must not scroll the parent stage');
+for(const term of ["mainStage.addEventListener('scroll'",'function guidedScrollTarget(){return 0}','mainStage.scrollTop=0','if(current)current.scrollTop=0'])if(!runtime.includes(term))throw new Error(`Canonical scene anchor missing: ${term}`);
+if(runtime.includes('current.focus({preventScroll:true})'))throw new Error('Canonical scene focus must not scroll the parent stage');
+const videoPass=readFileSync('src/ed-video-pass-v1.css','utf8');
+for(const term of ['.scene{overflow:hidden!important','Scene 02 · knowledge at risk','Scene 06 · operating memory','.xcm-pitch-slide.active'])if(!videoPass.includes(term))throw new Error(`Ed video-review lock missing: ${term}`);
+const conversationRuntime=readFileSync('src/xen-conversation-mode-v1.js','utf8');
+for(const term of ['const pitchSlides=[','CONTROLLED BUILD RUNWAY','showPitchSlide(','PITCH_TEXT_SHA256','YOUR PRIVATE ACCESS'])if(!conversationRuntime.includes(term))throw new Error(`Executive pitch visual sequence missing: ${term}`);
+
 
 if(!runtime.includes("window.addEventListener('xen:resume'"))throw new Error('Manual research resume event missing');
 

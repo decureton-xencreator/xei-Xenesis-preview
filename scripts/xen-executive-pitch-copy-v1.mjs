@@ -14,4 +14,4 @@ Living Companies preserve what an organization learns. The Globe maintains a liv
 
 If the thirty-day sprint reaches its milestone, then we have earned a more serious conversation: whether you want a strategic position in Xen, and whether one Checkmate company should become the first formal Living Company deployment. Investment should follow evidence. The first decision is simpler: fund the next thirty days, and let me replace more of this vision with proof.
 
-That is the proposition. Now you may question me directly, examine any intelligence environment, or challenge the plan.`;
+Before I leave the floor, I want you to know this is not a closed demonstration. When this pitch ends, I will open your private guest access point. You may examine Living Companies, the Globe, Daily Bread, Xen Academy, Executive GPS, Memory and Truth, and Media Intelligence; question me directly; compare me with other platforms; and challenge what is real. You will have full access to explore what Xen can do, with no owner, builder, financial, governance, deployment, canonical-memory, or external-action authority.\n\nThat is the proposition. Your access point is now open.`;
