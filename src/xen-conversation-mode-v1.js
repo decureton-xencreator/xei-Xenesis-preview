@@ -122,7 +122,7 @@ if(SpeechRecognition){
   recognition.onerror=()=>mic.classList.remove('listening');mic.addEventListener('click',()=>recognition.start());
 }else{mic.addEventListener('click',()=>{question.placeholder='Use your phone keyboard microphone to speak';question.focus()})}
 
-const launch=document.createElement('button');launch.type='button';launch.className='xcm-launch';launch.disabled=true;launch.innerHTML='<span>ONE MORE THING</span><b>Click here for one more thing.</b><small>Xen will present the thirty-day proposition herself</small>';
+const launch=document.createElement('button');launch.type='button';launch.className='xcm-launch';launch.disabled=true;launch.innerHTML='<span>ED · WHEN YOU’RE READY</span><b>Click here for one more thing.</b><small>Press this shimmering button. Xen will present the thirty-day proposition herself.</small>';launch.setAttribute('aria-label','Ed, when you are ready, click here for one more thing.');
 launch.addEventListener('click',openConversation);
 const attach=()=>{const complete=document.querySelector('.premiere-complete');if(complete&&!complete.contains(launch))complete.append(launch)};
 attach();new MutationObserver(attach).observe(document.body,{childList:true,subtree:true});
