@@ -36,3 +36,65 @@
 @media(max-width:900px){.xcm-pitch-slide{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:18px;padding:12px}.xcm-pitch-copy h2{font-size:clamp(36px,10vw,56px)}.xcm-pitch-copy p{font-size:14px}.xcm-pitch-visual{min-height:260px}.xcm-figure strong{font-size:clamp(38px,13vw,68px)}}
 @media(max-height:760px){.scene{padding-top:18px!important;padding-bottom:20px!important}.scene h1{font-size:clamp(30px,7.8vw,44px)!important;margin-bottom:12px!important}.scene p{font-size:14px!important;line-height:1.42!important}.xcm-pitch-copy h2{font-size:clamp(32px,7vh,58px)}.xcm-pitch-visual{min-height:240px}}
 @media(prefers-reduced-motion:reduce){.xcm-pitch-slide{transition:none!important}}
+
+
+/* XPE canonical storyboard pass · one protected spatial system */
+html[data-xpe="active"] .scene.active{--copy-veil:linear-gradient(90deg,rgba(3,8,11,.96) 0%,rgba(3,8,11,.88) 72%,rgba(3,8,11,0) 100%)}
+html[data-xpe="active"] .scene.active>.eyebrow,
+html[data-xpe="active"] .scene.active>h1,
+html[data-xpe="active"] .scene.active>h2,
+html[data-xpe="active"] .scene.active>p{z-index:12!important;text-shadow:0 4px 18px #020507,0 1px 3px #020507}
+html[data-xpe="active"] .scene.active>h1{overflow:visible!important}
+
+/* Page 01 · restore the complete introduction and prevent the missing first line. */
+html[data-xpe="active"] .scene.landing.active{padding:24px 34px 32px!important;justify-content:center!important}
+html[data-xpe="active"] .scene.landing .checkmate-scene-seal{display:block!important;position:relative!important;z-index:10!important;width:min(132px,28vw)!important;max-height:94px!important;margin:0 auto 12px!important;padding:4px!important;border-color:rgba(110,231,255,.28)!important;background:rgba(4,11,15,.78)!important;box-shadow:0 14px 38px rgba(0,0,0,.32),0 0 28px rgba(110,231,255,.11)!important}
+html[data-xpe="active"] .scene.landing .orbital-mark{display:block!important;position:absolute!important;z-index:1!important;left:50%!important;top:52%!important;width:360px!important;height:360px!important;margin:0!important;transform:translate(-50%,-50%)!important;opacity:.42!important;pointer-events:none!important}
+html[data-xpe="active"] .scene.landing .orbital-mark span{left:154px!important;top:154px!important}
+html[data-xpe="active"] .scene.landing h1{font-size:clamp(38px,6.1vh,54px)!important;line-height:.92!important;margin:0 auto 14px!important;max-width:430px!important;text-wrap:balance!important}
+html[data-xpe="active"] .scene.landing p{font-size:15px!important;line-height:1.42!important;max-width:390px!important}
+html[data-xpe="active"] .scene.landing .landing-action{margin-top:18px!important;min-height:54px!important}
+html[data-xpe="active"] .scene.landing .status{margin-top:10px!important}
+
+/* Page 02 · restore all four information cards as a readable intelligence field. */
+html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field{opacity:.92!important;z-index:2!important;inset:34% -4% 4% 8%!important}
+html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field>span{display:grid!important;place-items:center!important;opacity:1!important;visibility:visible!important;z-index:4!important;min-width:112px!important;min-height:42px!important;border-radius:13px!important;box-shadow:inset 0 0 18px rgba(110,231,255,.06),0 14px 32px rgba(0,0,0,.25)!important}
+html[data-xpe="active"] .scene:nth-of-type(2)>.knowledge-field>span:after{opacity:.48!important}
+
+/* Page 06 · preserve the headline and keep the operating-memory graphic behind it. */
+html[data-xpe="active"] .scene:nth-of-type(6)>h1{font-size:clamp(38px,5.8vh,54px)!important;line-height:.93!important;margin-top:0!important}
+html[data-xpe="active"] .scene:nth-of-type(6)>.propagation-map{z-index:2!important;opacity:.88!important;inset:38% -8% 2% 6%!important}
+html[data-xpe="active"] .scene:nth-of-type(6)>.propagation-map>span{z-index:4!important;opacity:1!important;visibility:visible!important}
+
+/* Page 07 · restore the complete twelve-company information constellation. */
+html[data-xpe="active"] .scene:nth-of-type(7)>.constellation{display:block!important;position:relative!important;z-index:3!important;width:100%!important;height:390px!important;min-height:390px!important;margin:18px auto 0!important;opacity:1!important;overflow:hidden!important}
+html[data-xpe="active"] .scene:nth-of-type(7)>.constellation>span{display:grid!important;opacity:1!important;visibility:visible!important;z-index:5!important;width:40px!important;height:40px!important;background:rgba(3,10,14,.94)!important;border-color:rgba(110,231,255,.48)!important;box-shadow:0 0 0 4px rgba(110,231,255,.035),0 0 18px rgba(110,231,255,.18)!important}
+html[data-xpe="active"] .scene:nth-of-type(7)>.constellation .ed-core{z-index:6!important}
+
+/* The finale handoff is a deliberate landing frame, not a runaway bottom scroll. */
+html[data-xpe="active"] .premiere-complete{scroll-margin-block:22px!important}
+html[data-xpe="active"] .xcm-launch{animation:xpeAliveShimmer 1.7s ease-in-out infinite!important;border-color:rgba(110,231,255,.72)!important;box-shadow:0 0 0 1px rgba(110,231,255,.18),0 0 36px rgba(36,141,255,.26),inset 0 0 32px rgba(110,231,255,.06)!important}
+html[data-xpe="active"] .xcm-launch:after{background:linear-gradient(105deg,transparent 18%,rgba(255,255,255,.38) 42%,rgba(110,231,255,.24) 50%,transparent 72%)!important;animation:xpeButtonSweep 1.55s linear infinite!important}
+@keyframes xpeAliveShimmer{50%{transform:translateY(-2px) scale(1.012);filter:brightness(1.22);box-shadow:0 0 0 2px rgba(110,231,255,.28),0 0 58px rgba(36,141,255,.42),inset 0 0 38px rgba(110,231,255,.11)}}
+@keyframes xpeButtonSweep{from{transform:translateX(-125%)}to{transform:translateX(125%)}}
+
+/* Pitch: explanatory graphics, explicit engine comparison, and visible controls. */
+.xcm-compare{position:relative;z-index:2;width:88%;display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.xcm-compare article{min-height:76px;padding:13px;border:1px solid rgba(139,233,255,.15);border-radius:13px;background:rgba(3,10,14,.88);display:grid;align-content:center;gap:5px}
+.xcm-compare b{font-size:10px;letter-spacing:.12em;color:#e9fbff}.xcm-compare span{font-size:9px;line-height:1.35;color:#7f98a3}
+.xcm-compare .xen-layer{grid-column:1/-1;border-color:rgba(99,245,173,.42);background:linear-gradient(110deg,rgba(99,245,173,.1),rgba(71,119,255,.08));box-shadow:0 0 28px rgba(99,245,173,.1)}
+.xcm-compare .xen-layer b{color:#63f5ad}
+.xcm-route{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.xcm-route i{font-style:normal;padding:12px 8px;border:1px solid rgba(139,233,255,.16);border-radius:12px;background:rgba(3,10,14,.82);font-size:9px;text-align:center;color:#bfeefa}
+.xcm-presence-figure{place-items:center;text-align:center}.xcm-presence-orbit{position:relative;width:150px;height:150px;margin:18px auto 0}.xcm-presence-orbit i{position:absolute;inset:0;border:1px solid rgba(139,233,255,.36);border-radius:50%;animation:xcmOrbit 8s linear infinite}.xcm-presence-orbit i:nth-child(2){inset:22px;animation-direction:reverse}.xcm-presence-orbit b{position:absolute;inset:48px;display:grid;place-items:center;border:1px solid #8be9ff;transform:rotate(45deg);color:#effcff;box-shadow:0 0 38px rgba(139,233,255,.28)}
+.xcm-pitch-controls{position:fixed;z-index:10;left:22px;bottom:18px;display:flex;gap:8px}.xcm-pitch-controls button{min-width:96px;height:42px;border:1px solid rgba(139,233,255,.3);border-radius:13px;background:rgba(3,10,14,.9);color:#dff8ff;font-size:10px;letter-spacing:.12em}.xcm-pitch-controls button:hover,.xcm-pitch-controls button:focus-visible{border-color:#8be9ff;box-shadow:0 0 24px rgba(139,233,255,.2)}
+.xcm-pitch-status{left:auto!important;right:22px!important}.xcm-pitch-progress{bottom:38px!important}
+
+@media(max-height:760px){
+ html[data-xpe="active"] .scene.landing h1{font-size:clamp(34px,5.6vh,46px)!important}
+ html[data-xpe="active"] .scene.landing .checkmate-scene-seal{width:104px!important;max-height:76px!important}
+ html[data-xpe="active"] .scene:nth-of-type(6)>h1{font-size:clamp(34px,5.3vh,46px)!important}
+ .xcm-pitch-slide{padding:8px 12px 52px!important}.xcm-pitch-visual{min-height:220px!important}.xcm-compare article{min-height:58px;padding:9px}
+}
+@media(max-width:700px){
+ .xcm-pitch-controls{left:12px;bottom:10px}.xcm-pitch-controls button{min-width:78px;height:38px}.xcm-pitch-status{display:none!important}.xcm-pitch-progress{bottom:27px!important}
+}
