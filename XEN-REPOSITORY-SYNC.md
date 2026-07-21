@@ -3,7 +3,7 @@
 **Status:** Active public preview repository  
 **Effective date:** 2026-07-19  
 **Canonical authority:** `decureton-xencreator/xen-operating-system`  
-**Execution authority:** AM-002 Version 1.2 — Autonomous Execution Authority
+**Execution authority:** AM-002 Version 1.3 — Autonomous Execution Authority
 
 ## Repository role
 
