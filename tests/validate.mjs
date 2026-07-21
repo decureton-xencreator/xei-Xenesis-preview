@@ -29,7 +29,7 @@ const required=[
  ,'scripts/generate-xen-mastered-narration.mjs'
  ,'scripts/verify-xen-mastered-narration.mjs'
  ,'.github/workflows/generate-xen-mastered-narration.yml'
- ,'assets/checkmate-executive-mark.svg'
+ ,'assets/checkmate-holding-group-transparent-v1.png'
  ,'src/executive-arrival-v1.css'
  ,'src/executive-arrival-v1.js'
  ,'src/xps-diamond-publication-lock-v1.css'
@@ -65,6 +65,13 @@ if(protectedLogoHash!==brandIntegrity.protected_asset_sha256)throw new Error('AM
 if(!brandIntegrity.approval_required_for_asset_change||!brandIntegrity.prohibited_without_new_approval.includes('crop'))throw new Error('AM-002 logo-protection mandate is incomplete');
 if(brandIntegrity.standing_authorization!=='none'||brandIntegrity.currently_authorized_transformations.length!==0)throw new Error('AM-002 Warden blocked standing authorization for logo transformations');
 if(!brandIntegrity.approval_scope.includes('exact asset')||!brandIntegrity.approval_scope.includes('exact transformation'))throw new Error('AM-002 logo approval scope is not asset-specific');
+const canonicalLogo='assets/checkmate-holding-group-transparent-v1.png';
+const retiredLogo='assets/checkmate-executive-mark.svg';
+if(brandIntegrity.protected_asset!==canonicalLogo||brandIntegrity.retired_asset!==retiredLogo)throw new Error('AM-002 canonical logo registry drifted');
+for(const [surface,markup] of [['executive premiere',html],['executive rollout kit',rolloutKit]]){
+ if(!markup.includes(canonicalLogo))throw new Error(`${surface} is missing the canonical Checkmate lockup`);
+ if(markup.includes(retiredLogo))throw new Error(`${surface} restored the retired Checkmate SVG`);
+}
 for(const term of ['object-fit:contain','background-size:contain','--visible-center-shift-x:0px!important'])if(!css.includes(term))throw new Error(`Diamond publication lock missing: ${term}`);
 for(const term of ['@media print','break-inside:avoid-page','page-break-inside:avoid','.logo{display:block','object-fit:contain'])if(!rolloutKit.includes(term))throw new Error(`Executive rollout publication gate missing: ${term}`);
 
