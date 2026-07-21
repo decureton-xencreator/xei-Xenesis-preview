@@ -128,5 +128,7 @@ const launch=document.createElement('button');launch.type='button';launch.classN
 launch.addEventListener('click',openConversation);
 const attach=()=>{const complete=document.querySelector('.premiere-complete');if(complete&&!complete.contains(launch))complete.append(launch)};
 attach();new MutationObserver(attach).observe(document.body,{childList:true,subtree:true});
+const finale=document.querySelector('.scene:last-child');
+if(finale)new MutationObserver(()=>{if(finale.classList.contains('completed'))requestAnimationFrame(()=>launch.scrollIntoView({behavior:'smooth',block:'end'}))}).observe(finale,{attributes:true,attributeFilter:['class']});
 window.addEventListener('xen:conversation:open',openConversation);
 pitchManifestPromise.then(ready=>{if(!ready){launch.innerHTML='<span>WARDEN HOLD</span><b>Xen’s canonical pitch is mastering.</b><small>This entrance will not open silently or with an unapproved voice.</small>'}});
