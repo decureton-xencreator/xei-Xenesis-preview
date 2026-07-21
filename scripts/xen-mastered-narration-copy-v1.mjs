@@ -57,9 +57,9 @@ const endings = {
 };
 
 const appointments = {
-  bdc: 'This private premiere is complete. You selected the BDC rollout. Let us schedule the BDC Launch Alignment Session, where we will confirm the audience, sequence, owners, measures, and authority required to go live.',
-  company: 'This private premiere is complete. You selected one Living Company. Let us schedule the Living Company Blueprint Session, where we will map the real organization and define the measurable proof Xen is authorized to build.',
-  compare: 'This private premiere is complete. You selected the Checkmate One comparison. Let us schedule the Comparison Design Session, where we will agree on one use case, one scorecard, the evidence rules, and the demonstration boundaries.'
+  bdc: 'This private premiere is complete. Ed, press the glimmering button that says, “Click here for one more thing.” I will meet you there.',
+  company: 'This private premiere is complete. Ed, press the glimmering button that says, “Click here for one more thing.” I will meet you there.',
+  compare: 'This private premiere is complete. Ed, press the glimmering button that says, “Click here for one more thing.” I will meet you there.'
 };
 
 export const clips = [
