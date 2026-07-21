@@ -9,7 +9,8 @@
     "head_sampling_rate": 1
   },
   "vars": {
-    "ALLOWED_ORIGINS": "https://decureton-xencreator.github.io"
+    "ALLOWED_ORIGINS": "https://decureton-xencreator.github.io",
+    "XEN_MODEL": "gpt-4.1-mini"
   },
   "d1_databases": [
     {

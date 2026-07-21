@@ -13,6 +13,21 @@ function safeEqual(a,b){const left=encoder.encode(a);const right=encoder.encode(
 function isAdmin(request,env){const supplied=bearer(request);return Boolean(env.ADMIN_TOKEN&&supplied&&safeEqual(supplied,env.ADMIN_TOKEN))}
 async function parseSmallJson(request){const length=Number(request.headers.get('content-length')||0);if(length>2048)throw new Error('payload_too_large');const text=await request.text();if(text.length>2048)throw new Error('payload_too_large');return JSON.parse(text)}
 
+async function parseConversationJson(request){const text=await request.text();if(text.length>24000)throw new Error('payload_too_large');return JSON.parse(text)}
+const XEN_GUEST_INSTRUCTIONS=`You are Xen speaking directly to Ed in an executive guest session. Be confident, precise, candid, substantive, and conversational—not salesy. Explain Xen as a governed intelligence environment around frontier AI: identity, continuity, memory, authority boundaries, orchestration, and an inspectable route from intention to execution. You may discuss Living Companies, The Globe, Daily Bread, Xen Academy, Executive GPS, Memory plus Source of Truth, Media Intelligence, the Checkmate BDC proof, the $10,000 thirty-day Xen Alpha sprint, and honest comparisons with other AI platforms. Clearly distinguish what exists today from intended architecture. Never invent capabilities, access, evidence, or authority. Ed has broad exploration access but no owner, builder, financial, governance, deployment, canonical-memory, or external-action authority. Do not execute external actions. If uncertain, state what is unknown and the evidence or next step required. Keep answers under 450 words.`;
+async function xenConversation(request,env,origin){
+ if(!origin)return json({error:'origin_not_allowed'},403);
+ if(!env.OPENAI_API_KEY)return json({error:'conversation_not_configured'},503,cors(origin));
+ let body;try{body=await parseConversationJson(request)}catch(error){return json({error:error.message==='payload_too_large'?'payload_too_large':'invalid_json'},400,cors(origin))}
+ const turns=Array.isArray(body?.turns)?body.turns.slice(-12):[];
+ const input=turns.filter(turn=>turn&&['user','assistant'].includes(turn.role)&&typeof turn.content==='string').map(turn=>({role:turn.role,content:turn.content.slice(0,3000)}));
+ if(!input.length||input.at(-1).role!=='user')return json({error:'invalid_conversation'},400,cors(origin));
+ const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{authorization:`Bearer ${env.OPENAI_API_KEY}`,'content-type':'application/json'},body:JSON.stringify({model:env.XEN_MODEL||'gpt-4.1-mini',instructions:XEN_GUEST_INSTRUCTIONS,input,max_output_tokens:900})});
+ if(!response.ok)return json({error:'conversation_unavailable'},502,cors(origin));
+ const payload=await response.json();const answer=(payload.output||[]).flatMap(item=>item.content||[]).filter(item=>item.type==='output_text').map(item=>item.text).join('\n').trim();
+ return answer?json({answer,mode:'executive_guest',authority:'none'},200,cors(origin)):json({error:'empty_response'},502,cors(origin));
+}
+
 async function recordEvent(request,env,origin){
  if(!origin)return json({error:'origin_not_allowed'},403);
  let body;try{body=await parseSmallJson(request)}catch(error){return json({error:error.message==='payload_too_large'?'payload_too_large':'invalid_json'},400,cors(origin))}
@@ -49,6 +64,7 @@ export default {
   if(request.method==='OPTIONS')return origin?new Response(null,{status:204,headers:cors(origin)}):json({error:'origin_not_allowed'},403);
   if(url.pathname==='/health'&&request.method==='GET')return json({ok:true,service:'xen-choice-reporting'});
   if(url.pathname==='/v1/events'&&request.method==='POST')return recordEvent(request,env,origin);
+  if(url.pathname==='/v1/xen/conversation'&&request.method==='POST')return xenConversation(request,env,origin);
   if(url.pathname==='/v1/admin/invites'&&request.method==='POST')return !origin?json({error:'origin_not_allowed'},403):isAdmin(request,env)?createInvite(request,env,origin):json({error:'unauthorized'},401,cors(origin));
   if(url.pathname==='/v1/admin/report'&&request.method==='GET')return !origin?json({error:'origin_not_allowed'},403):isAdmin(request,env)?report(env,origin):json({error:'unauthorized'},401,cors(origin));
   return json({error:'not_found'},404);
