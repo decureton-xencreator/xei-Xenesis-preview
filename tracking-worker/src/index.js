@@ -1,4 +1,3 @@
-// live test marker
 const EVENT_TYPES=new Set(['premiere_started','path_selected','premiere_completed','second_appointment_continued']);
 const PATHS=new Set(['bdc','company','compare']);
 const AUDIENCES=new Set(['ed','kim','ahmer']);
