@@ -19,3 +19,14 @@
 @keyframes edDataTear{0%,18%{opacity:0;clip-path:inset(8% 0 82% 0);transform:translateX(-5%)}19%,42%{opacity:.75;clip-path:inset(34% 0 52% 0);transform:translateX(5%)}43%,68%{opacity:.45;clip-path:inset(67% 0 21% 0);transform:translateX(-3%)}69%,100%{opacity:0}}
 @media(max-height:760px){.scene.landing h1{font-size:clamp(38px,7.6vh,56px)!important}.scene.landing p{font-size:14px!important}.scene.landing .landing-action{min-height:52px!important}}
 @media(prefers-reduced-motion:reduce){.arrival-enter:after,.landing-action:after,footer .primary:after{animation:none!important}.xcm.entering .xcm-threshold,.xcm.entering .xcm-threshold:before,.xcm.entering .xcm-threshold:after{animation:none!important}}
+/* Replay threshold content only when Ed opens the pitch; never consume it at page load. */
+.xcm.entering .xcm-threshold-signal{opacity:0!important;animation:edThresholdSignal .58s .14s steps(2,end) forwards!important}
+.xcm.entering .xcm-threshold p{opacity:0!important;animation:edThresholdCopy .45s .62s steps(2,end) forwards!important}
+.xcm.entering .xcm-threshold h2{opacity:0!important;transform:translateY(10px)!important;animation:edThresholdTitle .62s .94s cubic-bezier(.2,.75,.2,1) forwards!important}
+.xcm.entering .xcm-threshold small{opacity:0!important;animation:edThresholdCopy .45s 1.56s steps(2,end) forwards!important}
+@keyframes edThresholdSignal{0%{opacity:0;transform:translateX(-12px) skewX(8deg)}45%{opacity:1;transform:translateX(8px) skewX(-5deg)}70%{opacity:.55;transform:translateX(-3px)}100%{opacity:1;transform:none}}
+@keyframes edThresholdCopy{0%{opacity:0;transform:translateX(-8px);letter-spacing:.34em}45%{opacity:.4;transform:translateX(6px)}100%{opacity:1;transform:none}}
+@keyframes edThresholdTitle{0%{opacity:0;transform:translate(12px,10px);filter:blur(5px)}40%{opacity:.55;transform:translate(-7px,5px);filter:blur(1px)}100%{opacity:1;transform:none;filter:none}}
+@media(prefers-reduced-motion:reduce){
+ .xcm.entering .xcm-threshold-signal,.xcm.entering .xcm-threshold p,.xcm.entering .xcm-threshold h2,.xcm.entering .xcm-threshold small{opacity:1!important;transform:none!important;filter:none!important}
+}
