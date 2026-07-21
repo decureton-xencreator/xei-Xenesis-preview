@@ -33,6 +33,7 @@ const required=[
  ,'src/executive-arrival-v1.css'
  ,'src/executive-arrival-v1.js'
  ,'src/xps-diamond-publication-lock-v1.css'
+ ,'src/xcm-portrait-v1.css'
  ,'executive-rollout-kit.html'
  ,'governance/AM-002-BRAND-INTEGRITY.json'
  ,'Reports/SWS-AM002-DIAMOND-PUBLICATION-PASS-2026-07-20.md'
@@ -45,6 +46,7 @@ for(const file of required){
 }
 
 const html=fs.readFileSync('index.html','utf8');
+const pitchPortrait=fs.readFileSync('src/xcm-portrait-v1.css','utf8');
 const runtime=fs.readFileSync('src/ed-premiere-clean-v1.js','utf8');
 const finish=fs.readFileSync('src/xfs-xen-centric-finish-v1.js','utf8');
 const solutions=fs.readFileSync('solutions.html','utf8');
@@ -155,6 +157,9 @@ for(const term of [
 ])if(!css.includes(term))throw new Error(`XPS visual gate missing: ${term}`);
 
 for(const term of ['XMP-M4 PRESENTATION KIT INHERITANCE','height:100dvh','grid-template-rows:auto minmax(0,1fr) auto','content before chrome','@media(min-width:900px)','@media(max-width:899px)','@media(max-width:620px)','focus-visible','prefers-reduced-motion'])if(!css.includes(term))throw new Error(`XMP presentation standard missing: ${term}`);
+
+if(!html.includes('src/xcm-portrait-v1.css?v=1'))throw new Error('Portrait pitch composition is not loaded after the canonical deck');
+for(const term of ['orientation:portrait','grid-template-rows:auto minmax(0,1fr)','safe-area-inset-bottom','.xcm-compare article','.xcm-distinction>article','.xcm-env-grid article','max-height:700px'])if(!pitchPortrait.includes(term))throw new Error(`Portrait pitch protection missing: ${term}`);
 
 console.log('PASS XPS mobile and accessibility surface');
 console.log('PASS Diamond centered geometry and finish-mode illumination');
