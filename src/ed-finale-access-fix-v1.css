@@ -23,8 +23,11 @@ body[data-scene="8"] .finale>.director-narration{display:none!important}
 .xcm-compare .xen-layer span{font-size:14px!important;color:#d8f8e9!important}
 
 /* Pitch visual corrections: upright X and a presentation-scale environment graphic. */
-.xcm-presence-orbit b{font-size:0!important;transform:rotate(45deg)!important}
-.xcm-presence-orbit b:after{content:"X";display:block;font-size:18px;font-weight:900;line-height:1;color:#effcff;transform:rotate(-45deg)!important}
+.xcm-presence-orbit b{font-size:0!important;display:grid!important;place-items:center!important;transform:rotate(45deg)!important}
+.xcm-presence-orbit b:after{content:"X";position:absolute;inset:0;display:grid!important;place-items:center!important;font-size:18px;font-weight:900;line-height:1;color:#effcff;transform:rotate(-45deg)!important;transform-origin:center}
+.xcm-distinction{width:min(88%,760px)!important;margin-inline:auto!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;justify-self:center!important}
+.xcm-distinction>article{min-width:0!important}
+.xcm-distinction strong{overflow-wrap:anywhere}
 .xcm-env-grid{width:96%!important;gap:14px!important}
 .xcm-env-grid article{min-height:88px!important;padding:18px 20px!important;gap:8px!important;align-content:center!important}
 .xcm-env-grid article.wide{min-height:82px!important}
