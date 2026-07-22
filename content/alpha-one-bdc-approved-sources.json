@@ -1,0 +1,41 @@
+{
+  "manual": "Checkmate Holding Group BDC Living Manual",
+  "truthState": "governed-demonstration-fixture",
+  "provenance": "demo",
+  "truthNotice": "Non-production Checkmate BDC demonstration fixture. Not evidence of organizational approval or deployment.",
+  "sources": [
+    {
+      "id": "BDC-APPT-001",
+      "tenantId": "checkmate-demo",
+      "provenance": "demo",
+      "version": "1.0",
+      "status": "approved",
+      "language": "en",
+      "title": "Appointment readiness",
+      "aliases": ["appointment", "schedule", "ready"],
+      "text": "Confirm the customer's project, decision-makers, budget context, and timeframe before finalizing the appointment.",
+      "translations": {
+        "es": "Confirme el proyecto del cliente, las personas que toman decisiones, el contexto del presupuesto y el plazo antes de finalizar la cita."
+      }
+    },
+    {
+      "id": "BDC-OBJ-001",
+      "tenantId": "checkmate-demo",
+      "provenance": "demo",
+      "version": "1.0",
+      "status": "approved",
+      "language": "en",
+      "title": "I'm just looking",
+      "aliases": ["just looking", "not ready", "objection"],
+      "text": "Reduce pressure, acknowledge the customer's research stage, ask one useful discovery question, and earn permission for the next step.",
+      "translations": {
+        "es": "Reduzca la presión, reconozca que el cliente está investigando, haga una pregunta útil de descubrimiento y obtenga permiso para el próximo paso."
+      }
+    }
+  ],
+  "practiceRubric": [
+    {"id": "acknowledge", "weight": 30, "keywords": ["understand"]},
+    {"id": "discover", "weight": 40, "keywords": ["project", "timeframe"]},
+    {"id": "next-step", "weight": 30, "keywords": ["next", "step"]}
+  ]
+}

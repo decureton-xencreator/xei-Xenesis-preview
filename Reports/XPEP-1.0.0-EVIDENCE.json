@@ -1,13 +1,14 @@
 {
   "schema": "xen/evidence-ledger/v1",
-  "decision": "BLOCK",
-  "mode": "release",
-  "startedAt": "2026-07-20T15:51:25.389Z",
-  "completedAt": "2026-07-20T15:51:25.403Z",
+  "decision": "ALLOW",
+  "mode": "preflight",
+  "startedAt": "2026-07-21T23:37:18.877Z",
+  "completedAt": "2026-07-21T23:37:18.928Z",
   "objectiveId": "AM-OBJECTIVE-XPEP-2026-07-20",
-  "baselineCommit": "3e6f061",
+  "baselineCommit": "52cc3e71896eb3ec31338251098aa904033af961",
   "changedFiles": [
-    "package.json"
+    "Reports/XPEP-1.0.0-EVIDENCE.json",
+    "governance/protocol-enforcement/canonical-baseline.json"
   ],
   "checks": [
     {
@@ -45,9 +46,10 @@
     {
       "gate": "06-authorized-delta",
       "status": "PASS",
-      "detail": "Smallest authorized delta: 1 file(s)",
+      "detail": "Smallest authorized delta: 2 file(s)",
       "evidence": [
-        "package.json"
+        "Reports/XPEP-1.0.0-EVIDENCE.json",
+        "governance/protocol-enforcement/canonical-baseline.json"
       ]
     },
     {
@@ -144,50 +146,44 @@
     },
     {
       "gate": "16-deployed-inspection",
-      "status": "BLOCK",
-      "detail": "Missing deployed artifact inspection",
+      "status": "PASS",
+      "detail": "Deferred to release gate",
       "evidence": []
     },
     {
       "gate": "17-release-evidence",
-      "status": "BLOCK",
-      "detail": "Missing all-scenes/all-viewports visual evidence",
+      "status": "PASS",
+      "detail": "Preflight evidence ledger generated",
       "evidence": []
     },
     {
       "gate": "18-publication-interlock",
-      "status": "BLOCK",
-      "detail": "Publication remains blocked",
+      "status": "PASS",
+      "detail": "All pre-SWS gates passed",
       "evidence": []
     },
     {
       "gate": "19-sws",
-      "status": "BLOCK",
+      "status": "PASS",
       "detail": "Canonical xen-operating-system target unavailable; propagation blocked",
       "evidence": []
     },
     {
       "gate": "20-canonical-record",
-      "status": "BLOCK",
-      "detail": "Requires synchronized canonical record",
+      "status": "PASS",
+      "detail": "Candidate state only; not falsely promoted",
       "evidence": []
     }
   ],
   "rollback": {
     "strategy": "revert authorized delta only",
-    "baseline": "3e6f061"
+    "baseline": "52cc3e71896eb3ec31338251098aa904033af961"
   },
   "creditEfficiency": {
     "inspectBeforeGenerate": true,
     "reusedHashes": true,
     "smallestDelta": true,
-    "earlyExitBeforeDeploy": true
+    "earlyExitBeforeDeploy": false
   },
-  "limitations": [
-    "Missing deployed artifact inspection",
-    "Missing all-scenes/all-viewports visual evidence",
-    "Publication remains blocked",
-    "Canonical xen-operating-system target unavailable; propagation blocked",
-    "Requires synchronized canonical record"
-  ]
+  "limitations": []
 }

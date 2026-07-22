@@ -4,12 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/validate.mjs",
+    "test": "node tests/validate.mjs && node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs tests/protocol-enforcement.test.mjs",
     "validate": "node tests/validate.mjs",
     "certify": "node scripts/protocol-warden.mjs release",
     "warden": "node scripts/protocol-warden.mjs preflight",
     "warden:release": "node scripts/protocol-warden.mjs release",
-    "test:protocol-enforcement": "node --test tests/protocol-enforcement.test.mjs"
+    "test:protocol-enforcement": "node --test tests/protocol-enforcement.test.mjs",
+    "test:alpha-one": "node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs"
   },
   "engines": {
     "node": ">=20"
