@@ -1,0 +1,34 @@
+{
+  "receipt_id": "XEN-CANONICAL-BUILD-STATE-RECEIPT-2026-07-21",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "canonical_branch": "main",
+  "canonical_certification_commit": "31988acec90353434e42ebb611b02ee0cf6c4391",
+  "canonical_build_commit": "2fc04b06da36a95ee3f03f10925a139c8577cca2",
+  "repository_version": "1.62.1",
+  "alpha_one_standard": "XA1-002",
+  "truth_state": "DERIVATIVE_RECEIPT_RECORDED",
+  "inherited_controls": [
+    "CPF-006-v2.0",
+    "AM-002-v1.3",
+    "XGW-001-v1.2.0",
+    "XA1-002-v1.0.0"
+  ],
+  "canonical_validation": {
+    "pr": 152,
+    "warden_run": 475,
+    "warden": "success",
+    "xsy_gold_master_run": 5,
+    "xsy_gold_master": "success"
+  },
+  "truth_boundary": {
+    "repository_sync": true,
+    "deployment": false,
+    "production_certification": false,
+    "credentials_present": false,
+    "external_environment_evidence": false
+  },
+  "recorded_at": "2026-07-21T22:35:00-04:00",
+  "repository": "decureton-xencreator/xei-Xenesis-preview",
+  "role": "DERIVATIVE_PREVIEW",
+  "derivative_head_observed_before_receipt": "7d412067d5da9403f68203b4dcdbec269477ec04"
+}
