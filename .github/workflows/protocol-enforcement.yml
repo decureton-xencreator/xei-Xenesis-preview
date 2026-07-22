@@ -1,0 +1,39 @@
+name: Xen Protocol Enforcement
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+jobs:
+  fail-closed-warden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Protocol enforcement failure suite
+        run: npm run test:protocol-enforcement
+      - name: Existing product validation
+        run: npm test
+      - name: Resolve candidate delta
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --name-only "${{ github.event.pull_request.base.sha }}...HEAD" > /tmp/xen-changed-files
+          else
+            git diff --name-only HEAD^ HEAD > /tmp/xen-changed-files
+          fi
+      - name: Warden preflight and evidence ledger
+        run: node scripts/protocol-warden.mjs preflight --changed-file-list=/tmp/xen-changed-files
+      - name: Preserve evidence ledger
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: protocol-evidence-ledger
+          path: Reports/XPEP-1.0.0-EVIDENCE.json

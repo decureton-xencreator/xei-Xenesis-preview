@@ -1,0 +1,193 @@
+{
+  "schema": "xen/evidence-ledger/v1",
+  "decision": "BLOCK",
+  "mode": "release",
+  "startedAt": "2026-07-20T15:51:25.389Z",
+  "completedAt": "2026-07-20T15:51:25.403Z",
+  "objectiveId": "AM-OBJECTIVE-XPEP-2026-07-20",
+  "baselineCommit": "3e6f061",
+  "changedFiles": [
+    "package.json"
+  ],
+  "checks": [
+    {
+      "gate": "01-command-capture",
+      "status": "PASS",
+      "detail": "Objective contract loaded",
+      "evidence": [
+        "governance/protocol-enforcement/objective-contract.json"
+      ]
+    },
+    {
+      "gate": "02-objective-recovery",
+      "status": "PASS",
+      "detail": "Original objective, boundaries, and acceptance criteria resolved without displacement",
+      "evidence": []
+    },
+    {
+      "gate": "03-canonical-baseline",
+      "status": "PASS",
+      "detail": "Authoritative production baseline resolved",
+      "evidence": []
+    },
+    {
+      "gate": "04-protocol-applicability",
+      "status": "PASS",
+      "detail": "All material-action protocols are mandatory",
+      "evidence": []
+    },
+    {
+      "gate": "05-protocol-precedence",
+      "status": "PASS",
+      "detail": "Precedence is deterministic and conflicts fail closed",
+      "evidence": []
+    },
+    {
+      "gate": "06-authorized-delta",
+      "status": "PASS",
+      "detail": "Smallest authorized delta: 1 file(s)",
+      "evidence": [
+        "package.json"
+      ]
+    },
+    {
+      "gate": "07-dependency-prediction",
+      "status": "PASS",
+      "detail": "Affected records mapped and safe propagation rules enforced",
+      "evidence": []
+    },
+    {
+      "gate": "08-isolated-application",
+      "status": "PASS",
+      "detail": "Protected Ed runtime and assets unchanged",
+      "evidence": []
+    },
+    {
+      "gate": "09-baseline:index.html",
+      "status": "PASS",
+      "detail": "Baseline hash index.html",
+      "evidence": [
+        "index.html"
+      ]
+    },
+    {
+      "gate": "09-baseline:src/ed-premiere-clean-v1.css",
+      "status": "PASS",
+      "detail": "Baseline hash src/ed-premiere-clean-v1.css",
+      "evidence": [
+        "src/ed-premiere-clean-v1.css"
+      ]
+    },
+    {
+      "gate": "09-baseline:src/ed-premiere-clean-v1.js",
+      "status": "PASS",
+      "detail": "Baseline hash src/ed-premiere-clean-v1.js",
+      "evidence": [
+        "src/ed-premiere-clean-v1.js"
+      ]
+    },
+    {
+      "gate": "10-runtime-assets",
+      "status": "PASS",
+      "detail": "Required runtime assets are active",
+      "evidence": []
+    },
+    {
+      "gate": "11-full-experience",
+      "status": "PASS",
+      "detail": "Inspected 9/9 scenes; release additionally requires rendered evidence",
+      "evidence": []
+    },
+    {
+      "gate": "12-responsive-contract",
+      "status": "PASS",
+      "detail": "Phone, tablet, and desktop contracts declared",
+      "evidence": []
+    },
+    {
+      "gate": "13-interaction-contract",
+      "status": "PASS",
+      "detail": "All primary interaction paths exist",
+      "evidence": []
+    },
+    {
+      "gate": "14-brand-source",
+      "status": "PASS",
+      "detail": "Protected Checkmate source hash verified",
+      "evidence": [
+        "assets/checkmate-executive-mark.svg"
+      ]
+    },
+    {
+      "gate": "14-brand-derivatives",
+      "status": "PASS",
+      "detail": "Every derivative is attributable (none currently authorized)",
+      "evidence": []
+    },
+    {
+      "gate": "14-voice-identity",
+      "status": "PASS",
+      "detail": "Audition, model, voice, instructions, and contract agree",
+      "evidence": []
+    },
+    {
+      "gate": "14-voice-routes",
+      "status": "PASS",
+      "detail": "Verified 31 unique clips including all endings; no browser speech fallback",
+      "evidence": []
+    },
+    {
+      "gate": "15-baseline-comparison",
+      "status": "PASS",
+      "detail": "Candidate compared to protected baseline",
+      "evidence": []
+    },
+    {
+      "gate": "16-deployed-inspection",
+      "status": "BLOCK",
+      "detail": "Missing deployed artifact inspection",
+      "evidence": []
+    },
+    {
+      "gate": "17-release-evidence",
+      "status": "BLOCK",
+      "detail": "Missing all-scenes/all-viewports visual evidence",
+      "evidence": []
+    },
+    {
+      "gate": "18-publication-interlock",
+      "status": "BLOCK",
+      "detail": "Publication remains blocked",
+      "evidence": []
+    },
+    {
+      "gate": "19-sws",
+      "status": "BLOCK",
+      "detail": "Canonical xen-operating-system target unavailable; propagation blocked",
+      "evidence": []
+    },
+    {
+      "gate": "20-canonical-record",
+      "status": "BLOCK",
+      "detail": "Requires synchronized canonical record",
+      "evidence": []
+    }
+  ],
+  "rollback": {
+    "strategy": "revert authorized delta only",
+    "baseline": "3e6f061"
+  },
+  "creditEfficiency": {
+    "inspectBeforeGenerate": true,
+    "reusedHashes": true,
+    "smallestDelta": true,
+    "earlyExitBeforeDeploy": true
+  },
+  "limitations": [
+    "Missing deployed artifact inspection",
+    "Missing all-scenes/all-viewports visual evidence",
+    "Publication remains blocked",
+    "Canonical xen-operating-system target unavailable; propagation blocked",
+    "Requires synchronized canonical record"
+  ]
+}

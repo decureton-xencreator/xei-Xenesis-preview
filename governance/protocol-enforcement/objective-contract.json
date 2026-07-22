@@ -1,0 +1,12 @@
+{
+  "schema": "xen/am-objective-contract/v1",
+  "id": "AM-OBJECTIVE-XPEP-2026-07-20",
+  "status": "LOCKED_FOR_IMPLEMENTATION",
+  "originalObjective": "Implement one mandatory fail-closed AM to XPS to Warden to AM-002 to XVS-001 to CPF-006 to SWS execution chain.",
+  "primaryObjective": "Prevent material Xen actions from proceeding without complete protocol execution and evidence.",
+  "requiredDeliverables": ["registry", "resolvers", "objective contract", "baseline and delta control", "decision interceptor", "experience, brand, and voice wardens", "source controller", "dependency synchronization", "evidence ledger", "drift and conflict detection", "publication interlock", "rollback", "credit efficiency", "CI gate", "operator documentation", "failure tests"],
+  "prohibitedChanges": ["redesign Ed presentation", "change Checkmate logo", "change approved voice assets", "publish unrelated features", "weaken existing protections", "silently resolve canonical conflicts"],
+  "acceptanceCriteria": ["all mandatory gates execute", "deliberate violations block", "incomplete evidence blocks release", "canonical changes are baseline plus authorized delta", "SWS cannot propagate an unapproved state"],
+  "authorizationBoundary": {"allowed": ["governance", "validation", "tests", "CI", "operator documentation"], "denied": ["Ed presentation runtime or styling", "protected logo and voice binaries", "deployment"]},
+  "unresolvedDependencies": ["canonical xen-operating-system repository unavailable in current workspace", "deployed artifact inspection requires a release candidate URL", "physical Ed monitor and Darren phone acceptance are external"]
+}

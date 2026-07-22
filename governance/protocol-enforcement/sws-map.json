@@ -1,0 +1,9 @@
+{
+  "schema": "xen/sws-dependency-map/v1",
+  "status": "PENDING_EXTERNAL_CANONICAL_SYNC",
+  "upstream": [{"repository":"decureton-xencreator/xen-operating-system","required":true,"available":false}],
+  "localRecords": ["protocol-registry", "objective-contract", "canonical-baseline", "authorized-delta", "brand-integrity", "voice-contract", "experience-contract", "evidence-ledger", "operator-documentation", "ci-gate"],
+  "propagationRule": "ONLY_AFTER_ALL_WARDEN_GATES_PASS",
+  "protectedSourceRule": "NEVER_OVERWRITE_WITH_UNAUTHORIZED_INTERPRETATION",
+  "staleDependencyPolicy": "BLOCK_RELEASE"
+}

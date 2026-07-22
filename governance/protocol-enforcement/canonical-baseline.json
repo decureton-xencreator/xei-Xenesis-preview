@@ -1,0 +1,14 @@
+{
+  "schema": "xen/cpf-006-baseline/v1",
+  "repository": "decureton-xencreator/xei-genesis-preview",
+  "baselineCommit": "3e6f061",
+  "authority": "CANONICAL-AUTHORITY.md",
+  "status": "PRODUCTION_BASELINE_LOCKED",
+  "protectedFiles": {
+    "index.html": "ce266c977d72b8db5171b44c027eb83235461e9d55e52f21be259979a1db9ef8",
+    "src/ed-premiere-clean-v1.css": "828c37924115639964c1b86bd28a0ee7cdb490d04310ac367675a48fdae305bf",
+    "src/ed-premiere-clean-v1.js": "593854d98bf0e4abd2dc4e270f5a1c4ff43c0d333df92f7ec01468af9db9c836"
+  },
+  "changeModel": "CANONICAL_BASELINE_PLUS_EXPLICITLY_AUTHORIZED_DELTA",
+  "uncertaintyPolicy": "BLOCK"
+}

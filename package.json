@@ -6,7 +6,10 @@
   "scripts": {
     "test": "node tests/validate.mjs",
     "validate": "node tests/validate.mjs",
-    "certify": "node tests/validate.mjs"
+    "certify": "node scripts/protocol-warden.mjs release",
+    "warden": "node scripts/protocol-warden.mjs preflight",
+    "warden:release": "node scripts/protocol-warden.mjs release",
+    "test:protocol-enforcement": "node --test tests/protocol-enforcement.test.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -1,0 +1,12 @@
+{
+  "schema": "xen/xps-experience-contract/v1",
+  "status": "MANDATORY",
+  "entry": "index.html",
+  "requiredStylesheet": "src/ed-premiere-clean-v1.css",
+  "sceneSelector": "class=\"scene",
+  "expectedScenes": 9,
+  "viewports": [{"name":"phone","width":390,"height":844},{"name":"tablet","width":820,"height":1180},{"name":"desktop","width":1440,"height":900}],
+  "requiredChecks": ["geometry", "hierarchy", "composition", "centering", "typography", "overflow", "motion", "interaction", "progressive-disclosure", "accessibility", "continuity", "living-behavior", "executive-polish", "complete-visual-sentences"],
+  "forbiddenControlStyles": ["background:#fff", "background:white"],
+  "releaseEvidenceRequired": ["all-scenes-all-viewports", "interaction-paths", "deployed-artifact"]
+}

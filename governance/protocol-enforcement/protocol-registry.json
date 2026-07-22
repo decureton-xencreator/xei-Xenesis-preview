@@ -1,0 +1,17 @@
+{
+  "schema": "xen/protocol-registry/v1",
+  "status": "ACTIVE_FAIL_CLOSED",
+  "executionOrder": ["AM", "XPS", "WARDEN", "AM-002", "XVS-001", "CPF-006", "SWS"],
+  "protocols": {
+    "AM": {"owner": "objective-contract", "required": true, "precedes": ["XPS", "WARDEN"]},
+    "XPS": {"owner": "experience-validation", "required": true, "precedes": ["WARDEN"]},
+    "WARDEN": {"owner": "scripts/protocol-warden.mjs", "required": true, "precedes": ["AM-002", "XVS-001", "CPF-006", "SWS"]},
+    "AM-002": {"owner": "brand-integrity", "required": true, "precedes": ["SWS"]},
+    "XVS-001": {"owner": "voice-integrity", "required": true, "precedes": ["SWS"]},
+    "CPF-006": {"owner": "canonical-source", "required": true, "precedes": ["SWS"]},
+    "SWS": {"owner": "dependency-sync", "required": true, "precedes": []}
+  },
+  "precedence": ["explicit-user-authorization", "objective-contract", "protected-assets-and-voice", "canonical-baseline", "authorized-delta", "presentation-standard", "synchronization"],
+  "conflictPolicy": "BLOCK_AND_RESOLVE",
+  "unknownApplicabilityPolicy": "REQUIRED"
+}

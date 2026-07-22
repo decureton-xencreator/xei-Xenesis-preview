@@ -1,0 +1,9 @@
+{
+  "schema": "xen/authorized-delta/v1",
+  "id": "XPEP-1.0.0",
+  "authorizedBy": "user-command-2026-07-20",
+  "purpose": "Operationalize unified protocol enforcement without modifying the Ed presentation.",
+  "allowedPrefixes": ["governance/protocol-enforcement/", "scripts/protocol-warden.mjs", "tests/protocol-enforcement.test.mjs", ".github/workflows/protocol-enforcement.yml", "docs/PROTOCOL-ENFORCEMENT-OPERATOR.md", "Reports/XPEP-1.0.0-EVIDENCE.json", "package.json"],
+  "protectedPrefixes": ["index.html", "src/ed-premiere-clean-v1", "assets/checkmate-executive-mark.svg", "assets/narration/"],
+  "status": "AUTHORIZED"
+}

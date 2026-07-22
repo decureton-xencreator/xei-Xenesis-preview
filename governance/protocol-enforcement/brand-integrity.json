@@ -1,0 +1,13 @@
+{
+  "schema": "xen/am-002-brand-integrity/v1",
+  "status": "LOCKED",
+  "assets": [{
+    "id": "checkmate-executive-mark",
+    "source": "assets/checkmate-executive-mark.svg",
+    "sha256": "92d21653f30837770f39ef046732abb61bd74250a63255deb391c1fb3a231171",
+    "authorizedTransformations": [],
+    "derivatives": [],
+    "prohibited": ["redraw", "substitution", "recolor", "crop", "retype", "generated approximation"]
+  }],
+  "unknownDerivativePolicy": "BLOCK"
+}
