@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "SWS-CANONICAL-STABILIZATION-2026-07-21",
+  "repository": "decureton-xencreator/xei-Xenesis-preview",
+  "repository_role": "Xenesis preview",
+  "repository_base_commit": "7d412067d5da9403f68203b4dcdbec269477ec04",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "canonical_commit": "31988acec90353434e42ebb611b02ee0cf6c4391",
+  "canonical_prs": [
+    152,
+    153
+  ],
+  "inherited_controls": {
+    "AM_002": "1.3",
+    "XGW_001": "1.2.0_REPOSITORY_CERTIFIED",
+    "XBT_001": "1.2",
+    "build_state": "REPOSITORY_CERTIFIED"
+  },
+  "recognized_truth": {
+    "XRE": "1.0.0rc1_REPOSITORY_CERTIFIED_PRODUCTION_EXTERNAL",
+    "XPA": "ACTIVATION_READY_EXTERNAL_EVIDENCE_PENDING",
+    "XID_002": "V1.2_REPOSITORY_CERTIFIED_XID_C3_PENDING",
+    "XAT": "SERIES_COMPLETE_XAT_DP_004_FILL_READY_EXTERNAL_GATED",
+    "XA1_002": "MANDATORY_ALPHA_1_ACTIVATION_STANDARD",
+    "XAO": "XEN_AUTONOMOUS_ORGANIZATION_RESERVED",
+    "XSY": "REPOSITORY_GOLD_MASTER_EXTERNAL_ACCEPTANCE_PENDING"
+  },
+  "local_runtime_change": false,
+  "deployment_performed": false,
+  "truth_state": "INHERITANCE_RECEIPT_CANDIDATE",
+  "validation": [
+    "canonical commit fixed and explicit",
+    "repository identity and role explicit",
+    "no runtime or deployment claim",
+    "external evidence gates preserved"
+  ]
+}

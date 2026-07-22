@@ -1,9 +1,28 @@
 {
   "schema": "xen/authorized-delta/v1",
   "id": "XPEP-1.0.0",
-  "authorizedBy": "user-command-continue-to-completion-2026-07-21",
-  "purpose": "Continue Xen Alpha One through the governed Living Manual operating-backbone gate without modifying the protected Ed presentation.",
-  "allowedPrefixes": ["governance/protocol-enforcement/", "scripts/protocol-warden.mjs", "tests/protocol-enforcement.test.mjs", ".github/workflows/protocol-enforcement.yml", "docs/PROTOCOL-ENFORCEMENT-OPERATOR.md", "Reports/XPEP-1.0.0-EVIDENCE.json", "package.json", "content/alpha-one-", "docs/XAO-", "src/alpha-one/", "src/series.js", "tests/alpha-one-"],
-  "protectedPrefixes": ["index.html", "src/ed-premiere-clean-v1", "assets/checkmate-executive-mark.svg", "assets/narration/"],
+  "authorizedBy": "user-preapproval-complete-build-2026-07-21",
+  "purpose": "Preserve the protected Xenesis product while synchronizing evidence-bound canonical governance receipts.",
+  "allowedPrefixes": [
+    "governance/protocol-enforcement/",
+    "scripts/protocol-warden.mjs",
+    "tests/protocol-enforcement.test.mjs",
+    ".github/workflows/protocol-enforcement.yml",
+    "docs/PROTOCOL-ENFORCEMENT-OPERATOR.md",
+    "Reports/XPEP-1.0.0-EVIDENCE.json",
+    "package.json",
+    "content/alpha-one-",
+    "docs/XAO-",
+    "src/alpha-one/",
+    "src/series.js",
+    "tests/alpha-one-",
+    "governance/sync/"
+  ],
+  "protectedPrefixes": [
+    "index.html",
+    "src/ed-premiere-clean-v1",
+    "assets/checkmate-executive-mark.svg",
+    "assets/narration/"
+  ],
   "status": "AUTHORIZED"
 }
