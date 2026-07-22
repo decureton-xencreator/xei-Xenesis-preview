@@ -1,0 +1,11 @@
+{
+  "record_id": "XPP-1.0-ADOPTION",
+  "product_id": "xenesis",
+  "status": "INHERITED_REPOSITORY_VERIFIED",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "canonical_commit": "e3a4f59fe74b6ca9b2ed2e88b4c093bf9a55cfe4",
+  "canonical_profile": "Runtime-Implementation/press-play/profiles/xenesis.json",
+  "authority": "AM-002 v1.3 / XPP-001-008 / XGW-001",
+  "local_state": "CANONICAL_PROFILE_REGISTERED_PRODUCT_DEPLOYMENT_EXTERNAL",
+  "truth_boundary": "This receipt inherits the universal contract; it does not claim credentials, environment activation, deployment, rollback, users, or production acceptance."
+}
