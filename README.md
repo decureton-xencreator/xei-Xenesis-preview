@@ -57,3 +57,8 @@ Canonical XER records:
 - `Foundation/XER/XER-CAPABILITY-REGISTRY.json`
 - `Foundation/XER/XER-FAMILY-DEPENDENCY-MAP.md`
 - `Reports/SWS-XER-FEDERATION-2026-07-19.json`
+
+
+## XCC-002 Repository-First Chat Synchronization
+
+This repository inherits XCC-002 v1.0.0 from `decureton-xencreator/xen-operating-system` at canonical commit `24edcef3883090ded6328b026ee63a6db38e6de1`. Xen/AI Build prompts must inspect current relevant repository state before deriving project answers; memory is continuity context, not implementation or runtime evidence. Shared-contract changes require federation inspection, unavailable synchronization fails closed, and raw chat content must not enter this public repository.

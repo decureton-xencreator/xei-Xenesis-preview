@@ -1,0 +1,20 @@
+{
+  "protocol_id": "XCC-002",
+  "version": "1.0.0",
+  "status": "INHERITED_ACTIVE",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "canonical_commit": "24edcef3883090ded6328b026ee63a6db38e6de1",
+  "consumer_repository": "decureton-xencreator/xei-Xenesis-preview",
+  "consumer_role": "Xenesis preview and executive experience runtime",
+  "behavior": {
+    "prompt_time_relevance_check": true,
+    "current_session_repository_probe": true,
+    "memory_is_not_runtime_evidence": true,
+    "shared_contract_requires_federation_scan": true,
+    "fail_closed_when_sync_unavailable": true
+  },
+  "privacy": {
+    "raw_chat_ingestion": false,
+    "approved_minimized_outcomes_only": true
+  }
+}
