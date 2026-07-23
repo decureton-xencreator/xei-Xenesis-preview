@@ -88,3 +88,12 @@ The earlier statement denying all remote deployment evidence is retained as the 
 - Recorded terminal provider results remain non-retryable even if dispatch telemetry is incomplete.
 - Strict TypeScript, the certified Xenesis shell gate, structure/secret scan, and 32 Continuum tests pass locally.
 - No staging deployment or Anthropic request is claimed by this local validation record.
+
+## Atomic multi-tenant admission validation — 2026-07-23
+
+- Migration `0006_atomic_mission_admission.sql` adds a durable, expiring admission ledger with one active reservation per mission.
+- Queue consumers must atomically reserve capacity before Workflow creation; the D1 insert rechecks both the four-mission and four-WMU limits at the write boundary.
+- A real local D1 race test launched 12 simultaneous admissions across 12 tenants. Exactly four reservations totaling four WMU succeeded; eight were denied.
+- Expired reservations are reclaimed before scheduling, failed Workflow dispatch releases its reservation, duplicate Queue receipts are idempotent, and Workflow execution fails closed without admission evidence.
+- Strict TypeScript, the certified Xenesis shell gate, structure/secret scan, all 34 Continuum tests, local application of all six migrations, and the exact staging-environment dry run pass.
+- This closes the admission-race implementation gate locally. It does not claim a remote load benchmark, staging deployment, higher Anthropic concurrency, or a new provider invocation.

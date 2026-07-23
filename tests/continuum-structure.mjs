@@ -11,6 +11,7 @@ const required = [
   "migrations/0003_completion_evidence_backfill.sql",
   "migrations/0004_canonical_evidence_backfill.sql",
   "migrations/0005_global_provider_lock.sql",
+  "migrations/0006_atomic_mission_admission.sql",
   "schemas/mission.schema.json",
   "schemas/event-envelope.schema.json",
   "src/index.ts",
@@ -37,7 +38,10 @@ assert.ok(manifest.authority.futureControls.includes("XRI-006"), "XRI-006 contin
 
 const migration = fs.readFileSync(path.join(runtimeRoot, "migrations/0002_canonical_mission_contract.sql"), "utf8");
 const globalLockMigration = fs.readFileSync(path.join(runtimeRoot, "migrations/0005_global_provider_lock.sql"), "utf8");
+const admissionMigration = fs.readFileSync(path.join(runtimeRoot, "migrations/0006_atomic_mission_admission.sql"), "utf8");
 assert.match(globalLockMigration, /ON resource_locks\(resource_type, resource_key\) WHERE released_at IS NULL/, "Provider lock must be globally unique while active");
+assert.match(admissionMigration, /CREATE TABLE mission_admissions/, "Atomic mission admission ledger must exist");
+assert.match(admissionMigration, /ON mission_admissions\(mission_id\) WHERE released_at IS NULL/, "A mission may hold only one active admission");
 for (const table of [
   "users", "identities", "workspaces", "conversations", "mission_dependencies",
   "mission_context_references", "mission_events", "mission_checkpoints", "mission_approvals",

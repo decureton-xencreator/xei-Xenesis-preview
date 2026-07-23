@@ -13,7 +13,8 @@
     "certify": "npm run validate",
     "cf:typegen": "wrangler types --config continuum/wrangler.jsonc continuum/worker-configuration.d.ts",
     "cf:migrate:local": "wrangler d1 migrations apply xen-continuum-local --local --config continuum/wrangler.jsonc",
-    "cf:dry-run": "wrangler deploy --dry-run --config continuum/wrangler.jsonc"
+    "cf:dry-run": "wrangler deploy --dry-run --config continuum/wrangler.jsonc",
+    "cf:dry-run:staging": "wrangler deploy --dry-run --env staging --config continuum/wrangler.jsonc"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.18.6",

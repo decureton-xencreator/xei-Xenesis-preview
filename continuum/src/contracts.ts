@@ -94,6 +94,8 @@ export interface DispatchMessage {
 
 export interface MissionWorkflowParams extends DispatchMessage {
   runtimeMode?: string;
+  admissionId?: string;
+  admissionToken?: string;
 }
 
 export interface ApiErrorBody {

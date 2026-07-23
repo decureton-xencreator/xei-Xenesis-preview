@@ -39,6 +39,9 @@ async function sha256(value: string): Promise<string> {
 export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkflowParams> {
   override async run(event: WorkflowEvent<MissionWorkflowParams>, step: WorkflowStep): Promise<void> {
     const params = event.payload;
+    if (!params.admissionId || !params.admissionToken) {
+      throw new Error("Atomic mission admission evidence is required.");
+    }
     const stub = this.env.CONTINUUM_MISSION.get(
       this.env.CONTINUUM_MISSION.idFromName(`${params.tenantId}:${params.missionId}`),
     );
@@ -99,10 +102,22 @@ export class MissionWorkflow extends WorkflowEntrypoint<RuntimeEnv, MissionWorkf
     });
     let running;
     try {
-      running = await step.do("mark-running", async () => stub.transition({
-        tenantId: params.tenantId, actor, target: "running", expectedVersion: params.expectedVersion,
-        idempotencyKey: `${params.correlationId}:running`, reason: "Governed Workflow execution started.",
-      }));
+      running = await step.do("mark-running", async () => {
+        const next = await stub.transition({
+          tenantId: params.tenantId, actor, target: "running", expectedVersion: params.expectedVersion,
+          idempotencyKey: `${params.correlationId}:running`, reason: "Governed Workflow execution started.",
+        });
+        const now = new Date().toISOString();
+        await this.env.CONTINUUM_DB.batch([
+          this.env.CONTINUUM_DB.prepare(
+            "UPDATE missions SET state = ?, version = ?, updated_at = ? WHERE id = ? AND tenant_id = ?",
+          ).bind(next.state, next.version, next.updatedAt, next.id, next.tenantId),
+          this.env.CONTINUUM_DB.prepare(
+            "UPDATE mission_admissions SET released_at = ? WHERE id = ? AND admission_token = ? AND released_at IS NULL",
+          ).bind(now, params.admissionId ?? "", params.admissionToken ?? ""),
+        ]);
+        return next;
+      });
     } catch (error) {
       await step.do("release-guards-after-start-failure", async () => releaseExecutionGuard(this.env.CONTINUUM_DB, guard));
       throw error;

@@ -22,6 +22,14 @@
 - Terminal provider results are also non-retryable. Only interruption proven to precede provider dispatch is classified retry-safe.
 - Continue with multi-tenant race/load measurement and server-backed Xenesis integration. This recovery unit does not expand the certified provider-concurrency envelope or authorize a new Claude call.
 
+## 2026-07-23 atomic admission milestone
+
+- Queue admission now requires a durable D1 reservation before Workflow creation.
+- The reservation write atomically rechecks the four-mission and four-WMU envelope, closing the prior read-then-dispatch race between simultaneous Queue consumers.
+- Twelve simultaneous local D1 claimants across twelve tenants produced exactly four admissions totaling four WMU.
+- Reservations expire after five minutes, are reclaimed before scheduling, release on dispatch failure, and convert to running mission state in the Workflow checkpoint.
+- Continue with remote staging migration/deployment and representative latency/load measurement. Anthropic remains globally locked to one request, and no provider call is needed for this gate.
+
 The production experience remains owned by the existing root index.html and its nine-scene client runtime. The Continuum module has no import, script tag, route, build step, or lifecycle dependency from that shell.
 
 ## Local continuation

@@ -4,7 +4,7 @@ import { RuntimeError, messageFrom } from "./errors";
 import { storeArtifact } from "./artifacts";
 import { MissionCoordinator } from "./durable/mission-coordinator";
 import { MissionWorkflow } from "./workflows/mission-workflow";
-import { missionIsAdmitted } from "./scheduler";
+import { releaseMissionAdmission, reserveMissionAdmission } from "./scheduler";
 
 export { MissionCoordinator, MissionWorkflow };
 
@@ -400,20 +400,26 @@ const worker: ExportedHandler<Env, DispatchMessage> = {
       const payload = message.body;
       try {
         assertExecutionAvailable(env);
-        if (!(await missionIsAdmitted(env.CONTINUUM_DB, payload.missionId))) {
+        const admission = await reserveMissionAdmission(env.CONTINUUM_DB, payload.missionId);
+        if (!admission) {
           message.retry({ delaySeconds: 5 });
           continue;
         }
-        await env.CONTINUUM_DB.prepare(
-          "INSERT INTO queue_receipts(id, tenant_id, mission_id, correlation_id, status, received_at) VALUES (?, ?, ?, ?, 'received', ?)",
-        )
-          .bind(message.id, payload.tenantId, payload.missionId, payload.correlationId, new Date().toISOString())
-          .run();
-        await env.CONTINUUM_WORKFLOW.create({
-          id: `${payload.missionId}-${payload.expectedVersion}`,
-          params: payload,
-        });
-        message.ack();
+        try {
+          await env.CONTINUUM_DB.prepare(
+            "INSERT OR IGNORE INTO queue_receipts(id, tenant_id, mission_id, correlation_id, status, received_at) VALUES (?, ?, ?, ?, 'received', ?)",
+          )
+            .bind(message.id, payload.tenantId, payload.missionId, payload.correlationId, new Date().toISOString())
+            .run();
+          await env.CONTINUUM_WORKFLOW.create({
+            id: `${payload.missionId}-${payload.expectedVersion}`,
+            params: { ...payload, admissionId: admission.id, admissionToken: admission.token },
+          });
+          message.ack();
+        } catch (error) {
+          await releaseMissionAdmission(env.CONTINUUM_DB, admission);
+          throw error;
+        }
       } catch (error) {
         console.error(
           JSON.stringify({
