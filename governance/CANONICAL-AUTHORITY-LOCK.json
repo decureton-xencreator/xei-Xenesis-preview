@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "authorities": {
+    "AM-002": "1.3",
+    "XGW-001": "1.1",
+    "XCC-001": "1.0.0"
+  },
+  "enforcement": {
+    "mode": "fail_closed",
+    "required_files": [
+      "README.md",
+      "XEN-REPOSITORY-SYNC.md",
+      "governance/MWI-AM-002-SYNC-2026-07-19.md",
+      "governance/FEDERATION-CONVERSATION-CONNECTION-RECEIPT.json"
+    ]
+  }
+}
