@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Install dependencies
+        run: npm ci
       - name: Protocol enforcement failure suite
         run: npm run test:protocol-enforcement
       - name: Existing product validation
