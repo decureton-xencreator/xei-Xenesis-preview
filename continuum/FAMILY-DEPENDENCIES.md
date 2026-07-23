@@ -1,7 +1,7 @@
 # XEN-CPC-001 Stage 2 Family Dependencies
 
-Status: synchronized implementation record  
-Repository mainline synchronized: `d026bdddaf721e889935029b9a2f41df74b73035`  
+Status: synchronized implementation record
+Repository mainline synchronized: `d026bdddaf721e889935029b9a2f41df74b73035`
 Date: 2026-07-18
 
 ## Governing family

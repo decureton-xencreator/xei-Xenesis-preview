@@ -1,0 +1,142 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "xen-continuum-stage2-local-reconstruction",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "XEN_RUNTIME_MODE": "local-reconstruction",
+    "XEN_AUTH_MODE": "local-headers"
+    ,"XEN_SAFE_MODE": "true"
+    ,"XEN_EMERGENCY_STOP": "false"
+  },
+  "d1_databases": [
+    {
+      "binding": "CONTINUUM_DB",
+      "database_name": "xen-continuum-local",
+      "database_id": "00000000-0000-0000-0000-000000000001",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "CONTINUUM_ARTIFACTS",
+      "bucket_name": "xen-continuum-local-artifacts"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "CONTINUUM_QUEUE",
+        "queue": "xen-continuum-local-missions"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "xen-continuum-local-missions",
+        "max_batch_size": 5,
+        "max_batch_timeout": 1,
+        "max_retries": 3,
+        "dead_letter_queue": "xen-continuum-local-dead-letter"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "binding": "CONTINUUM_WORKFLOW",
+      "name": "xen-continuum-local-workflow",
+      "class_name": "MissionWorkflow"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "CONTINUUM_MISSION",
+        "class_name": "MissionCoordinator"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["MissionCoordinator"]
+    }
+  ],
+  "observability": {
+    "enabled": false
+  },
+  "env": {
+    "staging": {
+      "name": "xen-continuum-stage2-staging",
+      "workers_dev": true,
+      "preview_urls": true,
+      "vars": {
+        "XEN_RUNTIME_MODE": "staging",
+        "XEN_AUTH_MODE": "cloudflare-access",
+        "XEN_ACCESS_TEAM_DOMAIN": "https://cool-silence-82b1.cloudflareaccess.com",
+        "XEN_ACCESS_AUD": "c007ebf6201f421334e7234f20eea96dfbf6106e1b985c28cc9bf1f1684b0d02",
+        "XEN_ACCESS_ADMIN_EMAIL_SHA256": "8bc36a88c3de70a77d268157d44a980966d977e894fdfe7d14ad094e5af25206",
+        "XEN_MODEL_EXECUTION": "enabled",
+        "XEN_SAFE_MODE": "false",
+        "XEN_EMERGENCY_STOP": "false",
+        "ANTHROPIC_MODEL": "claude-sonnet-5",
+        "ANTHROPIC_MAX_CONCURRENCY": "1",
+        "ANTHROPIC_DAILY_BUDGET_USD": "5.00",
+        "ANTHROPIC_MONTHLY_BUDGET_USD": "50.00",
+        "ANTHROPIC_MISSION_BUDGET_USD": "0.10"
+      },
+      "d1_databases": [
+        {
+          "binding": "CONTINUUM_DB",
+          "database_name": "xen-continuum-stage2-staging",
+          "database_id": "4e502b48-4281-4e87-89aa-6d840e40c81a",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "CONTINUUM_ARTIFACTS",
+          "bucket_name": "xen-continuum-stage2-staging-artifacts"
+        }
+      ],
+      "queues": {
+        "producers": [
+          {
+            "binding": "CONTINUUM_QUEUE",
+            "queue": "xen-continuum-stage2-staging-missions"
+          }
+        ],
+        "consumers": [
+          {
+            "queue": "xen-continuum-stage2-staging-missions",
+            "max_batch_size": 5,
+            "max_batch_timeout": 1,
+            "max_retries": 3,
+            "dead_letter_queue": "xen-continuum-stage2-staging-dead-letter"
+          }
+        ]
+      },
+      "workflows": [
+        {
+          "binding": "CONTINUUM_WORKFLOW",
+          "name": "xen-continuum-stage2-staging-workflow",
+          "class_name": "MissionWorkflow"
+        }
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "name": "CONTINUUM_MISSION",
+            "class_name": "MissionCoordinator"
+          }
+        ]
+      },
+      "observability": {
+        "enabled": true,
+        "head_sampling_rate": 0.1
+      }
+    }
+  }
+}

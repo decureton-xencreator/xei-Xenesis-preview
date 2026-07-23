@@ -4,15 +4,32 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/validate.mjs && node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs tests/protocol-enforcement.test.mjs",
-    "validate": "node tests/validate.mjs",
+    "test": "npm run validate && node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs tests/protocol-enforcement.test.mjs",
+    "validate": "npm run test:production && npm run test:continuum-structure && npm run typecheck:continuum && npm run test:continuum",
+    "test:production": "node tests/validate.mjs",
+    "test:continuum-structure": "node tests/continuum-structure.mjs",
+    "test:continuum": "vitest run --config continuum/vitest.config.ts",
+    "typecheck:continuum": "tsc -p continuum/tsconfig.json --noEmit",
     "certify": "node scripts/protocol-warden.mjs release",
     "warden": "node scripts/protocol-warden.mjs preflight",
     "warden:release": "node scripts/protocol-warden.mjs release",
     "test:protocol-enforcement": "node --test tests/protocol-enforcement.test.mjs",
-    "test:alpha-one": "node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs"
+    "test:alpha-one": "node --test tests/alpha-one-living-manual.test.mjs tests/alpha-one-living-manual-service.test.mjs",
+    "cf:typegen": "wrangler types --config continuum/wrangler.jsonc continuum/worker-configuration.d.ts",
+    "cf:migrate:local": "wrangler d1 migrations apply xen-continuum-local --local --config continuum/wrangler.jsonc",
+    "cf:dry-run": "wrangler deploy --dry-run --config continuum/wrangler.jsonc",
+    "cf:dry-run:staging": "wrangler deploy --dry-run --env staging --config continuum/wrangler.jsonc"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.18.6",
+    "typescript": "7.0.2",
+    "vitest": "4.1.10",
+    "wrangler": "4.112.0"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
+  },
+  "dependencies": {
+    "jose": "^6.1.3"
   }
 }

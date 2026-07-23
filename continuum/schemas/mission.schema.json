@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xen.local/schemas/continuum/mission.schema.json",
+  "title": "Xen Continuum Mission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "tenantId", "title", "objective", "state", "risk", "version", "createdBy", "createdAt", "updatedAt"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "objective": { "type": "string", "minLength": 1, "maxLength": 4000 },
+    "state": {
+      "enum": ["draft", "awaiting_approval", "approved", "queued", "running", "paused", "succeeded", "failed", "cancelled"]
+    },
+    "risk": { "enum": ["low", "moderate", "high", "critical"] },
+    "version": { "type": "integer", "minimum": 1 },
+    "createdBy": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorId", "approvedAt", "evidence"],
+      "properties": {
+        "actorId": { "type": "string", "minLength": 1 },
+        "approvedAt": { "type": "string", "format": "date-time" },
+        "evidence": { "type": "string", "minLength": 1, "maxLength": 2000 }
+      }
+    }
+  }
+}
