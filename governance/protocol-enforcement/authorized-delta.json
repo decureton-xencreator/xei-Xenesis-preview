@@ -1,8 +1,8 @@
 {
   "schema": "xen/authorized-delta/v1",
   "id": "XPEP-1.0.0",
-  "authorizedBy": "user-preapproval-complete-build-2026-07-21",
-  "purpose": "Preserve the protected Xenesis product while synchronizing evidence-bound canonical governance receipts.",
+  "authorizedBy": "user-approved-pr-160-continuum-integration-2026-07-23",
+  "purpose": "Authorize the verified PR #160 Continuum integration paths while preserving the protected Xenesis product.",
   "allowedPrefixes": [
     "governance/protocol-enforcement/",
     "scripts/protocol-warden.mjs",
@@ -23,7 +23,11 @@
     ".github/workflows/governance-version-drift.yml",
     "Governance/XCC-002-INHERITANCE.json",
     "scripts/validate-xcc-002.mjs",
-    ".github/workflows/xcc-002-inheritance.yml"
+    ".github/workflows/xcc-002-inheritance.yml",
+    ".gitignore",
+    "continuum/",
+    "package-lock.json",
+    "tests/continuum-structure.mjs"
   ],
   "protectedPrefixes": [
     "index.html",
