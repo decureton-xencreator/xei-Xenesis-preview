@@ -16,7 +16,11 @@
     "src/alpha-one/",
     "src/series.js",
     "tests/alpha-one-",
-    "governance/sync/"
+    "governance/sync/",
+    "README.md",
+    "governance/CANONICAL-AUTHORITY-LOCK.json",
+    "scripts/validate_governance_version.py",
+    ".github/workflows/governance-version-drift.yml"
   ],
   "protectedPrefixes": [
     "index.html",
