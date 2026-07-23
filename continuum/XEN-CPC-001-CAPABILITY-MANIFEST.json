@@ -1,0 +1,58 @@
+{
+  "capabilityId": "XEN-CPC-001-STAGE-2-DURABLE-RUNTIME",
+  "version": "0.4.0-stage2-candidate",
+  "status": "staging-validation-candidate",
+  "reconstruction": {
+    "kind": "new-reconstruction-from-partial-canonical-evidence",
+    "recoveredOriginalCommits": false,
+    "sourceBase": "236e7f9efe96e4b56bd4700e77fa6a0ea07e4a5c",
+    "synchronizedMain": "d026bdddaf721e889935029b9a2f41df74b73035",
+    "obsoleteBaseExcluded": "39b0b1ba698ab3b19350a96b53bb1a6ee4ca7e99"
+  },
+  "authority": {
+    "canonicalRepository": "decureton-xencreator/xen-operating-system",
+    "implementationRepository": "decureton-xencreator/xei-Xenesis-preview",
+    "canonicalControls": ["XRI-005", "XWF-001", "XEF-001", "XAU-001", "XSS-001", "XPF-003"],
+    "futureControls": ["XRI-006"],
+    "relatedImplementations": ["PATLAS-007", "apps/atlas/runtime/continuum-runtime.js"],
+    "familyDependencyRecord": "FAMILY-DEPENDENCIES.md"
+  },
+  "interfaces": {
+    "http": "/api/v1/continuum/",
+    "openapi": "openapi.yaml",
+    "schemas": ["schemas/mission.schema.json", "schemas/event-envelope.schema.json"]
+  },
+  "runtime": {
+    "worker": "src/index.ts",
+    "durableObject": "MissionCoordinator",
+    "workflow": "MissionWorkflow",
+    "governor": "src/governor.ts",
+    "scheduler": "src/scheduler.ts",
+    "enforcedControls": ["dependency-readiness", "priority-admission", "bounded-starvation-aging", "tenant-activity-fairness", "scheduled-time-eligibility", "weighted-mission-unit-envelope", "worker-lease", "provider-resource-lock", "expired-guard-reclamation", "abandoned-attempt-evidence", "ambiguous-post-dispatch-no-retry", "mission-budget", "daily-budget", "monthly-budget", "provider-call-limit", "safe-mode", "emergency-stop", "pre-provider-state-recheck"],
+    "d1Migrations": ["migrations/0001_stage2_runtime.sql", "migrations/0002_canonical_mission_contract.sql", "migrations/0003_completion_evidence_backfill.sql", "migrations/0004_canonical_evidence_backfill.sql", "migrations/0005_global_provider_lock.sql"],
+    "schemaContract": "forward-expanded; preliminary evidence preserved",
+    "queue": "CONTINUUM_QUEUE",
+    "artifactStore": "CONTINUUM_ARTIFACTS",
+    "modelExecutionDefault": "disabled",
+    "providers": {
+      "anthropic": {
+        "adapter": "implemented-and-staging-validated",
+        "defaultModel": "claude-sonnet-5",
+        "secretName": "ANTHROPIC_API_KEY",
+        "connected": true,
+        "liveSmokeTest": true,
+        "liveSmokeEvidence": "Exact identifiers, usage, cost, and integrity evidence are retained in the private canonical repository."
+      }
+    }
+  },
+  "truth": {
+    "productionShellModified": false,
+    "deployed": true,
+    "deploymentEnvironment": "staging-fail-closed",
+    "stagingUrl": "Cloudflare Access-protected endpoint; exact deployment evidence retained privately",
+    "cloudResourcesProvisioned": true,
+    "remoteValidationCompleted": true,
+    "shellIntegrationGate": "The certified nine-scene shell owns exactly two production runtimes; Continuum remains isolated until that validation contract is deliberately superseded.",
+    "certified": false
+  }
+}

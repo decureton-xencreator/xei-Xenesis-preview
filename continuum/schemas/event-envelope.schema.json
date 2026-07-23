@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xen.local/schemas/continuum/event-envelope.schema.json",
+  "title": "Xen Continuum Event Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "version", "occurredAt", "tenantId", "correlationId", "subject", "payload"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "type": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "version": { "type": "integer", "minimum": 1 },
+    "occurredAt": { "type": "string", "format": "date-time" },
+    "tenantId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "correlationId": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "causationId": { "type": ["string", "null"], "maxLength": 128 },
+    "subject": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "payload": { "type": "object" }
+  }
+}
