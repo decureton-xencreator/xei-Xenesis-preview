@@ -1,12 +1,14 @@
 openapi: 3.1.0
 info:
   title: Xen Continuum Stage 2 Durable Runtime
-  version: 0.1.0-reconstruction
+  version: 0.4.0-stage2-candidate
   description: >-
-    Local reconstruction contract. This API is not deployed, does not replace the
-    nine-scene Xenesis shell, and denies non-local authentication until Cloudflare
-    Access JWT verification is explicitly configured and validated.
+    Protected staging contract. The API is deployed behind Cloudflare Access and
+    remains isolated from the certified nine-scene Xenesis shell. Certification
+    is limited to the recorded staging evidence; untested capacity is not claimed.
 servers:
+  - url: https://xen-continuum-stage2-staging.decureton.workers.dev
+    description: Cloudflare Access-protected staging
   - url: http://127.0.0.1:8787
     description: Wrangler local development only
 security:
@@ -31,6 +33,13 @@ paths:
                   externalEffects: { const: disabled }
                   correlationId: { type: string }
   /api/v1/continuum/missions:
+    get:
+      operationId: listMissions
+      parameters:
+        - { name: state, in: query, schema: { $ref: "#/components/schemas/MissionState" } }
+        - { name: limit, in: query, schema: { type: integer, minimum: 1, maximum: 100, default: 50 } }
+      responses:
+        "200": { description: Tenant-isolated mission collection }
     post:
       operationId: createMission
       parameters:
@@ -60,6 +69,33 @@ paths:
       responses:
         "200": { $ref: "#/components/responses/Mission" }
         "404": { $ref: "#/components/responses/Error" }
+    patch:
+      operationId: modifyMission
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [expectedVersion]
+              properties:
+                expectedVersion: { type: integer, minimum: 1 }
+                title: { type: string, maxLength: 160 }
+                objective: { type: string, maxLength: 4000 }
+                constraints: { type: array, maxItems: 32, items: { type: string, maxLength: 1000 } }
+                successCriteria: { type: array, maxItems: 32, items: { type: string, maxLength: 1000 } }
+                priority: { type: integer, minimum: 0, maximum: 100 }
+                currentOperation: { type: string, maxLength: 500 }
+      responses:
+        "200": { $ref: "#/components/responses/Mission" }
+        "409": { $ref: "#/components/responses/Error" }
+  /api/v1/continuum/capacity:
+    get:
+      operationId: readCapacity
+      responses:
+        "200": { description: Configured and active capacity; uncertified limits are explicitly marked }
   /api/v1/continuum/missions/{missionId}/transitions:
     parameters:
       - $ref: "#/components/parameters/MissionId"

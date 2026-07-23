@@ -1,7 +1,7 @@
 {
   "capabilityId": "XEN-CPC-001-STAGE-2-DURABLE-RUNTIME",
-  "version": "0.2.0-reconstruction",
-  "status": "local-repository-validation-candidate",
+  "version": "0.4.0-stage2-candidate",
+  "status": "staging-validation-candidate",
   "reconstruction": {
     "kind": "new-reconstruction-from-partial-canonical-evidence",
     "recoveredOriginalCommits": false,
@@ -11,7 +11,7 @@
   },
   "authority": {
     "canonicalRepository": "decureton-xencreator/xen-operating-system",
-    "implementationRepository": "decureton-xencreator/xei-genesis-preview",
+    "implementationRepository": "decureton-xencreator/xei-Xenesis-preview",
     "canonicalControls": ["XRI-005", "XWF-001", "XEF-001", "XAU-001", "XSS-001", "XPF-003"],
     "futureControls": ["XRI-006"],
     "relatedImplementations": ["PATLAS-007", "apps/atlas/runtime/continuum-runtime.js"],
@@ -26,17 +26,33 @@
     "worker": "src/index.ts",
     "durableObject": "MissionCoordinator",
     "workflow": "MissionWorkflow",
-    "d1Migration": "migrations/0001_stage2_runtime.sql",
-    "tableCount": 20,
+    "governor": "src/governor.ts",
+    "scheduler": "src/scheduler.ts",
+    "enforcedControls": ["dependency-readiness", "priority-admission", "bounded-starvation-aging", "tenant-activity-fairness", "scheduled-time-eligibility", "weighted-mission-unit-envelope", "worker-lease", "provider-resource-lock", "expired-guard-reclamation", "abandoned-attempt-evidence", "ambiguous-post-dispatch-no-retry", "mission-budget", "daily-budget", "monthly-budget", "provider-call-limit", "safe-mode", "emergency-stop", "pre-provider-state-recheck"],
+    "d1Migrations": ["migrations/0001_stage2_runtime.sql", "migrations/0002_canonical_mission_contract.sql", "migrations/0003_completion_evidence_backfill.sql", "migrations/0004_canonical_evidence_backfill.sql", "migrations/0005_global_provider_lock.sql"],
+    "schemaContract": "forward-expanded; preliminary evidence preserved",
     "queue": "CONTINUUM_QUEUE",
     "artifactStore": "CONTINUUM_ARTIFACTS",
-    "modelExecutionDefault": "disabled"
+    "modelExecutionDefault": "disabled",
+    "providers": {
+      "anthropic": {
+        "adapter": "implemented-and-staging-validated",
+        "defaultModel": "claude-sonnet-5",
+        "secretName": "ANTHROPIC_API_KEY",
+        "connected": true,
+        "liveSmokeTest": true,
+        "liveSmokeEvidence": "Exact identifiers, usage, cost, and integrity evidence are retained in the private canonical repository."
+      }
+    }
   },
   "truth": {
     "productionShellModified": false,
-    "deployed": false,
-    "cloudResourcesProvisioned": false,
-    "remoteValidationCompleted": false,
+    "deployed": true,
+    "deploymentEnvironment": "staging-fail-closed",
+    "stagingUrl": "Cloudflare Access-protected endpoint; exact deployment evidence retained privately",
+    "cloudResourcesProvisioned": true,
+    "remoteValidationCompleted": true,
+    "shellIntegrationGate": "The certified nine-scene shell owns exactly two production runtimes; Continuum remains isolated until that validation contract is deliberately superseded.",
     "certified": false
   }
 }

@@ -4,6 +4,7 @@ import { RuntimeError, messageFrom } from "./errors";
 import { storeArtifact } from "./artifacts";
 import { MissionCoordinator } from "./durable/mission-coordinator";
 import { MissionWorkflow } from "./workflows/mission-workflow";
+import { releaseMissionAdmission, reserveMissionAdmission } from "./scheduler";
 
 export { MissionCoordinator, MissionWorkflow };
 
@@ -18,11 +19,43 @@ function response(body: unknown, status = 200): Response {
   });
 }
 
+function assertExecutionAvailable(env: Env): void {
+  const control = env as Env & { XEN_SAFE_MODE?: string; XEN_EMERGENCY_STOP?: string };
+  if (control.XEN_EMERGENCY_STOP === "true") throw new RuntimeError("emergency_stop", "Emergency stop is active.", 503);
+  if (control.XEN_SAFE_MODE === "true") throw new RuntimeError("safe_mode", "Safe Mode denies mission execution.", 503);
+}
+
+function smokeApprovalPage(): Response {
+  return new Response(
+    `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Xen Continuum Claude Smoke Test</title><body><main><h1>Xen Continuum Claude Smoke Test</h1><p>This creates exactly one low-risk analytical mission. Maximum output: 1,024 tokens. Maximum authorized mission cost: $0.10. No repository or external action is permitted.</p><form method="post"><button type="submit">Approve and run one Claude smoke test</button></form></main></body></html>`,
+    {
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "content-security-policy": "default-src 'none'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'",
+        "x-content-type-options": "nosniff",
+      },
+    },
+  );
+}
+
 function text(value: unknown, field: string, maxLength: number): string {
   if (typeof value !== "string" || !value.trim() || value.length > maxLength) {
     throw new RuntimeError("invalid_request", `${field} must be a non-empty string of at most ${maxLength} characters.`, 422);
   }
   return value.trim();
+}
+
+function optionalText(value: unknown, field: string, maxLength: number): string | undefined {
+  return value === undefined ? undefined : text(value, field, maxLength);
+}
+
+function stringList(value: unknown, field: string): string[] | undefined {
+  if (value === undefined) return undefined;
+  if (!Array.isArray(value) || value.length > 32 || value.some((item) => typeof item !== "string" || !item.trim() || item.length > 1000)) {
+    throw new RuntimeError("invalid_request", `${field} must be an array of at most 32 non-empty strings.`, 422);
+  }
+  return value.map((item) => (item as string).trim());
 }
 
 async function body(request: Request): Promise<Record<string, unknown>> {
@@ -54,6 +87,8 @@ async function indexMission(env: Env, mission: Mission, actorSource = "runtime")
       (id, tenant_id, title, objective, state, risk, version, created_by, created_at, updated_at)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
      ON CONFLICT(id) DO UPDATE SET
+       title = excluded.title,
+       objective = excluded.objective,
        state = excluded.state,
        version = excluded.version,
        updated_at = excluded.updated_at`,
@@ -71,6 +106,16 @@ async function indexMission(env: Env, mission: Mission, actorSource = "runtime")
       mission.updatedAt,
     )
     .run();
+  await env.CONTINUUM_DB.prepare(
+    `UPDATE missions SET exact_intent = ?, constraints_document = ?, success_criteria_document = ?,
+      capability_class = ?, weighted_mission_units = ?, parent_mission_id = ?, group_id = ?,
+      priority = ?, progress = ?, current_operation = ? WHERE id = ? AND tenant_id = ?`,
+  ).bind(
+    mission.exactIntent ?? mission.objective, JSON.stringify(mission.constraints ?? []), JSON.stringify(mission.successCriteria ?? []),
+    mission.capabilityClass ?? "analytical", mission.weightedMissionUnits ?? 1, mission.parentMissionId ?? null,
+    mission.groupId ?? null, mission.priority ?? 50, mission.progress ?? 0, mission.currentOperation ?? null,
+    mission.id, mission.tenantId,
+  ).run();
 }
 
 async function route(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -78,18 +123,71 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   const correlationId = request.headers.get("x-correlation-id")?.trim() || crypto.randomUUID();
 
   if (request.method === "GET" && url.pathname === `${API_PREFIX}/health`) {
+    const modelExecution = (env as Env & { XEN_MODEL_EXECUTION?: string }).XEN_MODEL_EXECUTION;
     return response({
       status: "ok",
       service: "xen-continuum-stage2",
       mode: env.XEN_RUNTIME_MODE,
-      externalEffects: "disabled",
+      externalEffects: modelExecution === "enabled" ? "approval-gated" : "disabled",
+      modelProvider: modelExecution === "enabled" ? "anthropic" : "disabled",
+      safeMode: (env as Env & { XEN_SAFE_MODE?: string }).XEN_SAFE_MODE === "true",
+      emergencyStop: (env as Env & { XEN_EMERGENCY_STOP?: string }).XEN_EMERGENCY_STOP === "true",
       correlationId,
     });
   }
 
-  const actor = authenticate(request, env);
+  const actor = await authenticate(request, env);
+  if (request.method === "GET" && url.pathname === `${API_PREFIX}/session`) {
+    return response({
+      authenticated: true,
+      identitySource: actor.source,
+      authorities: actor.authorities,
+      correlationId,
+    });
+  }
+  if (url.pathname === `${API_PREFIX}/smoke/claude`) {
+    requireAuthority(actor, "admin");
+    if (request.method === "GET") return smokeApprovalPage();
+    if (request.method !== "POST") throw new RuntimeError("method_not_allowed", "Method not allowed.", 405);
+    assertExecutionAvailable(env);
+    if (request.headers.get("origin") !== url.origin || request.headers.get("sec-fetch-site") !== "same-origin") {
+      throw new RuntimeError("smoke_approval_origin_invalid", "Smoke-test approval must originate from the protected same-origin page.", 403);
+    }
+    const missionId = "00000000-0000-4000-8000-000000000005";
+    const stub = missionStub(env, actor.tenantId, missionId);
+    const existing = await stub.getMission(actor.tenantId);
+    if (existing) return response({ mission: existing, reused: true, correlationId }, 200);
+    const created = await stub.createMission({
+      id: missionId,
+      tenantId: actor.tenantId,
+      title: "Capped Claude staging smoke test",
+      objective: "Reply with exactly: XEN-CPC-001 Claude provider smoke test successful.",
+      risk: "low",
+      actor,
+      idempotencyKey: "stage2-claude-smoke:create:v5",
+    });
+    const awaiting = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "awaiting_approval", expectedVersion: created.version,
+      idempotencyKey: "stage2-claude-smoke:awaiting:v5", reason: "Owner requested a capped provider smoke test after protected-secret replacement.",
+    });
+    const approved = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "approved", expectedVersion: awaiting.version,
+      idempotencyKey: "stage2-claude-smoke:approved:v5",
+      approvalEvidence: `Explicit protected-browser approval at ${new Date().toISOString()}.`,
+    });
+    const queued = await stub.transition({
+      tenantId: actor.tenantId, actor, target: "queued", expectedVersion: approved.version,
+      idempotencyKey: "stage2-claude-smoke:queued:v5", reason: "Approved capped smoke test queued after protected-secret replacement.",
+    });
+    await indexMission(env, queued, actor.source);
+    await env.CONTINUUM_QUEUE.send({
+      missionId, tenantId: actor.tenantId, expectedVersion: queued.version,
+      correlationId, requestedBy: actor.id, runtimeMode: env.XEN_RUNTIME_MODE,
+    });
+    return response({ mission: queued, queued: true, correlationId }, 202);
+  }
   const missionMatch = url.pathname.match(
-    new RegExp(`^${API_PREFIX}/missions/([0-9a-fA-F-]+)(?:/(transitions|dispatch|events|artifacts))?$`),
+    new RegExp(`^${API_PREFIX}/missions/([0-9a-fA-F-]+)(?:/(transitions|dispatch|events|artifacts|lineage|pause|resume|cancel|reprioritize|redirect|approve|reject|retry))?$`),
   );
 
   if (request.method === "POST" && url.pathname === `${API_PREFIX}/missions`) {
@@ -113,6 +211,24 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
     return response({ mission, correlationId }, 201);
   }
 
+  if (request.method === "GET" && url.pathname === `${API_PREFIX}/missions`) {
+    requireAuthority(actor, "read");
+    const state = url.searchParams.get("state");
+    if (state && !isMissionState(state)) throw new RuntimeError("invalid_state", "state is invalid.", 422);
+    const limit = Math.min(100, Math.max(1, Number(url.searchParams.get("limit") ?? 50) || 50));
+    const query = state
+      ? env.CONTINUUM_DB.prepare("SELECT * FROM missions WHERE tenant_id = ? AND state = ? ORDER BY priority DESC, created_at DESC LIMIT ?").bind(actor.tenantId, state, limit)
+      : env.CONTINUUM_DB.prepare("SELECT * FROM missions WHERE tenant_id = ? ORDER BY priority DESC, created_at DESC LIMIT ?").bind(actor.tenantId, limit);
+    const result = await query.all();
+    return response({ missions: result.results, count: result.results.length, correlationId });
+  }
+
+  if (request.method === "GET" && url.pathname === `${API_PREFIX}/capacity`) {
+    requireAuthority(actor, "read");
+    const active = await env.CONTINUUM_DB.prepare("SELECT COUNT(*) AS count, COALESCE(SUM(weighted_mission_units), 0) AS wmu FROM missions WHERE tenant_id = ? AND state IN ('queued','running')").bind(actor.tenantId).first<{ count: number; wmu: number }>();
+    return response({ capacity: { configuredWeightedMissionUnits: 4, configuredMissionConcurrency: 4, providerConcurrency: 1, activeMissions: active?.count ?? 0, activeWeightedMissionUnits: active?.wmu ?? 0, certified: false }, correlationId });
+  }
+
   if (!missionMatch) throw new RuntimeError("route_not_found", "Route not found.", 404);
   const missionId = missionMatch[1]!;
   const action = missionMatch[2];
@@ -128,6 +244,56 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   if (request.method === "GET" && action === "events") {
     requireAuthority(actor, "read");
     return stub.fetch(request);
+  }
+
+  if (request.method === "GET" && action === "artifacts") {
+    requireAuthority(actor, "read");
+    const artifacts = await env.CONTINUUM_DB.prepare("SELECT id, storage_key, sha256, size_bytes, media_type, created_at FROM artifacts WHERE tenant_id = ? AND mission_id = ? ORDER BY created_at").bind(actor.tenantId, missionId).all();
+    return response({ artifacts: artifacts.results, correlationId });
+  }
+
+  if (request.method === "GET" && action === "lineage") {
+    requireAuthority(actor, "read");
+    const lineage = await env.CONTINUUM_DB.prepare("SELECT id, parent_mission_id, group_id FROM missions WHERE tenant_id = ? AND (id = ? OR parent_mission_id = ?)").bind(actor.tenantId, missionId, missionId).all();
+    const dependencies = await env.CONTINUUM_DB.prepare("SELECT mission_id, depends_on_mission_id, dependency_type FROM mission_dependencies WHERE mission_id = ? OR depends_on_mission_id = ?").bind(missionId, missionId).all();
+    return response({ lineage: lineage.results, dependencies: dependencies.results, correlationId });
+  }
+
+  if (request.method === "PATCH" && !action) {
+    const data = await body(request);
+    if (!Number.isInteger(data.expectedVersion) || (data.expectedVersion as number) < 1) throw new RuntimeError("invalid_version", "expectedVersion must be a positive integer.", 422);
+    const priority = data.priority === undefined ? undefined : Number(data.priority);
+    if (priority !== undefined && (!Number.isInteger(priority) || priority < 0 || priority > 100)) throw new RuntimeError("invalid_priority", "priority must be an integer from 0 through 100.", 422);
+    const title = optionalText(data.title, "title", 160);
+    const objective = optionalText(data.objective, "objective", 4000);
+    const constraints = stringList(data.constraints, "constraints");
+    const successCriteria = stringList(data.successCriteria, "successCriteria");
+    const currentOperation = optionalText(data.currentOperation, "currentOperation", 500);
+    const mission = await stub.modifyMission({ tenantId: actor.tenantId, actor, expectedVersion: data.expectedVersion as number, idempotencyKey: text(request.headers.get("idempotency-key"), "Idempotency-Key", 128),
+      ...(title !== undefined ? { title } : {}), ...(objective !== undefined ? { objective } : {}),
+      ...(constraints !== undefined ? { constraints } : {}), ...(successCriteria !== undefined ? { successCriteria } : {}),
+      ...(priority !== undefined ? { priority } : {}), ...(currentOperation !== undefined ? { currentOperation } : {}),
+    });
+    await indexMission(env, mission, actor.source);
+    return response({ mission, correlationId });
+  }
+
+  if (request.method === "POST" && ["pause", "resume", "cancel", "reprioritize", "redirect", "approve", "reject", "retry"].includes(action ?? "")) {
+    const data = await body(request);
+    if (!Number.isInteger(data.expectedVersion) || (data.expectedVersion as number) < 1) throw new RuntimeError("invalid_version", "expectedVersion must be a positive integer.", 422);
+    const key = text(request.headers.get("idempotency-key"), "Idempotency-Key", 128);
+    if (action === "reprioritize" || action === "redirect") {
+      const priority = action === "reprioritize" ? Number(data.priority) : undefined;
+      if (priority !== undefined && (!Number.isInteger(priority) || priority < 0 || priority > 100)) throw new RuntimeError("invalid_priority", "priority must be an integer from 0 through 100.", 422);
+      const mission = await stub.modifyMission({ tenantId: actor.tenantId, actor, expectedVersion: data.expectedVersion as number, idempotencyKey: key, ...(priority !== undefined ? { priority } : {}), ...(action === "redirect" ? { objective: text(data.objective, "objective", 4000) } : {}) });
+      await indexMission(env, mission, actor.source);
+      return response({ mission, correlationId });
+    }
+    const target = action === "pause" ? "paused" : action === "resume" || action === "retry" ? "queued" : action === "cancel" || action === "reject" ? "cancelled" : "approved";
+    const mission = await stub.transition({ tenantId: actor.tenantId, actor, target, expectedVersion: data.expectedVersion as number, idempotencyKey: key, ...(action === "approve" ? { approvalEvidence: text(data.approvalEvidence, "approvalEvidence", 2000) } : {}), reason: typeof data.reason === "string" ? data.reason : `Mission ${action}.` });
+    await indexMission(env, mission, actor.source);
+    if (action === "resume" || action === "retry") await env.CONTINUUM_QUEUE.send({ missionId, tenantId: actor.tenantId, expectedVersion: mission.version, correlationId, requestedBy: actor.id, runtimeMode: env.XEN_RUNTIME_MODE });
+    return response({ mission, ...(action === "resume" || action === "retry" ? { queued: true } : {}), correlationId }, action === "resume" || action === "retry" ? 202 : 200);
   }
 
   if (request.method === "POST" && action === "transitions") {
@@ -151,6 +317,7 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
 
   if (request.method === "POST" && action === "dispatch") {
     requireAuthority(actor, "execute");
+    assertExecutionAvailable(env);
     const data = await body(request);
     if (!Number.isInteger(data.expectedVersion) || (data.expectedVersion as number) < 1) {
       throw new RuntimeError("invalid_version", "expectedVersion must be a positive integer.", 422);
@@ -170,6 +337,7 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       expectedVersion: mission.version,
       correlationId,
       requestedBy: actor.id,
+      runtimeMode: env.XEN_RUNTIME_MODE,
     });
     return response({ mission, queued: true, correlationId }, 202);
   }
@@ -231,16 +399,27 @@ const worker: ExportedHandler<Env, DispatchMessage> = {
     for (const message of batch.messages) {
       const payload = message.body;
       try {
-        await env.CONTINUUM_DB.prepare(
-          "INSERT INTO queue_receipts(id, tenant_id, mission_id, correlation_id, status, received_at) VALUES (?, ?, ?, ?, 'received', ?)",
-        )
-          .bind(message.id, payload.tenantId, payload.missionId, payload.correlationId, new Date().toISOString())
-          .run();
-        await env.CONTINUUM_WORKFLOW.create({
-          id: `${payload.missionId}-${payload.expectedVersion}`,
-          params: payload,
-        });
-        message.ack();
+        assertExecutionAvailable(env);
+        const admission = await reserveMissionAdmission(env.CONTINUUM_DB, payload.missionId);
+        if (!admission) {
+          message.retry({ delaySeconds: 5 });
+          continue;
+        }
+        try {
+          await env.CONTINUUM_DB.prepare(
+            "INSERT OR IGNORE INTO queue_receipts(id, tenant_id, mission_id, correlation_id, status, received_at) VALUES (?, ?, ?, ?, 'received', ?)",
+          )
+            .bind(message.id, payload.tenantId, payload.missionId, payload.correlationId, new Date().toISOString())
+            .run();
+          await env.CONTINUUM_WORKFLOW.create({
+            id: `${payload.missionId}-${payload.expectedVersion}`,
+            params: { ...payload, admissionId: admission.id, admissionToken: admission.token },
+          });
+          message.ack();
+        } catch (error) {
+          await releaseMissionAdmission(env.CONTINUUM_DB, admission);
+          throw error;
+        }
       } catch (error) {
         console.error(
           JSON.stringify({

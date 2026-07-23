@@ -1,5 +1,35 @@
 # Stage 2 Continuity
 
+## 2026-07-19 governor milestone
+
+- Added pre-provider dependency enforcement, conservative cost authorization, mission/daily/monthly budgets, provider-call limits, worker leases, provider resource locks, Safe Mode, emergency stop, and guaranteed normal-path release.
+- Staging provider concurrency remains one. This is an enforced control, not evidence of a higher-concurrency production envelope.
+- Continue with failure-injection guard-expiry/recovery tests, priority/fair scheduling, and server-backed Xenesis integration while preserving the shell isolation gate.
+
+## 2026-07-19 scheduler milestone
+
+- Queue consumption now admits only dependency-ready missions whose scheduled time has arrived.
+- Admission is bounded by four simultaneous candidate missions and four Weighted Mission Units, while Anthropic provider concurrency remains separately locked to one.
+- Effective priority uses bounded age escalation (one point per six queued hours, capped at 20) to limit starvation. Equal effective priority favors tenants with fewer running missions, then older work.
+- The scheduler is an initial staging policy. Its fairness and latency envelope is not certified until multi-tenant load and failure-injection measurements are recorded.
+- Continue with guard-expiry/recovery tests, retry classification, repository transactions, and server-backed Xenesis integration while preserving the shell isolation gate.
+
+## 2026-07-23 recovery milestone
+
+- Expired worker leases and provider locks are reclaimed together, and the interrupted running attempt is durably marked `abandoned`.
+- Recovery evidence distinguishes work interrupted before provider dispatch from ambiguous interruption after dispatch.
+- Any attempt with provider-dispatch evidence is classified `ambiguous_after_provider_dispatch_no_retry`; it is never automatically retried because the provider may have accepted a paid request before the interruption.
+- Terminal provider results are also non-retryable. Only interruption proven to precede provider dispatch is classified retry-safe.
+- Continue with multi-tenant race/load measurement and server-backed Xenesis integration. This recovery unit does not expand the certified provider-concurrency envelope or authorize a new Claude call.
+
+## 2026-07-23 atomic admission milestone
+
+- Queue admission now requires a durable D1 reservation before Workflow creation.
+- The reservation write atomically rechecks the four-mission and four-WMU envelope, closing the prior read-then-dispatch race between simultaneous Queue consumers.
+- Twelve simultaneous local D1 claimants across twelve tenants produced exactly four admissions totaling four WMU.
+- Reservations expire after five minutes, are reclaimed before scheduling, release on dispatch failure, and convert to running mission state in the Workflow checkpoint.
+- Continue with remote staging migration/deployment and representative latency/load measurement. Anthropic remains globally locked to one request, and no provider call is needed for this gate.
+
 The production experience remains owned by the existing root index.html and its nine-scene client runtime. The Continuum module has no import, script tag, route, build step, or lifecycle dependency from that shell.
 
 ## Local continuation
@@ -26,4 +56,4 @@ Local authenticated requests require X-Xen-Local-Actor, X-Xen-Local-Tenant, and 
 
 ## External boundary
 
-Do not deploy this configuration as-is. Its D1 identifier is an explicit local placeholder and its resource names are local-development names. Production or staging requires a separate authorization to select an account and deployment target, provision or map resources, configure cryptographically verified Cloudflare Access, enter secrets interactively, set cost limits, run capped live tests, and approve publication.
+The base configuration remains local-only. The explicit `staging` environment is deployed behind cryptographically verified Cloudflare Access with D1, Queue, Workflow, Durable Object and R2 bindings. Production remains unauthorized. Secrets must be entered interactively and must never enter source, logs, screenshots, generated files or deployment output.
