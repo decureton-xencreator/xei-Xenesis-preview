@@ -1,0 +1,25 @@
+name: XCC-002 Inheritance
+
+on:
+  pull_request:
+    paths:
+      - 'Governance/XCC-002-INHERITANCE.json'
+      - 'scripts/validate-xcc-002.mjs'
+      - 'README.md'
+      - '.github/workflows/xcc-002-inheritance.yml'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/validate-xcc-002.mjs
