@@ -49,6 +49,8 @@ This repository is a governed member of the Xen repository federation. Canonical
 
 It inherits AM-002 Version 1.3 terminal-completion behavior, XGW Warden lifecycle gates, and XER incident, degraded-state, recovery-evidence and federation-drift contracts. This repository does not claim an autonomous self-healing runtime unless repository-local cell policies, checkpoints, repair sources and validation evidence are implemented.
 
+It also inherits the XGS-001–006 protected-cell contract: Sentinel evaluation, Guardian authorization, Warden truth-gating, and checkpointed XER repair planning with rollback and re-verification. This inheritance is a governance contract, not evidence of an external autonomous repair daemon.
+
 Canonical XER records:
 
 - `Foundation/XER/XER-MANIFEST.json`
