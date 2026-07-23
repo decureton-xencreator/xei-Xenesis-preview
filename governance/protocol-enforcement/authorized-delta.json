@@ -20,7 +20,10 @@
     "README.md",
     "governance/CANONICAL-AUTHORITY-LOCK.json",
     "scripts/validate_governance_version.py",
-    ".github/workflows/governance-version-drift.yml"
+    ".github/workflows/governance-version-drift.yml",
+    "Governance/XCC-002-INHERITANCE.json",
+    "scripts/validate-xcc-002.mjs",
+    ".github/workflows/xcc-002-inheritance.yml"
   ],
   "protectedPrefixes": [
     "index.html",
