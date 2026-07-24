@@ -8,6 +8,11 @@ import { releaseMissionAdmission, reserveMissionAdmission } from "./scheduler";
 
 export { MissionCoordinator, MissionWorkflow };
 
+type RuntimeControlEnv = Omit<Env, "XEN_SAFE_MODE" | "XEN_EMERGENCY_STOP"> & {
+  XEN_SAFE_MODE?: string;
+  XEN_EMERGENCY_STOP?: string;
+};
+
 function response(body: unknown, status = 200): Response {
   return Response.json(body, {
     status,
@@ -20,7 +25,7 @@ function response(body: unknown, status = 200): Response {
 }
 
 function assertExecutionAvailable(env: Env): void {
-  const control = env as Env & { XEN_SAFE_MODE?: string; XEN_EMERGENCY_STOP?: string };
+  const control = env as RuntimeControlEnv;
   if (control.XEN_EMERGENCY_STOP === "true") throw new RuntimeError("emergency_stop", "Emergency stop is active.", 503);
   if (control.XEN_SAFE_MODE === "true") throw new RuntimeError("safe_mode", "Safe Mode denies mission execution.", 503);
 }
@@ -130,8 +135,8 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       mode: env.XEN_RUNTIME_MODE,
       externalEffects: modelExecution === "enabled" ? "approval-gated" : "disabled",
       modelProvider: modelExecution === "enabled" ? "anthropic" : "disabled",
-      safeMode: (env as Env & { XEN_SAFE_MODE?: string }).XEN_SAFE_MODE === "true",
-      emergencyStop: (env as Env & { XEN_EMERGENCY_STOP?: string }).XEN_EMERGENCY_STOP === "true",
+      safeMode: (env as RuntimeControlEnv).XEN_SAFE_MODE === "true",
+      emergencyStop: (env as RuntimeControlEnv).XEN_EMERGENCY_STOP === "true",
       correlationId,
     });
   }

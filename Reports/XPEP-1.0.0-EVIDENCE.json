@@ -2,13 +2,15 @@
   "schema": "xen/evidence-ledger/v1",
   "decision": "ALLOW",
   "mode": "preflight",
-  "startedAt": "2026-07-21T23:37:18.877Z",
-  "completedAt": "2026-07-21T23:37:18.928Z",
+  "startedAt": "2026-07-24T02:36:19.599Z",
+  "completedAt": "2026-07-24T02:36:19.613Z",
   "objectiveId": "AM-OBJECTIVE-XPEP-2026-07-20",
   "baselineCommit": "52cc3e71896eb3ec31338251098aa904033af961",
   "changedFiles": [
     "Reports/XPEP-1.0.0-EVIDENCE.json",
-    "governance/protocol-enforcement/canonical-baseline.json"
+    "continuum/src/index.ts",
+    "continuum/src/workflows/mission-workflow.ts",
+    "continuum/worker-configuration.d.ts"
   ],
   "checks": [
     {
@@ -46,10 +48,12 @@
     {
       "gate": "06-authorized-delta",
       "status": "PASS",
-      "detail": "Smallest authorized delta: 2 file(s)",
+      "detail": "Smallest authorized delta: 4 file(s)",
       "evidence": [
         "Reports/XPEP-1.0.0-EVIDENCE.json",
-        "governance/protocol-enforcement/canonical-baseline.json"
+        "continuum/src/index.ts",
+        "continuum/src/workflows/mission-workflow.ts",
+        "continuum/worker-configuration.d.ts"
       ]
     },
     {
