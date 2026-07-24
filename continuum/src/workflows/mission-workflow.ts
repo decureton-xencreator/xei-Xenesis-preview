@@ -5,7 +5,18 @@ import { acquireExecutionGuard, conservativeAnthropicEstimate, releaseExecutionG
 
 const MAX_OUTPUT_TOKENS = 1024;
 
-type RuntimeEnv = Omit<Env, "XEN_RUNTIME_MODE" | "XEN_AUTH_MODE"> & {
+type RuntimeEnv = Omit<
+  Env,
+  | "XEN_RUNTIME_MODE"
+  | "XEN_AUTH_MODE"
+  | "XEN_MODEL_EXECUTION"
+  | "ANTHROPIC_MODEL"
+  | "ANTHROPIC_MISSION_BUDGET_USD"
+  | "ANTHROPIC_DAILY_BUDGET_USD"
+  | "ANTHROPIC_MONTHLY_BUDGET_USD"
+  | "XEN_SAFE_MODE"
+  | "XEN_EMERGENCY_STOP"
+> & {
   XEN_RUNTIME_MODE: "local-reconstruction" | "staging";
   XEN_AUTH_MODE: "local-headers" | "cloudflare-access";
   XEN_MODEL_EXECUTION?: "disabled" | "enabled";
