@@ -1,0 +1,7 @@
+{
+  "id": "XGW-001",
+  "state": "VALIDATED",
+  "role": "truth and authority gate",
+  "fail_closed": true,
+  "canonical_commit": "674643152cf58ee13bc619ba2c74e9b72503e438"
+}
