@@ -1,0 +1,27 @@
+name: XCB-009 Universal Cell Admission
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  admission:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Admit Warden and XER
+        run: python scripts/xcb_009_admit.py --cell "github-actions:${{ github.workflow }}:${{ github.run_id }}:${{ github.run_attempt }}" --event "${{ github.event_name }}" --authority "contents:read" --output evidence/xcb-009/admission.json
+      - name: Test fail-closed behavior
+        run: python -m unittest tests/test_xcb_009.py
+      - name: Prove paired receipt
+        run: python -c 'import json; r=json.load(open("evidence/xcb-009/admission.json")); assert r["truth_state"]=="ADMITTED" and r["warden"]["evidence"] and r["xer"]["evidence"]'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: xcb-009-admission-${{ github.sha }}
+          path: evidence/xcb-009/admission.json
+          if-no-files-found: error

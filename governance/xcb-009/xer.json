@@ -1,0 +1,12 @@
+{
+  "id": "XER-001",
+  "state": "LOADED",
+  "role": "bounded recovery controller",
+  "max_unchanged_retries": 0,
+  "terminal_states": [
+    "ADMITTED",
+    "BLOCKED",
+    "HANDOFF_REQUIRED"
+  ],
+  "canonical_commit": "674643152cf58ee13bc619ba2c74e9b72503e438"
+}
