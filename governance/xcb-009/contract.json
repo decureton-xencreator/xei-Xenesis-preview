@@ -1,0 +1,31 @@
+{
+  "id": "XCB-009",
+  "version": "1.1.0",
+  "canonical_repository": "decureton-xencreator/xen-operating-system",
+  "canonical_commit": "674643152cf58ee13bc619ba2c74e9b72503e438",
+  "scope": "**",
+  "exemptions": [],
+  "definition": "Every executable chat, agent, node, workflow, service, job, skill, automation, deployment, and build session is a cell.",
+  "required_assets": {
+    "warden": [
+      "governance/xcb-009/warden.json"
+    ],
+    "xer": [
+      "governance/xcb-009/xer.json"
+    ]
+  },
+  "admission": {
+    "require_paired_receipt": true,
+    "allowed_warden_state": "VALIDATED",
+    "allowed_xer_state": "LOADED",
+    "fail_closed": true,
+    "prohibit_completion_without_admission": true,
+    "prohibit_certification_without_evidence": true
+  },
+  "evolution_watch": {
+    "id": "XEW-001",
+    "research_only": true,
+    "mutation_requires_warden_gate": true,
+    "requires_xcb_009_admission": true
+  }
+}
