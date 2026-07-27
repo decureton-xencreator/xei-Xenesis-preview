@@ -1,8 +1,8 @@
 {
   "schema": "xen/authorized-delta/v1",
   "id": "XPEP-1.0.0",
-  "authorizedBy": "user-approved-pr-160-continuum-integration-2026-07-23",
-  "purpose": "Authorize the verified PR #160 Continuum integration paths while preserving the protected Xenesis product.",
+  "authorizedBy": "user-directed-xcb-009-universal-federation-2026-07-27",
+  "purpose": "Authorize fail-closed XCB-009 Warden/XER federation while preserving protected Xenesis product surfaces.",
   "allowedPrefixes": [
     "governance/protocol-enforcement/",
     "scripts/protocol-warden.mjs",
@@ -27,7 +27,11 @@
     ".gitignore",
     "continuum/",
     "package-lock.json",
-    "tests/continuum-structure.mjs"
+    "tests/continuum-structure.mjs",
+    ".github/workflows/xcb-009.yml",
+    "governance/xcb-009/",
+    "scripts/xcb_009_admit.py",
+    "tests/test_xcb_009.py"
   ],
   "protectedPrefixes": [
     "index.html",
