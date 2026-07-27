@@ -29,7 +29,7 @@ def admit(root,cell,event,authority):
     return {**core,"receipt_id":rid,"truth_state":"ADMITTED","fail_closed":True,"issued_at":int(time.time())}
 
 def main():
-    p=argparse.ArgumentParser(); p.add_argument("--root",type=Path,default=Path(__file__).resolve().parents[2]); p.add_argument("--cell",required=True); p.add_argument("--event",required=True); p.add_argument("--authority",required=True); p.add_argument("--output",type=Path); a=p.parse_args()
+    p=argparse.ArgumentParser(); p.add_argument("--root",type=Path,default=Path(__file__).resolve().parents[1]); p.add_argument("--cell",required=True); p.add_argument("--event",required=True); p.add_argument("--authority",required=True); p.add_argument("--output",type=Path); a=p.parse_args()
     try: receipt=admit(a.root.resolve(),a.cell,a.event,a.authority)
     except Exception as exc: print(json.dumps({"truth_state":"BLOCKED","fail_closed":True,"blocker":str(exc)})); return 2
     payload=json.dumps(receipt,indent=2,sort_keys=True)+"\n"
