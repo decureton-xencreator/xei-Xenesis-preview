@@ -1,0 +1,285 @@
+{
+  "schema": "xen-investor-reveal-narration/v1",
+  "generatedAt": "2026-08-02T07:17:52.165Z",
+  "screenplay": "XEN_INVESTOR_REVEAL_CONNECTED_SCREENPLAY_AND_ACTION_MAP_V4_PEOPLE_FIRST",
+  "model": "gpt-4o-mini-tts",
+  "voice": "marin",
+  "voiceContract": "XVS-001-MARIN-EXCLUSIVE-v1",
+  "approvedAudition": "assets/narration/xen-voice-audition-v2.mp3",
+  "instructionsSha256": "93f5ff8d30baef2b37a54a75bfc5ab001e7144e87206b8e96a10b8e3e27f2f63",
+  "generationBatch": "83490c3fd94ca19a6b299e1b2a3c424097aff832a7e71913472bbc312be95ad2",
+  "clips": [
+    {
+      "id": "scene-01",
+      "scene": 1,
+      "title": "I am Xen",
+      "path": "assets/narration/investor-reveal-v1/scene-01.mp3",
+      "bytes": 316800,
+      "sha256": "66ed9f85179e0ca88f47bc76b4cef4fddc40c5d62c81b61556b9b813065bf3e1"
+    },
+    {
+      "id": "scene-02",
+      "scene": 2,
+      "title": "Intelligence became abundant. Advantage did not.",
+      "path": "assets/narration/investor-reveal-v1/scene-02.mp3",
+      "bytes": 376320,
+      "sha256": "613ba37e9982ed22e9d87fb818398a4b133e2089a7598e7fa854f16b70820c3d"
+    },
+    {
+      "id": "scene-03",
+      "scene": 3,
+      "title": "One intelligence that stays with you",
+      "path": "assets/narration/investor-reveal-v1/scene-03.mp3",
+      "bytes": 302976,
+      "sha256": "c660119e965afd924e63db7fc4344076f58fd011cc7e85588d3bcdebb36f34fd"
+    },
+    {
+      "id": "scene-04",
+      "scene": 4,
+      "title": "“Xen helped me do this.”",
+      "path": "assets/narration/investor-reveal-v1/scene-04.mp3",
+      "bytes": 403584,
+      "sha256": "9a8d92fe50baf51b3b16a772e8a0944749758104d410e4ac6482daae24affe27"
+    },
+    {
+      "id": "scene-05",
+      "scene": 5,
+      "title": "The world becomes relevant to your life",
+      "path": "assets/narration/investor-reveal-v1/scene-05.mp3",
+      "bytes": 296064,
+      "sha256": "1d91fc556d1f76b2d2a3e1575062287b63fa59141acc68e14a62764662386a9a"
+    },
+    {
+      "id": "scene-06",
+      "scene": 6,
+      "title": "Daily Bread turns change into a clear morning",
+      "path": "assets/narration/investor-reveal-v1/scene-06.mp3",
+      "bytes": 303744,
+      "sha256": "25c7c0a76012ca81e1274c48e417b060f5139a318be7a626abe4a8218a685cfe"
+    },
+    {
+      "id": "scene-07",
+      "scene": 7,
+      "title": "Walk into the conversation prepared",
+      "path": "assets/narration/investor-reveal-v1/scene-07.mp3",
+      "bytes": 325248,
+      "sha256": "17928f6643da44507f523ae6208cc1bf0bd329ec4a9f1458b166807298aa6968"
+    },
+    {
+      "id": "scene-08",
+      "scene": 8,
+      "title": "Ask naturally. Keep the context.",
+      "path": "assets/narration/investor-reveal-v1/scene-08.mp3",
+      "bytes": 369408,
+      "sha256": "4a287bb17d1c02eb11f49f48a2c7dcee40582c610fa478b1e107fab93a246829"
+    },
+    {
+      "id": "scene-09",
+      "scene": 9,
+      "title": "Purpose changes the quality of every answer",
+      "path": "assets/narration/investor-reveal-v1/scene-09.mp3",
+      "bytes": 332544,
+      "sha256": "9a47533317db326ba714c6ab9b38069fd57f11d18e5c4942d64f1297cdfd6239"
+    },
+    {
+      "id": "scene-10",
+      "scene": 10,
+      "title": "See the consequence before you press Play",
+      "path": "assets/narration/investor-reveal-v1/scene-10.mp3",
+      "bytes": 296064,
+      "sha256": "2b9be7d16f21cf91e4567e5ca6db6e45276bcdbaeabff66a89413eb40f5d852d"
+    },
+    {
+      "id": "scene-11",
+      "scene": 11,
+      "title": "Media that can teach back",
+      "path": "assets/narration/investor-reveal-v1/scene-11.mp3",
+      "bytes": 352128,
+      "sha256": "7a6f7bc22abf64c7cf6989c327d9f850f27441e884975b7443a6c73084e07670"
+    },
+    {
+      "id": "scene-12",
+      "scene": 12,
+      "title": "Nothing valuable has to disappear at the end",
+      "path": "assets/narration/investor-reveal-v1/scene-12.mp3",
+      "bytes": 352896,
+      "sha256": "0f72cdfa156b31b8ab4fbb63ba944860f6ba446838092217874f5c22eacf0742"
+    },
+    {
+      "id": "scene-13",
+      "scene": 13,
+      "title": "A book becomes a living intellectual world",
+      "path": "assets/narration/investor-reveal-v1/scene-13.mp3",
+      "bytes": 339072,
+      "sha256": "4d7a962820f629e5bb4bdf167608f907415d3f0a0ecf5e63bcf4afdb734c42bd"
+    },
+    {
+      "id": "scene-14",
+      "scene": 14,
+      "title": "Learning that proves you can do it",
+      "path": "assets/narration/investor-reveal-v1/scene-14.mp3",
+      "bytes": 291072,
+      "sha256": "e7b0e50d846ac8a3675a21a22a7137598d0f4e05ed3a002259830d4c44c5b90e"
+    },
+    {
+      "id": "scene-15",
+      "scene": 15,
+      "title": "Your wardrobe becomes usable intelligence",
+      "path": "assets/narration/investor-reveal-v1/scene-15.mp3",
+      "bytes": 332544,
+      "sha256": "d22d4e17245dd23b4e9112cc6dc97e7d19c48efaa6558c30fe8bf18efb11b0d2"
+    },
+    {
+      "id": "scene-16",
+      "scene": 16,
+      "title": "Money becomes understanding, not anxiety",
+      "path": "assets/narration/investor-reveal-v1/scene-16.mp3",
+      "bytes": 364800,
+      "sha256": "d48be2e3e01f4b7262b94f8737e3065e96459415e52d0803b2ef128c32c37f44"
+    },
+    {
+      "id": "scene-17",
+      "scene": 17,
+      "title": "One person. One life. No artificial app boundaries.",
+      "path": "assets/narration/investor-reveal-v1/scene-17.mp3",
+      "bytes": 320256,
+      "sha256": "4744bf983b644dba926bcc391850678515abad2b0b62698a5b1bd17d924716d7"
+    },
+    {
+      "id": "scene-18",
+      "scene": 18,
+      "title": "The ordinary person is the hero",
+      "path": "assets/narration/investor-reveal-v1/scene-18.mp3",
+      "bytes": 340608,
+      "sha256": "4d809d2068f61a7e44dc689ec1f28dfd4d627e6074ade71aadbee2fd5e5c50e3"
+    },
+    {
+      "id": "scene-19",
+      "scene": 19,
+      "title": "Useful every day. More valuable every year.",
+      "path": "assets/narration/investor-reveal-v1/scene-19.mp3",
+      "bytes": 336384,
+      "sha256": "5c04b073ad23f40fe608a18baff84d7966b3574726e88b744aa18ec8969ea6b7"
+    },
+    {
+      "id": "scene-20",
+      "scene": 20,
+      "title": "Millions of relationships can compound",
+      "path": "assets/narration/investor-reveal-v1/scene-20.mp3",
+      "bytes": 404352,
+      "sha256": "61cf0e98a1f7b05147856f8bfb2cc3ba8cac5bb3787cb1612bcdf45cfa558f6f"
+    },
+    {
+      "id": "scene-21",
+      "scene": 21,
+      "title": "One platform, many reasons to pay",
+      "path": "assets/narration/investor-reveal-v1/scene-21.mp3",
+      "bytes": 374400,
+      "sha256": "f61105049f1e168e836b3a879a2d9777d6f4448f4052ee60e3da4f0913c8ed39"
+    },
+    {
+      "id": "scene-22",
+      "scene": 22,
+      "title": "Creators and experts can earn inside the system",
+      "path": "assets/narration/investor-reveal-v1/scene-22.mp3",
+      "bytes": 338304,
+      "sha256": "e9f7e21cf2955b53b94002e158077ebb32c8aed4cb64af1ce577995cd000993c"
+    },
+    {
+      "id": "scene-23",
+      "scene": 23,
+      "title": "Life moments create natural expansion",
+      "path": "assets/narration/investor-reveal-v1/scene-23.mp3",
+      "bytes": 349824,
+      "sha256": "5bf269a48c6e9899e2633f4a1600e44de5df5e8926d7611e02b481aeab66a980"
+    },
+    {
+      "id": "scene-24",
+      "scene": 24,
+      "title": "Businesses are an expansion layer—not the whole story",
+      "path": "assets/narration/investor-reveal-v1/scene-24.mp3",
+      "bytes": 360576,
+      "sha256": "1b9b5173d864227753c1e8c2229c84fee6facc523892c6ef6cf97f6a49dc999f"
+    },
+    {
+      "id": "scene-25",
+      "scene": 25,
+      "title": "A living company learns without forgetting",
+      "path": "assets/narration/investor-reveal-v1/scene-25.mp3",
+      "bytes": 320640,
+      "sha256": "ce7b8f2fe72004b9f507850e7086d4ad52096cadebd7a26641483bd750a28eee"
+    },
+    {
+      "id": "scene-26",
+      "scene": 26,
+      "title": "From conversation to safe execution",
+      "path": "assets/narration/investor-reveal-v1/scene-26.mp3",
+      "bytes": 340608,
+      "sha256": "b1272b76084ede689f9fd0e41ca532637d83740ec56f2370777fc370069e9fd9"
+    },
+    {
+      "id": "scene-27",
+      "scene": 27,
+      "title": "Trust is a product feature",
+      "path": "assets/narration/investor-reveal-v1/scene-27.mp3",
+      "bytes": 410880,
+      "sha256": "a4c080293b51b383dbc899e8b515b5d156fba07b1155ba56f4e5e6f90cab1337"
+    },
+    {
+      "id": "scene-28",
+      "scene": 28,
+      "title": "The revenue stack expands without abandoning the mission",
+      "path": "assets/narration/investor-reveal-v1/scene-28.mp3",
+      "bytes": 411648,
+      "sha256": "40d9b17cc45c4ac808a01d3a06972f8db704ebf539fb0f5fa1b9e58f5c53552f"
+    },
+    {
+      "id": "scene-29",
+      "scene": 29,
+      "title": "The moat is continuity under the user’s control",
+      "path": "assets/narration/investor-reveal-v1/scene-29.mp3",
+      "bytes": 385536,
+      "sha256": "da769dc933d171250b457551411295c4ff1119bd76ac5b415cd7a6786a2dcb77"
+    },
+    {
+      "id": "scene-30",
+      "scene": 30,
+      "title": "Start with an irresistible personal proof",
+      "path": "assets/narration/investor-reveal-v1/scene-30.mp3",
+      "bytes": 317568,
+      "sha256": "7daa4e5718c3e048548146f0e4c0dc63632b8cd402c217da4830cf3646d79b22"
+    },
+    {
+      "id": "scene-31",
+      "scene": 31,
+      "title": "Prove desire, retention, and trust",
+      "path": "assets/narration/investor-reveal-v1/scene-31.mp3",
+      "bytes": 330624,
+      "sha256": "0f03a6421c521ee4335250f817683adae2190f5a5e7a47754f4e0473d9660a18"
+    },
+    {
+      "id": "scene-32",
+      "scene": 32,
+      "title": "Capital turns the vision into verified reach",
+      "path": "assets/narration/investor-reveal-v1/scene-32.mp3",
+      "bytes": 423168,
+      "sha256": "4c7bd9e6d87d15dd8b3a27e19c3e7644708d1d397e2b60d47656a6580b3101ca"
+    },
+    {
+      "id": "scene-33",
+      "scene": 33,
+      "title": "A category built to even the playing field",
+      "path": "assets/narration/investor-reveal-v1/scene-33.mp3",
+      "bytes": 351360,
+      "sha256": "9d776d5f776ccd9dc7968e38c061cc142770dc93192a2397c03767d1d95a59c6"
+    },
+    {
+      "id": "scene-34",
+      "scene": 34,
+      "title": "Ask Xen",
+      "path": "assets/narration/investor-reveal-v1/scene-34.mp3",
+      "bytes": 326016,
+      "sha256": "51fe9d3c381cbdbe062c6c895409f4bda5a28d6f301cd0f86905acb459df0cc1"
+    }
+  ]
+}
