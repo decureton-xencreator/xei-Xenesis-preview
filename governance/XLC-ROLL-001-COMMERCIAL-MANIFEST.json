@@ -1,6 +1,6 @@
 {
   "standard": "XLC-ROLL-001",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "approved-implementation",
   "authority": "Darren Cureton",
   "entry": "solutions.html",
@@ -16,12 +16,50 @@
     "company": "Living Company Blueprint Session",
     "compare": "Checkmate Operating-Layer Comparison"
   },
-  "publications": ["XBM-101", "XBM-102", "XBM-103", "XBM-104", "XBM-105", "XBM-106", "XBM-107", "XBM-108", "XBM-109"],
+  "publications": [
+    "XBM-101",
+    "XBM-102",
+    "XBM-103",
+    "XBM-104",
+    "XBM-105",
+    "XBM-106",
+    "XBM-107",
+    "XBM-108",
+    "XBM-109"
+  ],
   "truth_boundary": {
     "no_invented_pricing": true,
     "no_unapproved_contact_data": true,
     "no_private_discovery_on_public_gateway": true,
-    "full_publication_links_are_canonical": true
+    "full_publication_links_are_canonical": true,
+    "authorized_pricing_only": true
   },
-  "pending_connections": ["checkout", "pricing", "scheduler", "sales_contact", "crm"]
+  "pending_connections": [
+    "checkout",
+    "scheduler",
+    "sales_contact",
+    "crm"
+  ],
+  "xct_001": {
+    "disclosure_status": "public-authorized",
+    "authorized_by": "Darren Cureton",
+    "customer_deployment": {
+      "currency": "USD",
+      "activation": 10000,
+      "manual_system_deployment": 7500,
+      "operating_proof_and_executive_review": 7500,
+      "total": 25000
+    },
+    "activation_applies_to_total": true,
+    "license": "limited-internal-use",
+    "excluded": [
+      "xen-ip-transfer",
+      "source-code-transfer",
+      "resale-rights",
+      "exclusivity",
+      "decision-control",
+      "securities-checkout"
+    ],
+    "investment_boundary": "separate-private-counsel-led-transaction"
+  }
 }
