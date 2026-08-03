@@ -146,7 +146,18 @@ if(rollout.version!=='1.1.0'||rollout.xct_001?.disclosure_status!=='public-autho
 const xct=rollout.xct_001.customer_deployment;
 if(xct.activation+xct.manual_system_deployment+xct.operating_proof_and_executive_review!==xct.total||xct.total!==25000)throw new Error('XCT-001 milestone arithmetic failed');
 if(rollout.pending_connections.includes('pricing')||!rollout.pending_connections.includes('checkout'))throw new Error('XCT-001 activation truth drifted');
-for(const term of ['XCT-001 · FOUNDING CUSTOMER TERMS','$10,000','$7,500','Total founding engagement: $25,000','not an additional charge','separate, private, attorney-reviewed transaction'])if(!solutions.includes(term))throw new Error(`XCT-001 public term missing: ${term}`);
+for(const [milestone,price] of [
+ ['Xen Alpha One Activation','$10,000'],
+ ['Manual System Deployment','$7,500'],
+ ['Operating Proof &amp; Executive Review','$7,500']
+]){
+ const milestoneIndex=solutions.indexOf(`<strong>${milestone}</strong>`);
+ const cardStart=solutions.lastIndexOf('<article class="path-card',milestoneIndex);
+ const cardEnd=solutions.indexOf('</article>',milestoneIndex);
+ const card=cardStart>=0&&cardEnd>milestoneIndex?solutions.slice(cardStart,cardEnd):'';
+ if(!card.includes(`<h3>${price}</h3>`))throw new Error(`XCT-001 displayed price drifted: ${milestone} must be ${price}`);
+}
+for(const term of ['XCT-001 · FOUNDING CUSTOMER TERMS','Total founding engagement: $25,000','not an additional charge','separate, private, attorney-reviewed transaction'])if(!solutions.includes(term))throw new Error(`XCT-001 public term missing: ${term}`);
 
 for(const term of [
  'XLI-016 VISIBLE-FRAME CENTER LOCK',
