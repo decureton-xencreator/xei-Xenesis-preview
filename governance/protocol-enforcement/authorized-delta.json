@@ -1,8 +1,8 @@
 {
   "schema": "xen/authorized-delta/v1",
   "id": "XPEP-1.0.0",
-  "authorizedBy": "Darren Cureton — PR #163 XCT-001 publication approval — 2026-08-03",
-  "purpose": "Authorize the four exact XCT-001 public-commercial publication files for PR #163 only while preserving protected Xenesis product surfaces.",
+  "authorizedBy": "user-directed-xcb-009-universal-federation-2026-07-27",
+  "purpose": "Authorize fail-closed XCB-009 Warden/XER federation while preserving protected Xenesis product surfaces.",
   "allowedPrefixes": [
     "governance/protocol-enforcement/",
     "scripts/protocol-warden.mjs",
@@ -31,11 +31,7 @@
     ".github/workflows/xcb-009.yml",
     "governance/xcb-009/",
     "scripts/xcb_009_admit.py",
-    "tests/test_xcb_009.py",
-    "solutions.html",
-    "docs/XLC-ROLL-001-LIVING-COMPANY-COMMERCIAL-ROLLOUT.md",
-    "governance/XLC-ROLL-001-COMMERCIAL-MANIFEST.json",
-    "tests/validate.mjs"
+    "tests/test_xcb_009.py"
   ],
   "protectedPrefixes": [
     "index.html",
@@ -44,15 +40,19 @@
     "assets/narration/"
   ],
   "status": "AUTHORIZED",
-  "authorizationScope": {
-    "pullRequest": 163,
-    "repository": "Xendarr-AI/xei-Xenesis-preview",
-    "exactPaths": [
-      "solutions.html",
-      "docs/XLC-ROLL-001-LIVING-COMPANY-COMMERCIAL-ROLLOUT.md",
-      "governance/XLC-ROLL-001-COMMERCIAL-MANIFEST.json",
-      "tests/validate.mjs"
-    ],
-    "expiresAfterMerge": true
-  }
+  "expiredAuthorizations": [
+    {
+      "pullRequest": 163,
+      "repository": "Xendarr-AI/xei-Xenesis-preview",
+      "exactPaths": [
+        "solutions.html",
+        "docs/XLC-ROLL-001-LIVING-COMPANY-COMMERCIAL-ROLLOUT.md",
+        "governance/XLC-ROLL-001-COMMERCIAL-MANIFEST.json",
+        "tests/validate.mjs"
+      ],
+      "authorizedBy": "Darren Cureton",
+      "authorizedOn": "2026-08-03",
+      "expiredAfterMergeCommit": "42d50a231d6a0b1a997d43eed57afa29e4e7f02e"
+    }
+  ]
 }
